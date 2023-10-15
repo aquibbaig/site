@@ -1,3 +1,9 @@
+import { ThemeSwitch } from '@/services/theme/ThemeSwitch';
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <ThemeSwitch />
+    </div>
+  );
 }
