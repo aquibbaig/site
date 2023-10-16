@@ -1,6 +1,8 @@
+import { PageHeader } from '@/services/page-header/PageHeader';
 import { clsx } from 'clsx';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { twMerge } from 'tailwind-merge';
 import { ThemeProvider } from '../services/theme/theme.context';
 import './globals.css';
 
@@ -13,11 +15,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={clsx(
           inter.className,
-          'bg-background-primary-light dark:bg-background-primary-dark'
+          twMerge(
+            'bg-background-primary-light text-text-primary-light',
+            'dark:text-text-primary-dark dark:bg-background-primary-dark',
+            'text-[0.9375rem] leading-[1.5]'
+          )
         )}
       >
         <ThemeProvider
@@ -26,7 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex min-h-screen flex-col p-8 mx-auto max-w-2xl">{children}</main>
+          <main className="mx-auto my-12 max-w-[676px] px-6 antialiased sm:my-32 md:my-16">
+            <PageHeader />
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

@@ -26,7 +26,7 @@ export const ThemeSwitch = () => {
           setTheme("dark");
         }}
       >
-        <IconComponent Icon={Moon} />
+        <IconComponent Icon={Moon} size={15} />
       </Button>
     );
   }
@@ -38,7 +38,7 @@ export const ThemeSwitch = () => {
           setTheme("light");
         }}
       >
-        <IconComponent Icon={Sun} />
+        <IconComponent Icon={Sun} size={15} />
       </Button>
     );
   }

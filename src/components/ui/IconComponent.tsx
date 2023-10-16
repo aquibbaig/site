@@ -1,11 +1,14 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, LucideProps } from "lucide-react";
 
-export const IconComponent = ({ Icon, ...rest }: { Icon: LucideIcon }) => {
+export const IconComponent = ({
+  Icon,
+  ...rest
+}: { Icon: LucideIcon } & LucideProps) => {
   return (
     <Icon
       className="text-text-primary-light dark:text-text-secondary-dark"
-      {...rest}
       size={16}
+      {...rest}
     />
   );
 };

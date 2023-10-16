@@ -5,6 +5,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/services/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     colors: {
@@ -26,6 +27,10 @@ const config: Config = {
         secondary: {
           light: "#555555",
           dark: "#AAAAAA",
+        },
+        muted: {
+          light: "#90959D",
+          dark: "#8C8C8C",
         },
       },
       border: {
