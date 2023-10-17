@@ -2,6 +2,7 @@ import { MdxContent } from '@/app/_lib/MdxContent';
 import { DAYJS_DEFAULT_FORMAT, POSTS_PATH } from '@/constants';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import { twMerge } from 'tailwind-merge';
@@ -20,7 +21,7 @@ export default async function PostPage({
   return (
     <div className="flex flex-col">
       <div>
-        <h1>{frontmatter.title}</h1>
+        <h2>{frontmatter.title}</h2>
         {frontmatter.description && (
           <p className="!leading-relaxed !text-[0.9375rem]">{frontmatter.description}</p>
         )}
@@ -34,9 +35,10 @@ export default async function PostPage({
       <article
         className={twMerge(
           'prose dark:prose-invert',
-          'prose-headings:text-primary-light dark:prose-headings:text-primary-dark prose-headings:font-semibold',
+          'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-semibold',
           'leading-relaxed text-[0.9375rem]',
-          'prose-img:rounded-sm dark:prose-img:opacity-90'
+          'prose-img:rounded-sm dark:prose-img:opacity-90',
+          'prose-a:font-normal prose-a:underline-offset-4 prose-a:text-text-primary-light dark:prose-a:text-text-primary-dark prose-a:!decoration-red-500'
         )}
       >
         <MdxContent source={serialized} />
@@ -50,7 +52,10 @@ export default async function PostPage({
   );
 }
 
-async function getPost({ slug }: { slug: string }): Promise<any> {
+export async function getPost({ slug }: { slug: string }): Promise<{
+  frontmatter: Record<string, string>;
+  serialized: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>;
+}> {
   const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   // Read the file from the filesystem
   const raw = fs.readFileSync(postFilePath, 'utf-8');
@@ -65,7 +70,7 @@ async function getPost({ slug }: { slug: string }): Promise<any> {
 
   // Return the serialized content and frontmatter
   return {
-    frontmatter,
+    frontmatter: frontmatter as Record<string, string>,
     serialized,
   };
 }

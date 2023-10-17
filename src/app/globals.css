@@ -2,20 +2,21 @@
 
 @layer base {
   h1 {
-    @apply text-2xl;
+    @apply text-[1.5em];
     @apply font-semibold;
     @apply mb-[1em];
   }
   h2 {
-    @apply text-xl;
+    @apply text-[1.5em];
     @apply font-semibold;
+    @apply mb-[1em];
   }
   h3 {
     @apply text-lg;
     @apply font-medium;
+    @apply mb-[1em];
   }
 }
-
 
 @tailwind components;
 @tailwind utilities;

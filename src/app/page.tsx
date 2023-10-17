@@ -1,4 +1,11 @@
-export default function Home() {
+import { POST_PREVIEW_LIMIT } from '@/constants';
+import { getPostMetadata } from '@/helpers';
+import { twMerge } from 'tailwind-merge';
+import { getPost } from './blog/[slug]/page';
+
+export default async function Home() {
+  const { recentPosts } = await getRecentPosts();
+
   return (
     <div className="flex flex-col gap-y-20">
       <div>
@@ -6,6 +13,49 @@ export default function Home() {
         developing highly performant and maintainable systems. I have a strong affinity for
         aesthetically pleasing designs and a keen eye for exceptional user experiences.
       </div>
+      <div className="flex flex-col gap-y-4">
+        <h4>Thoughts</h4>
+        <ul className="flex flex-col gap-y-4">
+          {recentPosts.map(({ title, slug }) => (
+            <li
+              key={slug}
+              className={twMerge(
+                'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
+                'px-3 py-2 -mx-3',
+                'rounded-md'
+              )}
+            >
+              <a href={`/blog/${slug}`}>{title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
+}
+
+export async function getRecentPosts() {
+  const { posts = [], count } = getPostMetadata({
+    limit: POST_PREVIEW_LIMIT,
+  });
+
+  let recentPosts: {
+    title: string;
+    slug: string;
+  }[] = [];
+
+  for (const post of posts) {
+    const slug = post.filePath.replace(/\.mdx?$/, '');
+    const { frontmatter } = await getPost({ slug });
+
+    recentPosts.push({
+      title: frontmatter.title,
+      slug,
+    });
+  }
+
+  return {
+    recentPosts,
+    totalCount: count,
+  };
 }

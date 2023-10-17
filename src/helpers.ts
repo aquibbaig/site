@@ -1,6 +1,6 @@
 import { POSTS_PATH, postFilePaths } from "@/constants";
-import matter from "gray-matter";
 import fs from "fs";
+import matter from "gray-matter";
 import path from "path";
 
 export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
@@ -23,5 +23,5 @@ export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
     }
   });
 
-  return { posts: sortedPosts.slice(0, limit) };
+  return { posts: sortedPosts.slice(0, limit), count: sortedPosts.length };
 };
