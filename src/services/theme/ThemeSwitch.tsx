@@ -18,10 +18,8 @@ export const ThemeSwitch = () => {
     return null;
   }
 
-  const isLight =
-    theme === "light" || (theme === "system" && systemTheme === "light");
-  const isDark =
-    theme === "dark" || (theme === "system" && systemTheme === "dark");
+  const isLight = theme === "light" || (theme === 'system' && systemTheme === "light");
+  const isDark = theme === "dark" || (theme === 'system' && systemTheme === "dark");
 
   if (isLight) {
     return (
@@ -34,7 +32,7 @@ export const ThemeSwitch = () => {
       </Button>
     );
   }
-
+  
   if (isDark) {
     return (
       <Button
