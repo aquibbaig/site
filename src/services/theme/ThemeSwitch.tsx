@@ -7,8 +7,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export const ThemeSwitch = () => {
-  const { theme, setTheme } = useTheme();
-
+  const { theme, systemTheme, setTheme } = useTheme();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -19,7 +18,10 @@ export const ThemeSwitch = () => {
     return null;
   }
 
-  if (theme === "light") {
+  const isLight = theme === "light" || (theme === 'system' && systemTheme === "light");
+  const isDark = theme === "dark" || (theme === 'system' && systemTheme === "dark");
+
+  if (isLight) {
     return (
       <Button
         onClick={() => {
@@ -31,7 +33,7 @@ export const ThemeSwitch = () => {
     );
   }
 
-  if (theme === "dark") {
+  if (isDark) {
     return (
       <Button
         onClick={() => {
