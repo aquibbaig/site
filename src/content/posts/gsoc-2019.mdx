@@ -90,7 +90,9 @@ As a user, I can click on the bell icon on the navbar and view the list of notif
 ## Command to create notifications
   Since notifications are completely dependent on user interactions with the website, they are difficult to debug in development. So, created a Symfony console command to create notifications from cli.
 
-```php bin/console librecores:send-notification <subject> <message> <type> <recipient>```
+```php 
+php bin/console librecores:send-notification <subject> <message> <type> <recipient>
+```
 
   The Pull Request corresponding to this are:
 

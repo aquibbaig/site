@@ -17,9 +17,9 @@ export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
 
   const sortedPosts = posts.sort((a, b) => {
     if (a.data.publishedOn < b.data.publishedOn) {
-      return -1;
-    } else {
       return 1;
+    } else {
+      return -1;
     }
   });
 

@@ -46,6 +46,24 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "pre code::before": {
+              "padding-left": "unset"
+            },
+            "pre code::after": {
+              "padding-right": "unset"
+            },
+            code: {
+              minWidth: '100%',
+            },
+            "pre code": {
+              border: 0,
+            }
+          },
+        },
+      },
     },
   },
   darkMode: "class",

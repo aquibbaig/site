@@ -1,0 +1,88 @@
+---
+title: 'Zustand: Redux Simplified'
+publishedOn: 2021-10-12T10:42:00-0400
+draft: false
+description: 'It is very common to use Redux for managing the global state of your React application.
+But with Redux comes in so much boilerplate to configure, HOCs and a data flow pattern. What if I told you
+that you can leverage all the good features of Redux but without all that boilerplate, using React Hooks.'
+---
+
+## Redux
+Why Redux became so popular is because it introduced a maintainable
+data flow pattern of generating actions, mutating state using reducers and
+effectively applying changes to the subscriber components. I have used
+Redux in my projects and I find it extremely useful in the longer
+run when the complexity of the app increases.
+
+However, I am a little unhappy about all the configuration you have
+to make beforehand.
+- configure a store
+- persist the store using persist gate
+- use redux thunk/saga and middlewares
+- wrapping the app in HOCs
+
+## Enter zustand
+
+zustand is a lightweight package which brings in all the good things of Redux
+without all the time spent in writing long boilerplate code. It gives you a way to create and consume
+your store using React Hooks. You are probably well aware of how
+powerful (React Hooks) `🦸 useSuperPowers()` are!
+
+## Creating a store in zustand
+```js
+ // store/counter.ts 
+  import create, { GetState, SetState } from 'zustand'
+  import { devtools, persist } from 'zustand/middleware'
+
+  interface Store {
+    counter: number,
+    updateCounter: (counter: number) => void
+  }
+
+  let useStore = (set: SetState<Store>, get: GetState<Store>) => ({
+    counter: 0,
+    updateCounter: (counter) => {
+      set({
+        counter
+      })
+    } 
+  })
+  useStore = persist(useStore, { name: "counter" })
+  useStore = devtools(useStore)
+
+  export const useCounterStore = create<Store>(useStore)
+```
+
+and voila! Your store is ready 🚀
+- We created a custom hook in this file `useCounterStore` which can be reused in your function components as desired.
+- zustand provides you `set` and `get` functions to effectively get and set your state values.
+- we wrap our useStore instance around two middlewares: persist and devtools. `persist` allows us to persist
+our store in the localstorage by default and `devtools` turn on Redux devtools in your dev environment. 
+
+> Notice how we do not have to bind our reducers to the store and write sagas to initiate actions. zustand takes care of all that in the background.
+
+## Consuming a store
+In Redux we used to have `connect()` which took mapStateToProps and mapDispatchToProps as parameters
+to hydrate our consumer components. With zustand, it gets even simpler. We can 
+just import the store using the hook we created above and we are good to go.
+
+```js
+// component.tsx
+export default function SomeRandomComponent() {
+  const { counter, updateCounter } = useCounterStore();
+
+  return <button onClick={() => updateCounter(counter+1)}>{counter}</button>
+}
+```
+and that's it 🚀
+
+## Takeways
+As you can see, zustand definitely makes our life easy. We have less time to spend
+on configuration and more time to spend on application development. Zustand being `1.9Kb` in size
+also solves issues such as the dreaded zombie child problem, react concurrency, and context loss between mixed renderers
+
+> It may be the one state-manager in the React space that gets all of these right.
+
+*source: zustand-docs, Github*
+
+I guess now it should sound reasonable migrating to 🦄 &nbsp zustand.

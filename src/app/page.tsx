@@ -15,17 +15,20 @@ export default async function Home() {
       </div>
       <div className="flex flex-col gap-y-4">
         <h4>Thoughts</h4>
-        <ul className="flex flex-col gap-y-4">
+        <ul className="flex flex-col">
           {recentPosts.map(({ title, slug }) => (
-            <li
-              key={slug}
-              className={twMerge(
-                'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-                'px-3 py-2 -mx-3',
-                'rounded-md'
-              )}
-            >
-              <a href={`/blog/${slug}`}>{title}</a>
+            <li key={slug}>
+              <a
+                href={`/blog/${slug}`}
+                className={twMerge(
+                  'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
+                  'px-3 py-1 -mx-3',
+                  'rounded-md',
+                  'flex truncate'
+                )}
+              >
+                {title}
+              </a>
             </li>
           ))}
         </ul>
