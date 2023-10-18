@@ -36,7 +36,7 @@ const config: Config = {
       border: {
         primary: {
           light: "#EEF1F4",
-          dark: "#202020",
+          dark: "#272727",
         },
       },
     },

@@ -37,17 +37,13 @@ export default async function PostPage({
           'prose dark:prose-invert',
           'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-semibold',
           'leading-relaxed text-[0.9375rem]',
-          'prose-img:rounded-sm dark:prose-img:opacity-90',
-          'prose-a:font-normal prose-a:underline-offset-4 prose-a:text-text-primary-light dark:prose-a:text-text-primary-dark prose-a:!decoration-red-500'
+          'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
+          'prose-a:font-medium prose-a:no-underline prose-a:text-[#3498db]',
+          'prose-code:before:content-[""] prose-code:after:content-[""] prose-code:inline-table prose-code:border prose-code:border-border-primary-light dark:prose-code:border-border-primary-dark prose-code:rounded-md prose-code:px-2 prose-code:py-1 prose-code:bg-background-secondary-light dark:prose-code:bg-background-secondary-dark prose-code:font-normal prose-code:leading-relaxed prose-code:overflow-x-auto prose-code:overflow-y-hidden prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400'
         )}
       >
         <MdxContent source={serialized} />
       </article>
-      <div>
-        <div>
-          written by <i>Aquib Baig.</i>
-        </div>
-      </div>
     </div>
   );
 }
