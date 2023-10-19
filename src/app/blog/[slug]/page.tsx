@@ -2,11 +2,32 @@ import { MdxContent } from '@/app/_lib/MdxContent';
 import { DAYJS_DEFAULT_FORMAT, POSTS_PATH } from '@/constants';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import type { ResolvedMetadata, ResolvingMetadata } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import { twMerge } from 'tailwind-merge';
 import { CopyPostLink } from './_lib/CopyPostLink';
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<ResolvedMetadata> {
+  const { frontmatter } = await getPost({
+    slug: params.slug,
+  });
+
+  return {
+    title: `${frontmatter.title} | Aquib Baig`,
+    description: frontmatter.description,
+    ...parent,
+  };
+}
 
 export default async function PostPage({
   params,
