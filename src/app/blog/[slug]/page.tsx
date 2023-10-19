@@ -6,6 +6,7 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import { twMerge } from 'tailwind-merge';
+import { CopyPostLink } from './_lib/CopyPostLink';
 
 export default async function PostPage({
   params,
@@ -35,7 +36,7 @@ export default async function PostPage({
       <article
         className={twMerge(
           'prose dark:prose-invert',
-          'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-semibold',
+          'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-medium',
           'leading-relaxed text-[0.9375rem]',
           'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
           'prose-a:font-medium prose-a:no-underline prose-a:text-[#3498db]',
@@ -44,11 +45,16 @@ export default async function PostPage({
           'prose-code:rounded-md prose-code:px-2 prose-code:py-1 prose-code:bg-background-secondary-light',
           'prose-code:text-text-primary-light dark:prose-code:text-text-primary-dark',
           'dark:prose-code:bg-background-secondary-dark prose-code:font-normal prose-code:leading-relaxed',
-          'prose-code:overflow-x-auto prose-code:overflow-y-hidden prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400'
+          'prose-code:overflow-x-auto prose-code:overflow-y-hidden prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
+          'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg'
         )}
       >
         <MdxContent source={serialized} />
       </article>
+      <hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+      <div>
+        <CopyPostLink slug={params.slug} />
+      </div>
     </div>
   );
 }

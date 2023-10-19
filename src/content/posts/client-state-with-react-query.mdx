@@ -1,0 +1,75 @@
+---
+title: 'Opting for Client State: The React Query way'
+publishedOn: 2021-09-26T09:15:00-0400
+draft: false
+description: "Leveraging the browser cache to consistently store data fetched from the server
+can be a gamechanger for your web app's performance and user experience, we'll see how."
+---
+
+# The Mindset
+
+It's kinda useless going forward without actually explaining how we use to think about the data your
+application displays on the browser. Where is this data coming from? Who owns this data?
+
+It is difficult to accept it but "Server state is different from client state" and we need to let that sink in first. *why does it matter??*
+
+Data fetching can be opinionated. Whatever the means may be, we always fetch the latest snapshot of
+the data from the server and display it on the web. But, it is the server that owns the data. This may be
+a problem when you have already fetched some data and you would like to re-use it for another component, well
+you can't do that because your **client-side** application can no way differentiate that these two requests are for
+fetching the same data because it doesn't own it.
+
+# Well, Redux?
+
+You might think redux can be pretty useful in this case. We can programmatically state that
+these two specific components re-use the same data. We do that by injecting the same props **(mapStateToProps)** 
+into both of them.
+
+But, Redux is a fetch once tool. It is not an intelligent data fetching solution. It can no way
+tell that, the data you have been using to populate your web app is **stale** and needs to be synced
+with the server side data.
+
+# Talking about solutions
+
+One of the earliest solutions that bought a change in this mindset was **apollo-client**. If you have worked
+with graphql earlier, I'm sure you might have heard about it. It uses the browser cache to index
+the data fetched from the server on the client-side (using keys). You can then re-use this data
+across your application. Meaning, if you already have the data, it is fetched from the cache, rather than
+making a new network request each time. It will however request for data, when you mark the data on your cache
+as **stale**. 
+
+> But this was only for graphql, and the keys which were used to index the data were graphql queries. Same
+queries could re-use same data from the cache.
+
+Next up, were [swr](https://swr.vercel.app/) and [react-query](https://react-query.tanstack.com/), and these were game-changers. These tools, specifically
+react-query bought in the best of **apollo-graphql** into the world of REST API. A vivid comparison of
+all these tools can be found on [react-query's documentation](https://react-query.tanstack.com/comparison).
+
+# React Query
+
+React Query indexes data received from the server in your client's cache using keys that you can define, giving
+you the control of how your cache looks like. When you integrate react-query, it seems that almost 
+everything in your app loads instanteneously. Some of the key features are:
+
+## Stale while revalidate
+React query makes your app usable even when new data hasn't been fetched yet. In other cases, you would shoot
+up a spinner when your app is fetching data, but with react query new data is fetched in the background while
+the user can still use your app.
+
+*Stale data is better than no data at all*.
+
+## Refetching methods
+When you use react-query, you are in control, most of the times. Once, the data is fetched, it is cached.
+Meaning, you will have even less network networks when you continue to use the app, unless the cache is 
+invalidated and marked as **stale**, which again is under your control.
+
+When you configure react-query for the first time, you can specify certain parameters such as **staleTime**
+and **retries** to hint react-query how to refetch data and update the cache. It is completely up to you what your stale
+time should be, depending upon how frequently your data changes. New data will then be fetched in the
+background, and the user will still be seeing stale data on the page. Other options that you
+can use to manage your refetch configuration:
+
+- **refetchOnMount**: when useQuery hook mounts, validate the cache.
+- **refetchOnWindowFocus**: when user focuses from another tab on the browser or another window, revalidate.
+- **refetchOnReconnect**: when you get your network back!!
+- **invalidateQueries**: when none of the above work, you can manually invalidate your queries and ask for refetch.
