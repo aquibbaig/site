@@ -11,7 +11,7 @@ export const Footer = () => {
 
   if (!currentlyPlayingTrack || !currentlyPlayingTrack?.is_playing || !track) return null;
 
-  return <div className='flex flex-row items-center mt-20 gap-x-1'>
+  return <div className='flex flex-row items-center mt-20 gap-x-1 text-text-primary-light dark:text-text-primary-dark'>
     <div className='animate-spin duration-500'><IconComponent Icon={Disc3} /></div>
     <div>{track.name} by {getArtistNames(track.artist)}</div>
   </div>;
