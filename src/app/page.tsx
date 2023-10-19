@@ -57,7 +57,7 @@ export default async function Home() {
   );
 }
 
-export async function getRecentPosts() {
+async function getRecentPosts() {
   const { posts = [], count } = getPostMetadata({
     limit: POST_PREVIEW_LIMIT,
   });
