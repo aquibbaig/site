@@ -29,7 +29,7 @@ const config: Config = {
           dark: '#AAAAAA',
         },
         muted: {
-          light: '#90959D',
+          light: '#919A9E',
           dark: '#A4A4A4',
         },
       },

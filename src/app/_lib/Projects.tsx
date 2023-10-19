@@ -9,13 +9,11 @@ export const Projects = () => {
           'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
           'px-3 py-2 -mx-3',
           'rounded-md',
-          'flex flex-col truncate',
+          'flex flex-col flex-nowrap',
           'leading-relaxed'
         );
         const Description = (
-          <div className="text-text-muted-light dark:text-text-muted-dark text-sm">
-            {description}
-          </div>
+          <p className="text-text-muted-light dark:text-text-muted-dark">{description}</p>
         );
 
         if (status === 'in-progress')

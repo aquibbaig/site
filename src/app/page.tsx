@@ -4,11 +4,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { Projects } from './_lib/Projects';
+import { Socials } from './_lib/Socials';
 import { getPost } from './blog/[slug]/page';
 
 export const metadata: Metadata = {
   title: 'Aquib Baig',
-  description: 'Product Engineer',
+  description: 'Frontend Engineer',
 };
 
 export default async function Home() {
@@ -23,7 +24,7 @@ export default async function Home() {
       </div>
       <div className="flex flex-col gap-y-4">
         <Link href="/blog">
-          <h4>Thoughts</h4>
+          <h4>Writings</h4>
         </Link>
         <ul className="flex flex-col">
           {recentPosts.map(({ title, slug }) => (
@@ -35,10 +36,10 @@ export default async function Home() {
                   'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
                   'px-3 py-1 -mx-3',
                   'rounded-md',
-                  'flex truncate'
+                  'flex'
                 )}
               >
-                {title}
+                <p className="truncate">{title}</p>
               </Link>
             </li>
           ))}
@@ -47,6 +48,10 @@ export default async function Home() {
       <div className="flex flex-col gap-y-4">
         <h4>Projects</h4>
         <Projects />
+      </div>
+      <div className="flex flex-col gap-y-4">
+        <h4>More</h4>
+        <Socials />
       </div>
     </div>
   );

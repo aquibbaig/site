@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <main className="mx-auto my-12 max-w-[676px] px-4 antialiased sm:my-32 md:my-16">
+          <main className="mx-auto my-12 max-w-[676px] px-4 antialiased sm:my-32 md:mt-16 md:mb-32">
             <PageHeader />
             {children}
           </main>
