@@ -1,0 +1,208 @@
+---
+title: 'PWA update notifications in a React app'
+publishedOn: 2022-03-03T09:15:00-0400
+draft: false
+description: "Ideally, you would always want users to use the latest version of your application. Having an interactive experience which speaks to the user when an update is available,
+please refresh to view the fresh changes is what our requirements were at ツ Toplyne. I'll walk you through my experience of building such a system."
+---
+
+# How the end goal looks like?
+
+The requirements are:
+
+- Check if a new update is available for the app, show a notification saying "A new version of the app is available, REFRESH?".
+
+![update-notification](https://i.ibb.co/w6mMVLH/Screenshot-2022-03-04-at-12-14-02-AM.png)
+
+- When the user navigates, check if there is a new version and manually update the page (this is a rather opinionated approach which works perfectly as per our use case, we do not suprise users with a reload, we show the above notification first, if users do not refresh themselves, we do it for them on a subsequent page navigation).
+  This is pretty easy to do once the previous requirement is in place.
+
+We leveraged the PWA (Progressive Web App) feature that comes with a React app. Using this, we get to
+use the superpowers of a service worker. Some notable features of service workers are:
+
+- runs in the background independent of main js thread
+- can be used to cache static assets and network requests
+- can be paired with workbox to make your app run in offline mode
+
+In our case, we utilised a service worker to check for updates periodically and made use of the service worker's update event
+to show notification and/or update the app. You can read more about the service worker life cycle [here](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle). Learning about
+the lifecycle is crucial in understanding the what, when and why and how to override the default behaviour.
+
+![Service worker lifecycle](https://hasura.io/blog/content/images/downloaded_images/strategies-for-service-worker-caching-d66f3c828433/1-HUnu3nbBSq2lDoOSllBkiA.png)
+_image credits: hasura.io_
+
+# Enough talk, show me the code already
+
+We had disabled the default service worker that comes with CRA, so we had to add it manually. Adding this boilerplate is quite straight forward.
+Use the cra-template-pwa and copy whatever you need. Generally, it's the workbox dependencies in `package.json`, `service-worker.js`, `serviceWorkerRegistration.js`.
+
+```js
+npx create-react-app my-app --template cra-template-pwa-typescript
+```
+
+These files contain the basic logic for registering a service worker in your browser. Ideally, you'd import the
+serviceWorker from `serviceWorkerRegistration.js` and call the register method on it in an suitable location/component.
+By default, it is `index.js`, you can move it to wherever you like but the component should always render.
+
+> For my use case, I moved it to App.tsx to make use of React state and effects which would provide
+> helpers to solve our use cases.
+
+## Checking for updates and showing a notification
+
+This is our first task. We need to periodically check for updates and if there are some update found,
+show the notification to refresh the page.
+
+The workflow is:
+
+1. poll periodically to check for sw (short for service worker) updates by calling sw's `update()` function. Update the default service worker
+   registeration in `serviceWorkerRegistration.js` file. This happens in a separate thread and is non blocking to the main js thread, so calling `setInterval()` should be okay.
+
+```js
+navigator.serviceWorker
+    .register(swUrl)
+    .then((registration) => {
+  +    // check for updates periodically
+  +    // every minute
+  +    setInterval(() => {
+  +      registration.update();
+  +      console.debug('Checked for update...');
+  +    }, 1000 * 60 * 1);
+      registration.onupdatefound = () => {
+```
+
+2. When we call the `update()` method, it will compare new and older versions and if they are even a little bit different, it installs the new worker on the browser.
+   When a new worker is found, the default behaviour is to **not** replace the old worker straight away, this is done for obvious reasons so that user interaction doesn't get ruined. The new
+   worker goes into a forever waiting phase until the old worker is invalidated (usually 24 hours/ hard refresh/ closing tabs and opening).
+
+![waiting-service-worker](https://i.ibb.co/80dg6v1/Screenshot-2022-03-04-at-3-37-53-PM.png)
+
+3. We need to manually tell it to skip_waiting and take control.. We do this by adding a custom event listener to the service worker to listen for custom messages. Add the following at the end of `service-worker.js` file.
+
+```js
+// This allows the web app to trigger skipWaiting via
+// registration.waiting.postMessage({type: 'SKIP_WAITING'})
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+```
+
+> this step is very important because it allows us to hook custom handlers to control the lifecycle
+> of a service worker according to our needs.
+
+# Putting everything in order, showing the update notification
+
+I've written a custom hook 🚀 `useServiceWorker.ts` which initialises the service worker registeration
+and exposes functions to control the visibility of our notification alert.
+
+```js
+import { useState, useCallback, useEffect } from 'react';
+import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
+
+export const useServiceWorker = () => {
+  const [waitingWorker, setWaitingWorker] = (useState < ServiceWorker) | (null > null);
+  const [showReload, setShowReload] = useState < boolean > false;
+
+  // called when a service worker
+  // updates. this function is a callback
+  // to the actual service worker
+  // registration onUpdate.
+  const onSWUpdate = useCallback((registration: ServiceWorkerRegistration) => {
+    setShowReload(true);
+    setWaitingWorker(registration.waiting);
+  }, []);
+
+  // simply put, this tells the service
+  // worker to skip the waiting phase and then reloads the page
+  const reloadPage = useCallback(() => {
+    waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
+    setShowReload(false);
+    window.location.reload();
+  }, [waitingWorker]);
+
+  // register the service worker
+  useEffect(() => {
+    // If you want your app to work offline and load faster, you can change
+    // unregister() to register() below. Note this comes with some pitfalls.
+    // Learn more about service workers: https://cra.link/PWA
+    serviceWorkerRegistration.register({
+      onUpdate: onSWUpdate,
+    });
+  }, [onSWUpdate]);
+
+  return { showReload, waitingWorker, reloadPage };
+};
+```
+
+> When a service worker update is found, we store it as a `waitingWorker`. This gives us the control over calling
+> `SKIP_WAITING` manually whenever we need to (in our case it's on clicking of REFRESH button on the update notification).
+
+# How and where to show the notification
+
+I've used this custom hook in my App entrypoint `App.tsx`. You can use it wherever you want to, but the
+component should always render and better be a parent to all your child components.
+
+```js
+// App.tsx
+const { waitingWorker, showReload, reloadPage } = useServiceWorker();
+
+// decides when to show the toast
+useEffect(() => {
+  if (showReload && waitingWorker) {
+    showToast({
+      description: (
+        <div>
+          A new version of this page is available
+          <button onClick={() => reloadPage()}>REFRESH</button>
+        </div>
+      ),
+    });
+  } else closeToast();
+}, [waitingWorker, showReload, reloadPage]);
+```
+
+_and that's it....._
+
+# Considerations
+
+There are a lot of things you need to take care of when you're testing a service worker deployment.
+Deploying a buggy service worker can ruin your app experience and these things ar every hard to get rid of
+since they exist on the client's browser and take a long time to get invalidated. So consider the following
+points before deploying your new feature:
+
+- sw gets enabled on the production build of react, so its useless testing it on dev. You wouldn't want to test on dev as it leads to issues with hot reload and default caching mechanisms there.
+- service worker can cache your static assets, you don't need to add cache rules for js, css, images in your deployment service manually.
+- _(Very Important!!)_ Make sure not to cache your sw on your deployment service, else your new sw will never get installed, and you might never see a notification.
+  Make sure your `service-worker.js` file has `Cache-Control` headers set to
+  `max-age=0,no-cache,no-store,must-revalidate`.
+  Read more about these headers [here](https://hasura.io/blog/strategies-for-service-worker-caching-d66f3c828433).
+- create-react-app includes a service worker by default and makes your app work offline by default.
+- _(Very Important!!)_ if you do run into issues with deployed service workers, push a release with calling `unregister()` to the sw and restore `Cache-Control` headers.
+- You sometimes may get an error in production that says "Failed to update a ServiceWorker for scope `hostname` with script `hostname/service-worker.js`: An unknown error occurred when fetching the script.".
+  This happens when you push a release and at the moment when your app
+  is building your sw checks for an update. This is a harmless thing and your app works fine on next update check. (We're currently figuring out what you can do to gracefully handle this error).
+
+A lot of apps use service workers now a days and it acts as a very useful tool if used correctly. With great power comes great responsibility. Peace out! ✌️
+
+<div
+  style={{
+    width: '100%',
+    height: 0,
+    paddingBottom: '54%',
+    position: 'relative',
+  }}
+>
+  <iframe
+    src="https://giphy.com/embed/MCZ39lz83o5lC"
+    width="100%"
+    height="100%"
+    style={{ position: 'absolute' }}
+    frameBorder="0"
+    className="giphy-embed"
+    allowFullScreen
+  ></iframe>
+</div>
+<p style={{ marginTop: '12px' }}>
+  <a href="https://giphy.com/gifs/MCZ39lz83o5lC">via GIPHY</a>
+</p>

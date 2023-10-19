@@ -3,7 +3,7 @@
 import { IconComponent } from '@/components/ui/IconComponent';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const copyToClipboard = (text: string) => {
@@ -21,16 +21,18 @@ export const CopyComponent = ({
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <Button
       className={twMerge('py-1 px-2 text-sm flex items-center gap-x-1', className)}
       onClick={() => {
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
-
-          return;
-        }
-
         copyToClipboard(copyText);
         setIsCopied(true);
         if (timerRef.current) {
