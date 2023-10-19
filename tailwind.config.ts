@@ -1,74 +1,71 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/services/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/services/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     colors: {
       background: {
         primary: {
-          light: "#FFF",
-          dark: "#101010",
+          light: '#FFF',
+          dark: '#101010',
         },
         secondary: {
-          light: "#FAFAF9",
-          dark: "#181818",
+          light: '#F8F8F8',
+          dark: '#181818',
         },
       },
       text: {
         primary: {
-          light: "#333333",
-          dark: "#E0E0E0",
+          light: '#333333',
+          dark: '#E0E0E0',
         },
         secondary: {
-          light: "#555555",
-          dark: "#AAAAAA",
+          light: '#555555',
+          dark: '#AAAAAA',
         },
         muted: {
-          light: "#90959D",
-          dark: "#8C8C8C",
+          light: '#90959D',
+          dark: '#A4A4A4',
         },
       },
       border: {
         primary: {
-          light: "#EEF1F4",
-          dark: "#272727",
+          light: '#EEF1F4',
+          dark: '#212121',
         },
       },
     },
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       typography: {
         DEFAULT: {
           css: {
-            "pre code::before": {
-              "padding-left": "unset"
+            'pre code::before': {
+              'padding-left': 'unset',
             },
-            "pre code::after": {
-              "padding-right": "unset"
+            'pre code::after': {
+              'padding-right': 'unset',
             },
             code: {
               minWidth: '100%',
             },
-            "pre code": {
+            'pre code': {
               border: 0,
-            }
+            },
           },
         },
       },
     },
   },
-  darkMode: "class",
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  darkMode: 'class',
+  plugins: [require('@tailwindcss/typography')],
 };
 export default config;

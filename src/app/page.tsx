@@ -1,7 +1,15 @@
 import { POST_PREVIEW_LIMIT } from '@/constants';
 import { getPostMetadata } from '@/helpers';
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
+import { Projects } from './_lib/Projects';
 import { getPost } from './blog/[slug]/page';
+
+export const metadata: Metadata = {
+  title: 'Aquib Baig',
+  description: 'Product Engineer',
+};
 
 export default async function Home() {
   const { recentPosts } = await getRecentPosts();
@@ -9,17 +17,20 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-y-20">
       <div>
-        Passionate about creating products that address real-world challenges, I strive to excel in
-        developing highly performant and maintainable systems. I have a strong affinity for
-        aesthetically pleasing designs and a keen eye for exceptional user experiences.
+        {`I'm`} Aquib, a frontend engineer located in India. I strive to excel in developing highly
+        performant and maintainable systems. I have a genuine passion for elegant design and a sharp
+        eye for exceptional user experiences.
       </div>
       <div className="flex flex-col gap-y-4">
-        <h4>Thoughts</h4>
+        <Link href="/blog">
+          <h4>Thoughts</h4>
+        </Link>
         <ul className="flex flex-col">
           {recentPosts.map(({ title, slug }) => (
             <li key={slug}>
-              <a
-                href={`/blog/${slug}`}
+              <Link
+                as={`/blog/${slug}`}
+                href={`/posts/[slug]`}
                 className={twMerge(
                   'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
                   'px-3 py-1 -mx-3',
@@ -28,10 +39,14 @@ export default async function Home() {
                 )}
               >
                 {title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
+      </div>
+      <div className="flex flex-col gap-y-4">
+        <h4>Projects</h4>
+        <Projects />
       </div>
     </div>
   );
