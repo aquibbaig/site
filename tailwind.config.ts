@@ -60,7 +60,13 @@ const config: Config = {
             },
             "pre code": {
               border: 0,
-            }
+            },
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
           },
         },
       },

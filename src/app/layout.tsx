@@ -1,3 +1,5 @@
+import { Footer } from '@/components/footer/Footer';
+import { SpotifyConnectContextProvider } from '@/packages/spotify-connect';
 import { PageHeader } from '@/services/page-header/PageHeader';
 import { clsx } from 'clsx';
 import type { Metadata } from 'next';
@@ -26,17 +28,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           )
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+        <SpotifyConnectContextProvider
+          clientId={process.env.SPOTIFY_CLIENT_ID}
+          clientSecret={process.env.SPOTIFY_CLIENT_SECRET}
+          refreshToken={process.env.SPOTIFY_REFRESH_TOKEN}
         >
-          <main className="mx-auto my-12 max-w-[676px] px-4 antialiased sm:my-32 md:my-16">
-            <PageHeader />
-            {children}
-          </main>
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="mx-auto my-12 max-w-[676px] px-4 antialiased sm:my-32 md:my-16">
+              <PageHeader />
+              {children}
+              <Footer />
+            </main>
+          </ThemeProvider>
+        </SpotifyConnectContextProvider>
       </body>
     </html>
   );
