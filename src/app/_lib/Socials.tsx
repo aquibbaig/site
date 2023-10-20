@@ -13,7 +13,7 @@ export const Socials = () => {
       <a className={externalLinkCSS} href={githubLink} target="_blank">
         Github
       </a>{' '}
-      or jam to my playlists{' '}
+      or jam to my playlists on{' '}
       <a className={externalLinkCSS} href={spotifyLink} target="_blank">
         Spotify
       </a>
