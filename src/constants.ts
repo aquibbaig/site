@@ -24,7 +24,7 @@ type Project = {
 export const projects: Project[] = [
   {
     title: 'Spotify Connect',
-    uri: 'https://github.com/aquibbaig/spotify-connect',
+    uri: 'https://www.npmjs.com/package/spotify-connect',
     description: `Get useful analytics from the spotify API in your React application.`,
     status: 'active',
   },
