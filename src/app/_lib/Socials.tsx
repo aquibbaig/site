@@ -7,7 +7,7 @@ export const Socials = () => {
     <p>
       You can follow me on{' '}
       <a className={externalLinkCSS} href={twitterLink} target="_blank">
-        Twitter
+        X
       </a>
       , explore my projects on{' '}
       <a className={externalLinkCSS} href={githubLink} target="_blank">
