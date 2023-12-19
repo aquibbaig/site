@@ -11,16 +11,16 @@ export const Playing = () => {
     isError: isErrorCurrentlyPlaying,
   } = useCurrentlyPlaying();
 
-  if (isLoadingCurrentlyPlaying || isErrorCurrentlyPlaying) {
+  const { track, is_playing } = parseCurrentlyPlayingTrack(currentlyPlayingData);
+
+  if (isLoadingCurrentlyPlaying || isErrorCurrentlyPlaying || !is_playing || !track) {
     return null;
   }
-
-  const { track, is_playing } = parseCurrentlyPlayingTrack(currentlyPlayingData);
 
   return (
     <div className="mt-20">
       <a
-        href={track?.uri}
+        href={track.uri}
         className="flex flex-row items-center group bg-background-secondary-light dark:bg-background-secondary-dark w-fit rounded px-2 py-1 -mx-2"
       >
         <div className="flex flex-row gap-x-1.5 items-start">
@@ -35,7 +35,7 @@ export const Playing = () => {
               <span className="italic text-text-secondary-light dark:text-text-secondary-dark">
                 by{' '}
               </span>{' '}
-              {track?.artist[0].name}
+              {track.artist[0].name}
             </span>
           </div>
         </div>
