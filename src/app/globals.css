@@ -16,6 +16,9 @@
     @apply font-medium;
     @apply mb-[1em];
   }
+  h4 {
+    @apply font-medium;
+  }
 }
 
 @tailwind components;

@@ -18,11 +18,11 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-y-20">
       <div>
-        {`I'm`} Aquib, a frontend engineer located in India. I strive to excel in developing highly
-        performant and maintainable systems. I have a genuine passion for elegant design and a sharp
-        eye for exceptional user experiences.
+        {`I'm`} currently crafting a notes app tailored for contemporary thinkers. I focus on
+        developing high-performing, maintainable systems and maintain a genuine passion for elegant
+        design.
       </div>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-2">
         <Link href="/blog">
           <h4>Writings</h4>
         </Link>
@@ -45,11 +45,11 @@ export default async function Home() {
           ))}
         </ul>
       </div>
-      <div className="flex flex-col gap-y-4">
-        <h4>Projects</h4>
+      <div className="flex flex-col gap-y-2">
+        <h4 className="font-medium">Projects</h4>
         <Projects />
       </div>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-2">
         <h4>More</h4>
         <Socials />
       </div>

@@ -34,12 +34,6 @@ export const projects: Project[] = [
     description: `A highly scalable API monitoring and performance analysis tool.`,
     status: 'active',
   },
-  {
-    title: '[WIP]',
-    uri: null,
-    description: `A personal revision and note-taking application.`,
-    status: 'in-progress',
-  },
 ];
 
 export const twitterLink = `https://twitter.com/BaigAquib`;
