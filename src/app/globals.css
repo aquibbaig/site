@@ -20,7 +20,7 @@
     @apply font-medium;
   }
   a {
-    @apply text-text-secondary-light dark:text-text-secondary-dark hover:dark:text-text-primary-light hover:text-text-primary-light;
+    @apply text-text-primary-light dark:text-text-primary-dark hover:dark:text-text-secondary-dark hover:text-text-secondary-light;
   }
   .external-link {
     @apply cursor-ne-resize;

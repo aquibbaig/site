@@ -10,6 +10,7 @@ import { Playing } from './_lib/Playing';
 import './globals.css';
 
 import localFont from 'next/font/local';
+import { Footer } from './_lib/Footer';
 
 const soehne = localFont({
   src: [
@@ -56,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           twMerge(
             'bg-background-primary-light text-text-primary-light',
             'dark:text-text-primary-dark dark:bg-background-primary-dark',
-            'text-[0.9375rem] tracking-normal leading-relaxed',
+            'text-[0.9375rem] leading-relaxed',
             `${soehne.variable} font-sans`
           )
         )}
@@ -72,10 +73,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
             clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
           >
-            <main className="mx-auto my-12 md:max-w-[70ch] px-3 antialiased sm:my-32 md:mt-16 md:mb-32">
+            <main className="mx-auto my-12 md:max-w-[64ch] px-3 antialiased sm:my-32 md:mt-16 md:mb-32 flex flex-col">
               <PageHeader />
               {children}
               <Playing />
+              <Footer />
             </main>
           </SpotifyConnectContextProvider>
         </ThemeProvider>
