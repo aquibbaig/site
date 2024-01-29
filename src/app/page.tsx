@@ -13,7 +13,7 @@ export default async function Home() {
   const { recentPosts } = await getRecentPosts();
 
   return (
-    <div className="flex flex-col gap-y-20">
+    <>
       <p>
         I embrace minimalism in both art and infrastructure, striving to convey more with less. My
         focus lies in user flow, interaction, and experience, as I navigate a journey to discover my
@@ -35,7 +35,7 @@ export default async function Home() {
         </ul>
       </div> */}
       <Socials />
-    </div>
+    </>
   );
 }
 

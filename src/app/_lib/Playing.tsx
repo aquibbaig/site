@@ -15,31 +15,27 @@ export const Playing = () => {
 
   if (isLoadingCurrentlyPlaying) {
     return (
-      <div className="mt-20">
-        <div className="flex flex-row gap-x-1.5 items-center py-1">
-          <IconComponent
-            Icon={Disc3}
-            size={16}
-            className="animate-spin transition-all duration-500"
-          />
-          <div className="animate-pulse h-[19px] bg-background-secondary-light dark:bg-background-secondary-dark w-64 rounded"></div>
-        </div>
+      <div className="flex flex-row gap-x-1.5 items-center py-1">
+        <IconComponent
+          Icon={Disc3}
+          size={16}
+          className="animate-spin transition-all duration-500"
+        />
+        <div className="animate-pulse h-[19px] bg-background-secondary-light dark:bg-background-secondary-dark w-64 rounded"></div>
       </div>
     );
   }
 
   if (!is_playing) {
     return (
-      <div className="mt-20">
-        <div className="flex flex-row gap-x-1.5 items-center py-1">
-          <IconComponent
-            Icon={Disc3}
-            size={16}
-            className="animate-spin transition-all duration-500 text-text-muted-light dark:text-text-muted-dark"
-          />
-          <div className="text-text-muted-light dark:text-text-muted-dark text-sm">
-            Not playing anything right now.
-          </div>
+      <div className="flex flex-row gap-x-1.5 items-center py-1">
+        <IconComponent
+          Icon={Disc3}
+          size={16}
+          className="animate-spin transition-all duration-500 text-text-muted-light dark:text-text-muted-dark"
+        />
+        <div className="text-text-muted-light dark:text-text-muted-dark text-sm">
+          Not playing anything right now.
         </div>
       </div>
     );
@@ -50,7 +46,7 @@ export const Playing = () => {
   }
 
   return (
-    <div className="mt-20 w-fit">
+    <div className="w-fit">
       <a href={track.uri} className="external-link w-fit">
         <div className="flex flex-row gap-x-1.5 items-center rounded py-1">
           <IconComponent
