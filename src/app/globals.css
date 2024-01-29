@@ -19,6 +19,12 @@
   h4 {
     @apply font-medium;
   }
+  a {
+    @apply text-text-secondary-light dark:text-text-secondary-dark hover:dark:text-text-primary-light hover:text-text-primary-light;
+  }
+  .external-link {
+    @apply cursor-ne-resize;
+  }
 }
 
 @tailwind components;

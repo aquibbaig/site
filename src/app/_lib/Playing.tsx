@@ -50,15 +50,15 @@ export const Playing = () => {
   }
 
   return (
-    <div className="mt-20">
-      <a href={track.uri}>
+    <div className="mt-20 w-fit">
+      <a href={track.uri} className="external-link w-fit">
         <div className="flex flex-row gap-x-1.5 items-center rounded py-1">
           <IconComponent
             Icon={Disc3}
             size={16}
             className="animate-spin transition-all duration-500"
           />
-          <div className="text-sm">
+          <div className="text-sm flex gap-x-1.5">
             {track?.name}
             {` `}
             <span className="italic text-text-secondary-light dark:text-text-secondary-dark">

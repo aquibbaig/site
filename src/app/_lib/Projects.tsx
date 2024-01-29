@@ -3,15 +3,9 @@ import { twMerge } from 'tailwind-merge';
 
 export const Projects = () => {
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col gap-y-2">
       {projects.map(({ title, uri, description, status }) => {
-        const css = twMerge(
-          'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-          'px-3 py-2 -mx-3',
-          'rounded-md',
-          'flex flex-col flex-nowrap',
-          'leading-relaxed'
-        );
+        const css = twMerge('flex flex-col flex-nowrap', 'leading-relaxed');
         const Description = (
           <p className="text-text-muted-light dark:text-text-muted-dark">{description}</p>
         );
