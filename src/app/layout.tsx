@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             >
               <PageHeader />
               {children}
-              <footer className="mt-auto pb-2">
+              <footer className="mt-auto pb-4 md:pb-2">
                 <Playing />
                 <Footer />
               </footer>
