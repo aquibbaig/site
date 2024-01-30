@@ -43,7 +43,7 @@ export default async function PostPage({
   return (
     <div className="flex flex-col">
       <div>
-        <h2>{frontmatter.title}</h2>
+        <h3>{frontmatter.title}</h3>
         {frontmatter.description && (
           <p className="!leading-relaxed !text-[0.9375rem]">{frontmatter.description}</p>
         )}
@@ -60,7 +60,7 @@ export default async function PostPage({
           'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-medium',
           'leading-relaxed text-[0.9375rem]',
           'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
-          'prose-a:font-medium prose-a:no-underline prose-a:text-[#3498db]',
+          'prose-a:font-medium prose-a:underline-offset-2 prose-a:decoration-1',
           'prose-pre:bg-background-secondary-light dark:prose-pre:bg-background-secondary-dark prose-pre:rounded-md prose-pre:px-2 prose-pre:py-1 prose-pre:border prose-pre:border-border-primary-light dark:prose-pre:border-border-primary-dark',
           'prose-code:border prose-code:border-border-primary-light dark:prose-code:border-border-primary-dark prose-code:after:content-[""] prose-code:before:content-[""]',
           'prose-code:rounded-md prose-code:px-2 prose-code:py-1 prose-code:bg-background-secondary-light',

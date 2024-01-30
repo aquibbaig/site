@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import { twMerge } from 'tailwind-merge';
 
 export const Button = ({
   children,
@@ -11,8 +11,9 @@ export const Button = ({
   return (
     <button
       className={twMerge(
-        "bg-background-secondary-light border-border-primary-light border p-2 rounded-md",
-        "dark:bg-background-secondary-dark dark:border-border-primary-dark",
+        'bg-background-secondary-light border-border-primary-light border px-2 py-1 rounded-md',
+        'dark:bg-background-secondary-dark dark:border-border-primary-dark',
+        'border border-border-primary-light dark:border-border-primary-dark',
         className
       )}
       {...rest}

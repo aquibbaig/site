@@ -1,6 +1,10 @@
 @tailwind base;
 
 @layer base {
+  * {
+    @apply text-[0.9375rem] antialiased leading-relaxed;
+  }
+
   h1 {
     @apply text-[1.5em];
     @apply font-semibold;
@@ -18,6 +22,12 @@
   }
   h4 {
     @apply font-medium;
+  }
+  a {
+    @apply text-text-primary-light dark:text-text-primary-dark hover:dark:text-text-muted-dark hover:text-text-muted-light;
+  }
+  .external-link {
+    @apply cursor-ne-resize;
   }
 }
 

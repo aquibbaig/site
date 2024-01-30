@@ -1,17 +1,12 @@
 import { projects } from '@/constants';
 import { twMerge } from 'tailwind-merge';
+import { externalLinkCSS } from './helpers';
 
 export const Projects = () => {
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col gap-y-4">
       {projects.map(({ title, uri, description, status }) => {
-        const css = twMerge(
-          'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-          'px-3 py-2 -mx-3',
-          'rounded-md',
-          'flex flex-col flex-nowrap',
-          'leading-relaxed'
-        );
+        const css = twMerge('flex flex-col flex-nowrap', 'leading-relaxed');
         const Description = (
           <p className="text-text-muted-light dark:text-text-muted-dark">{description}</p>
         );
@@ -30,10 +25,10 @@ export const Projects = () => {
 
         return (
           <li key={uri} className={css}>
-            <a href={uri || '#'} target="_blank" className="w-full h-full">
+            <a href={uri || '#'} target="_blank" className={twMerge(externalLinkCSS, 'w-fit')}>
               <span>{title}</span>
-              {Description}
             </a>
+            {Description}
           </li>
         );
       })}
