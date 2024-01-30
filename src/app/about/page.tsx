@@ -25,8 +25,7 @@ export default function About() {
           </p>
           <p className="text-text-muted-light dark:text-text-muted-dark">
             I keep a keen interest in capturing the best parts of life and sharing them with the
-            world. I love to write about things I have learned and moments that make me think. I
-            believe in doing things my way, not just following what everyone else is doing.
+            world, enjoy finding peace in quiet moments -- just being without any rush or busyness.
           </p>
         </div>
         <p>

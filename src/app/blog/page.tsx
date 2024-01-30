@@ -34,7 +34,7 @@ export default function Blog() {
           <p className="text-text-muted-light dark:text-text-muted-dark">
             I believe in doing things my way, not just following what everyone else is doing. So, my
             articles are like paintings on a wall, telling a story about the big world of tech,
-            creativity, and how we all grow in our own unique ways
+            creativity, and how we all grow in our own unique ways.
           </p>
         </div>
         <ul>
