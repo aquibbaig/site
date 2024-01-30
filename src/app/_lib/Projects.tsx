@@ -25,7 +25,7 @@ export const Projects = () => {
 
         return (
           <li key={uri} className={css}>
-            <a href={uri || '#'} target="_blank" className={externalLinkCSS}>
+            <a href={uri || '#'} target="_blank" className={twMerge(externalLinkCSS, 'w-fit')}>
               <span>{title}</span>
             </a>
             {Description}
