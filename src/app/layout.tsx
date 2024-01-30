@@ -72,10 +72,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
             clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
           >
-            <main className="mx-auto my-12 md:max-w-[64ch] px-3 antialiased sm:my-32 md:mt-16 md:mb-32 flex flex-col gap-y-16">
+            <main
+              className={twMerge(
+                'mx-auto md:max-w-[64ch] px-3 antialiased flex flex-col gap-y-16',
+                'py-12 md:py-16 h-screen'
+              )}
+            >
               <PageHeader />
               {children}
-              <footer>
+              <footer className="mt-auto pb-2">
                 <Playing />
                 <Footer />
               </footer>
