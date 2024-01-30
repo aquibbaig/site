@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { getPostMetadata } from '../../helpers';
+import { externalLinkCSS } from '../_lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Blog | Aquib Baig',
@@ -17,9 +18,10 @@ export default function Blog() {
   return (
     <div>
       <Head>
-        <title>Posts | Aquib Baig</title>
+        <title>Blog | Aquib Baig</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <h5 className="text-text-muted-light dark:text-text-muted-dark">Blog</h5>
       <ul>
         {posts.map((post) => (
           <li key={post.filePath}>
@@ -27,10 +29,11 @@ export default function Blog() {
               as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
               href={`/posts/[slug]`}
               className={twMerge(
-                'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
                 'px-3 py-1 -mx-3',
                 'rounded-md',
-                'flex truncate'
+                'flex truncate',
+                externalLinkCSS,
+                'cursor-pointer'
               )}
             >
               {post.data.title}

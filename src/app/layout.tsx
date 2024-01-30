@@ -57,7 +57,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           twMerge(
             'bg-background-primary-light text-text-primary-light',
             'dark:text-text-primary-dark dark:bg-background-primary-dark',
-            'text-[0.9375rem] leading-relaxed',
             `${soehne.variable} font-sans`
           )
         )}
