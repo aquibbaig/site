@@ -37,6 +37,7 @@ export default function About() {
           <a href="https://www.redhat.com/en" target="_blank" className={externalLinkCSS}>
             Redhat
           </a>
+          .
         </p>
       </div>
     </div>
