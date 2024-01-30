@@ -1,8 +1,7 @@
 import { githubLink, spotifyLink, twitterLink } from '@/constants';
+import { externalLinkCSS } from './helpers';
 
 export const Socials = () => {
-  const externalLinkCSS = `underline underline-offset-2 decoration-1 external-link`;
-
   return (
     <div>
       <h4>Connect</h4>

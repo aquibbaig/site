@@ -1,6 +1,10 @@
 @tailwind base;
 
 @layer base {
+  * {
+    @apply text-[0.9375rem] antialiased;
+  }
+
   h1 {
     @apply text-[1.5em];
     @apply font-semibold;

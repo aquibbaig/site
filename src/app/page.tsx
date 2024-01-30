@@ -1,6 +1,7 @@
 import { POST_PREVIEW_LIMIT } from '@/constants';
 import { getPostMetadata } from '@/helpers';
 import type { Metadata } from 'next';
+import { Browse } from './_lib/Browse';
 import { Socials } from './_lib/Socials';
 import { getPost } from './blog/[slug]/page';
 
@@ -20,6 +21,7 @@ export default async function Home() {
         own creative path, steering clear of overwhelming trends to find peace and strength in my
         work.
       </p>
+      <Browse />
       {/* <div className="flex flex-col gap-y-2">
         <Link href="/blog">
           <h4>Writings</h4>
