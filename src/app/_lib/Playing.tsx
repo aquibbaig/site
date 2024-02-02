@@ -48,20 +48,16 @@ export const Playing = () => {
   return (
     <div className="w-fit">
       <a href={track.uri} className="external-link w-fit">
-        <div className="flex flex-row gap-x-1.5 items-center rounded py-1">
+        <div className="flex flex-row gap-x-1.5 items-center rounded">
           <IconComponent
             Icon={Disc3}
             size={16}
             className="animate-spin transition-all duration-500"
           />
-          <div className="text-sm flex gap-x-1.5">
-            {track?.name}
-            {` `}
-            <span className="italic text-text-secondary-light dark:text-text-secondary-dark">
-              by
-            </span>
-            {` `}
-            {track.artist[0].name}
+          <div className="flex gap-x-1.5 items-center">
+            <span>{track?.name}</span>
+            <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+            <span className="mt-[1px]">{track.artist[0].name}</span>
           </div>
         </div>
       </a>

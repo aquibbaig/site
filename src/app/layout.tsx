@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <PageHeader />
                 {children}
-                <footer className="mt-auto pb-4 md:pb-2">
+                <footer className="mt-auto pb-4 md:pb-2 flex flex-col gap-y-2">
                   <Playing />
                   <Footer />
                 </footer>
