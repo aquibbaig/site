@@ -67,7 +67,8 @@ export default async function PostPage({
           'prose-code:text-text-primary-light dark:prose-code:text-text-primary-dark',
           'dark:prose-code:bg-background-secondary-dark prose-code:font-normal prose-code:leading-relaxed',
           'prose-code:overflow-x-auto prose-code:overflow-y-hidden prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
-          'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg'
+          'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg',
+          'prose-blockquote:not-italic prose-blockquote:font-normal'
         )}
       >
         <MdxContent source={serialized} />
