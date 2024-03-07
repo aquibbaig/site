@@ -6,6 +6,7 @@ import type { ResolvedMetadata, ResolvingMetadata } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
+import remarkGfm from 'remark-gfm';
 import { twMerge } from 'tailwind-merge';
 import { CopyPostLink } from './_lib/CopyPostLink';
 
@@ -92,6 +93,9 @@ export async function getPost({ slug }: { slug: string }): Promise<{
   // Serialize the MDX content and parse the frontmatter
   const serialized = await serialize(raw, {
     parseFrontmatter: true,
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+    },
   });
 
   // Typecast the frontmatter to the correct type

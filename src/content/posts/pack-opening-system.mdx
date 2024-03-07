@@ -1,0 +1,50 @@
+---
+title: 'Decoding the Mathematics of Gaming Loot: Crafting a Pack Opening System'
+publishedOn: 2024-03-07T09:15:00-0400
+draft: false
+description: 'I was wondering what math powers this lottery of obtaining artifacts from packs based on rarity. Quite recently, I had the chance of building such a similar system for a side project (where users were to obtain card sleeves based on rarity from a chest) and then did I finally understand the internals.'
+---
+
+The math behind having a chance of getting a player based on rarity is probability. This simply means saying that given a chest of marbles, there is 60% chance of getting green marbles, 15% chance of getting teal marbles, 10% of getting blue marbles and 5% chance of getting red marbles, of course if you pick a marble at random.
+
+If you notice the rarity pattern, you can clearly understand the fact that most of the people choosing a marble from the chest are going to end up with green marbles, while a handful are going to get the ultra rare red marbles. The game takes advantage of probability to calculate who gets which artifact. You can draw parallel to this system in any multiplayer game today. Items are grouped based on rarity such as gold, silver and bronze or mythic, epic and common.
+
+Imagine you're opening a Premium Gold Pack in FIFA Ultimate Team (FUT). Each item within the pack is categorized by rarity, represented by percentages. For instance a Premium Gold Pack in Ultimate Team may display percentages as:
+
+| ITEM TYPE/RATING | MINIMUM PROBABILITY |
+| ---------------- | ------------------- |
+| Gold 75+ Player  | 100%                |
+| Gold 82+ Player  | 18%                 |
+| Gold 84+ Player  | 4.2%                |
+
+At first glance, these percentages might seem straightforward, but they conceal a sophisticated probability system. To implement this, we break down the item types into intervals and calculate the probability for each:
+
+Step 1: **Breaking into Intervals:** We segment the item types based on their ratings. For example:
+
+| ITEM TYPE/RATING    | MINIMUM PROBABILITY        |
+| ------------------- | -------------------------- |
+| Gold 75 - 81 Player | 100% - (18 + 4.2)% = 77.8% |
+| Gold 82 - 83 Player | 18%                        |
+| Gold 84+ Player     | 4.2%                       |
+
+Step 2: **Calculating Cumulative Frequencies:** Next, we compute the cumulative frequency for each interval and remove decimals:
+
+ITEM TYPE/RATING MINIMUM PROBABILITY
+
+| ITEM TYPE/RATING    | MINIMUM PROBABILITY     |
+| ------------------- | ----------------------- |
+| Gold 75 - 81 Player | 77.8 ~ 778              |
+| Gold 82 - 83 Player | 77.8 + 18 = 95.8 ~ 958  |
+| Gold 84+ Player     | 95.8 + 4.2 = 100 ~ 1000 |
+
+Step 3: **Mapping to a Straight Scale:** By translating these frequencies into a linear scale, we establish a clear relationship between a random number and the corresponding interval:
+
+- If the number falls between 0 - 778, there's a 77.8% chance of landing in the first interval.
+- If it's between 778 - 958, there's an 18% chance of hitting the second interval.
+- If it falls between 958 - 1000, there's a 4.2% chance of reaching the third interval, where the rarest artifacts reside.
+
+If you pick a number at random between 1 to 1000, can you guarantee which of the above interval it falls into ? 🤯
+
+You can further think of having further probabilities of artifacts in each interval which would be similarly calculated. In this way, you can ensure each event generating a specific artifact consistently without any fault. You can further combine this logic with availability of artifacts to conduct flash sales. (where each item has say 5 copies at maximum).
+
+So the next time you tear open a pack in your favorite game, remember the precision and complexity hidden beneath the surface.
