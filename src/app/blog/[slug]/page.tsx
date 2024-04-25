@@ -9,6 +9,7 @@ import path from 'path';
 import remarkGfm from 'remark-gfm';
 import { twMerge } from 'tailwind-merge';
 import { CopyPostLink } from './_lib/CopyPostLink';
+import { PageViews } from './_lib/PageViews';
 
 type Props = {
   params: { slug: string };
@@ -48,11 +49,14 @@ export default async function PostPage({
         {frontmatter.description && (
           <p className="!leading-relaxed !text-[0.9375rem]">{frontmatter.description}</p>
         )}
-        {frontmatter.publishedOn && (
-          <div className="mt-5 flex flex-row items-start gap-x-1">
-            {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
-          </div>
-        )}
+        <div className="flex flex-row items-center justify-between">
+          {frontmatter.publishedOn && (
+            <div className="mt-5 flex flex-row items-start gap-x-1">
+              {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
+            </div>
+          )}
+          <PageViews slug={params.slug} />
+        </div>
         <hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
       </div>
       <article
