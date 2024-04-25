@@ -9,6 +9,7 @@ import { ThemeProvider } from '../services/theme/theme.context';
 import { Playing } from './_lib/Playing';
 import './globals.css';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import localFont from 'next/font/local';
 import { Footer } from './_lib/Footer';
 import { PHProvider } from './providers';
@@ -49,50 +50,54 @@ const soehne = localFont({
 
 export const dynamic = 'force-static';
 
+const queryClient = new QueryClient();
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <Head>
         <title>Aquib Baig</title>
       </Head>
-      <PHProvider>
-        <body
-          className={clsx(
-            twMerge(
-              'bg-background-primary-light text-text-primary-light',
-              'dark:text-text-primary-dark dark:bg-background-primary-dark',
-              `${soehne.variable} font-sans`
-            )
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+      <QueryClientProvider client={queryClient}>
+        <PHProvider>
+          <body
+            className={clsx(
+              twMerge(
+                'bg-background-primary-light text-text-primary-light',
+                'dark:text-text-primary-dark dark:bg-background-primary-dark',
+                `${soehne.variable} font-sans`
+              )
+            )}
           >
-            <SpotifyConnectContextProvider
-              refreshToken={process.env.NEXT_PUBLIC_REFRESH_TOKEN}
-              clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
-              clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
             >
-              <main
-                className={twMerge(
-                  'mx-auto md:max-w-[64ch] px-3 antialiased flex flex-col gap-y-16',
-                  'py-12 md:py-16 h-screen'
-                )}
+              <SpotifyConnectContextProvider
+                refreshToken={process.env.NEXT_PUBLIC_REFRESH_TOKEN}
+                clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+                clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
               >
-                <PageHeader />
-                {children}
-                <footer className="mt-auto pb-4 md:pb-2 flex flex-col gap-y-2">
-                  <Playing />
-                  <Footer />
-                </footer>
-              </main>
-            </SpotifyConnectContextProvider>
-          </ThemeProvider>
-        </body>
-      </PHProvider>
+                <main
+                  className={twMerge(
+                    'mx-auto md:max-w-[64ch] px-3 antialiased flex flex-col gap-y-16',
+                    'py-12 md:py-16 h-screen'
+                  )}
+                >
+                  <PageHeader />
+                  {children}
+                  <footer className="mt-auto pb-4 md:pb-2 flex flex-col gap-y-2">
+                    <Playing />
+                    <Footer />
+                  </footer>
+                </main>
+              </SpotifyConnectContextProvider>
+            </ThemeProvider>
+          </body>
+        </PHProvider>
+      </QueryClientProvider>
     </html>
   );
 }
