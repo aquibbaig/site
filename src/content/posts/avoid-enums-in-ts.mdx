@@ -112,8 +112,45 @@ type KeyOf<T> = keyof T;
 
 // EnvTag  = "STG" | "PRE_PROD" | "PRODUCTION"
 type EnvTag = ValueOf<typeof DeploymentEnv>;
+
+
+and then...
+
+
 // EnvServerId = "staging" | "preprod" | "production"
 type EnvServerId = KeyOf<typeof DeploymentEnv>;
+```
+
+<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+
+It also fixes the issue of implicit auto-assignment of values and the inability to infer string enums.
+
+```js
+
+enum Color {
+  Red = 'RED',
+  Blue = 'BLUE',
+  Green = 'GREEN'
+}
+
+const Color2 = {
+  Red: 'RED',
+  Blue: 'BLUE',
+  GREEN:'GREEN'
+} as const
+
+function getColor(color: Color) {
+  return color;
+}
+
+function getColor2(color: typeof Color2[keyof typeof Color2]) {
+  return color;
+}
+
+getColor('RED') // ❌
+getColor2('RED') // ✅
+
+
 ```
 
 <hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
