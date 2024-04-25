@@ -1,0 +1,127 @@
+---
+title: 'Avoid enums in TypeScript'
+publishedOn: 2024-04-25T09:15:00-0400
+draft: false
+description: ''
+---
+
+Enums are a widely used concept in handful of server side languages where it is primarily used for restricting all possible values that a variable can contain. Enums in javascript are kind of tricky, they are not natively supported in the language, so when you write an enum in typescript, it is converted into an object when it is transpiled to Javascript and then used at runtime.
+
+### Enums are weirdly compiled
+
+When you declare an enum in Typescript, it is compiled to an object with keys as the enum values and values as the index of the enum.
+
+```js
+
+enum DeploymentEnv {
+  stg,
+  preprod,
+  production,
+}
+
+
+is compiled as...
+
+var DeploymentEnv;
+
+(function (DeploymentEnv) {
+  DeploymentEnv[(DeploymentEnv['stg'] = 0)] = 'stg';
+  DeploymentEnv[(DeploymentEnv['preprod'] = 1)] = 'preprod';
+  DeploymentEnv[(DeploymentEnv['production'] = 2)] = 'production';
+})(DeploymentEnv || (DeploymentEnv = {}));
+
+
+
+
+the compiled object becomes...
+
+{
+  0: 'stg',
+  1: 'preprod',
+  2: 'production',
+  stg: 0,
+  preprod: 1,
+  production: 2
+}
+```
+
+<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+### String Enums are not inferred
+
+We all know that Typescript does a really good job in inferring and narrowing types to atomic values, but it struggles heavily when it comes to Enums. When you declare an enum, you must not reference it by its value but with it's exact name everywhere even though both the cases reflect the same value.
+
+```js
+
+enum DeploymentEnv {
+  stg,
+  preprod,
+  production,
+}
+
+function getEnvConfig(env: DeploymentEnv) {
+  // ❌ can't do env === 'stg'
+  if (env === DeploymentEnv.stg) {
+    // do something
+  }
+
+  return defaultConfig;
+}
+```
+
+### Enums are implicitely auto assigned values
+
+In JavaScript, enums are not a built-in feature, but a common pattern. We typically simulate them using objects or symbols.
+The issue arises when you define an enum without explicitly assigning values to each member. In that case, JavaScript assigns sequential numeric values starting from 0.
+
+```js
+
+enum Color {
+  Red = 3, // Explicit assignment
+  Blue = 2, // Explicit assignment
+  Green, // Implicit assignment (default is 3)
+}
+
+console.log(Color.Red === Color.Green); // evaluates to true!
+```
+
+### Recommended solution
+
+While JavaScript doesn't have built-in enums, we can effectively create enum-like structures using plain Javascript objects
+and the `const` keyword for immutability.
+
+```js
+
+const DeploymentEnv = {
+  staging: 'STG',
+  preprod: 'PRE_PROD',
+  production: 'PRODUCTION',
+} as const;
+```
+
+The as const keyword makes your objects _READONLY_, which is similar as do doing an `Object.freeze`.
+Your object is frozen and is uneditable across usages.
+The beauty of this structuring your code in this fashion is that parts of this object can be easily
+extracted into its own types without doing `Object.keys` or `Object.values` transformations.
+
+For example;
+
+```js
+
+type ValueOf<T> = T[keyof T];
+type KeyOf<T> = keyof T;
+
+// EnvTag  = "STG" | "PRE_PROD" | "PRODUCTION"
+type EnvTag = ValueOf<typeof DeploymentEnv>;
+// EnvServerId = "staging" | "preprod" | "production"
+type EnvServerId = KeyOf<typeof DeploymentEnv>;
+```
+
+<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+
+### Benefits of this Approach
+
+- Readability: The const declaration and clear naming conventions make code easy to understand.
+- Immutability: The object cannot be accidentally modified, preventing unexpected behavior.
+- Type Safety (with TypeScript): Type aliases enforce type checks, catching errors early in the development process.
+- Flexibility: The object structure is adaptable to different use cases.
+- Type Extraction: You can easily create types for both values and keys without resorting to `Object.keys` or `Object.values`.
