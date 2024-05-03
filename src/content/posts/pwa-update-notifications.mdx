@@ -1,12 +1,13 @@
 ---
-title: 'PWA update notifications in a React app'
+title: 'Show auto-update notifications in your React app'
 publishedOn: 2022-03-03T09:15:00-0400
 draft: false
-description: "Ideally, you would always want users to use the latest version of your application. Having an interactive experience which speaks to the user when an update is available,
-please refresh to view the fresh changes is what our requirements were at ツ Toplyne. I'll walk you through my experience of building such a system."
+description:
+  "In an ideal situation, it's best for users to use the newest app version. We aim for an interactive experience that notifies users when there's an update, prompting them to refresh for the latest features.
+  I'll walk you through the process of building such a system."
 ---
 
-# How the end goal looks like?
+# Desired Outcome
 
 The requirements are:
 
@@ -17,7 +18,7 @@ The requirements are:
 - When the user navigates, check if there is a new version and manually update the page (this is a rather opinionated approach which works perfectly as per our use case, we do not suprise users with a reload, we show the above notification first, if users do not refresh themselves, we do it for them on a subsequent page navigation).
   This is pretty easy to do once the previous requirement is in place.
 
-We leveraged the PWA (Progressive Web App) feature that comes with a React app. Using this, we get to
+We have leveraged the PWA (Progressive Web App) feature that comes with a React app. Using this, we get to
 use the superpowers of a service worker. Some notable features of service workers are:
 
 - runs in the background independent of main js thread
@@ -47,12 +48,12 @@ By default, it is `index.js`, you can move it to wherever you like but the compo
 > For my use case, I moved it to App.tsx to make use of React state and effects which would provide
 > helpers to solve our use cases.
 
-## Checking for updates and showing a notification
+## Check for updates and trigger the notification
 
 This is our first task. We need to periodically check for updates and if there are some update found,
 show the notification to refresh the page.
 
-The workflow is:
+The workflow looks like this:
 
 1. poll periodically to check for sw (short for service worker) updates by calling sw's `update()` function. Update the default service worker
    registeration in `serviceWorkerRegistration.js` file. This happens in a separate thread and is non blocking to the main js thread, so calling `setInterval()` should be okay.
@@ -91,7 +92,7 @@ self.addEventListener('message', (event) => {
 > this step is very important because it allows us to hook custom handlers to control the lifecycle
 > of a service worker according to our needs.
 
-# Putting everything in order, showing the update notification
+# Putting everything in order, displaying the notification
 
 I've written a custom hook 🚀 `useServiceWorker.ts` which initialises the service worker registeration
 and exposes functions to control the visibility of our notification alert.
@@ -166,24 +167,24 @@ _and that's it....._
 
 # Considerations
 
-There are a lot of things you need to take care of when you're testing a service worker deployment.
+There are a couple of things you need to take care of when you're testing a service worker deployment.
 Deploying a buggy service worker can ruin your app experience and these things ar every hard to get rid of
 since they exist on the client's browser and take a long time to get invalidated. So consider the following
 points before deploying your new feature:
 
 - sw gets enabled on the production build of react, so its useless testing it on dev. You wouldn't want to test on dev as it leads to issues with hot reload and default caching mechanisms there.
 - service worker can cache your static assets, you don't need to add cache rules for js, css, images in your deployment service manually.
-- _(Very Important!!)_ Make sure not to cache your sw on your deployment service, else your new sw will never get installed, and you might never see a notification.
+- **[Important]** Make sure not to cache your sw on your deployment service, else your new sw will never get installed, and you might never see a notification.
   Make sure your `service-worker.js` file has `Cache-Control` headers set to
   `max-age=0,no-cache,no-store,must-revalidate`.
   Read more about these headers [here](https://hasura.io/blog/strategies-for-service-worker-caching-d66f3c828433).
 - create-react-app includes a service worker by default and makes your app work offline by default.
-- _(Very Important!!)_ if you do run into issues with deployed service workers, push a release with calling `unregister()` to the sw and restore `Cache-Control` headers.
+- **[Important]** If you run into issues with deployed service workers, push a release with calling `unregister()` to the sw and restore `Cache-Control` headers.
 - You sometimes may get an error in production that says "Failed to update a ServiceWorker for scope `hostname` with script `hostname/service-worker.js`: An unknown error occurred when fetching the script.".
   This happens when you push a release and at the moment when your app
   is building your sw checks for an update. This is a harmless thing and your app works fine on next update check. (We're currently figuring out what you can do to gracefully handle this error).
 
-A lot of apps use service workers now a days and it acts as a very useful tool if used correctly. With great power comes great responsibility. Peace out! ✌️
+A lot of apps use service workers now a days and it acts as a very useful tool if used correctly. With great power comes great responsibility. Peace! ✌️
 
 <div
   style={{

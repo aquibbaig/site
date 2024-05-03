@@ -1,5 +1,5 @@
 ---
-title: 'Avoid enums in TypeScript'
+title: 'Use this instead of Enums in TypeScript'
 publishedOn: 2024-04-25T09:15:00-0400
 draft: false
 description: ''
@@ -84,7 +84,7 @@ enum Color {
 console.log(Color.Red === Color.Green); // evaluates to true!
 ```
 
-### Recommended solution
+### A better alternative
 
 While JavaScript doesn't have built-in enums, we can effectively create enum-like structures using plain Javascript objects
 and the `const` keyword for immutability.
