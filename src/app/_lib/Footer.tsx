@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { twMerge } from 'tailwind-merge';
 import { externalLinkCSS } from './helpers';
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
+import { Link } from 'next-view-transitions';
 import Head from 'next/head';
-import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { getPostMetadata } from '../../helpers';
 import { externalLinkCSS } from '../_lib/helpers';
@@ -41,8 +41,7 @@ export default function Blog() {
           {posts.map((post) => (
             <li key={post.filePath}>
               <Link
-                as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                href={`/posts/[slug]`}
+                href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
                 className={twMerge(
                   'px-3 py-1 -mx-3',
                   'rounded-md',
