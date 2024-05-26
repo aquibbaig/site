@@ -23,6 +23,12 @@ type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'Envise',
+    uri: 'https://envise.app',
+    description: `Craft clear, organized notes and revise effectively with AI powered retention.`,
+    status: 'active',
+  },
+  {
     title: 'Spotify Connect',
     uri: 'https://www.npmjs.com/package/spotify-connect',
     description: `Get useful analytics from the spotify API in your React application.`,
