@@ -1,6 +1,8 @@
+import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { Link } from 'next-view-transitions';
 import Head from 'next/head';
+import readingTime from 'reading-time';
 import { twMerge } from 'tailwind-merge';
 import { getPostMetadata } from '../../helpers';
 import { externalLinkCSS } from '../_lib/helpers';
@@ -31,15 +33,10 @@ export default function Blog() {
             writing code – I also share stories about things I have learned and moments that make me
             think.
           </p>
-          <p className="text-text-muted-light dark:text-text-muted-dark">
-            I believe in doing things my way, not just following what everyone else is doing. So, my
-            articles are like paintings on a wall, telling a story about the big world of tech,
-            creativity, and how we all grow in our own unique ways.
-          </p>
         </div>
-        <ul>
+        <ul className="gap-2 flex flex-col">
           {posts.map((post) => (
-            <li key={post.filePath}>
+            <li key={post.filePath} className="flex items-center gap-2">
               <Link
                 href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
                 className={twMerge(
@@ -52,6 +49,14 @@ export default function Blog() {
               >
                 {post.data.title}
               </Link>
+              <span className="text-text-muted-light dark:text-text-muted-dark">
+                {dayjs(post.data.date).year() < dayjs().year()
+                  ? dayjs(post.data.date).format('MMMM D, YYYY')
+                  : dayjs(post.data.date).format('MMMM D')}
+              </span>
+              <span className="text-text-muted-light dark:text-text-muted-dark bg-background-secondary-light dark:bg-background-secondary-dark px-2 rounded-md">
+                {readingTime(post.content).text.replaceAll('read', '')}
+              </span>
             </li>
           ))}
         </ul>

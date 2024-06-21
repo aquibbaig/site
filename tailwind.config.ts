@@ -21,11 +21,11 @@ const config: Config = {
       },
       text: {
         primary: {
-          light: '#333333',
+          light: '#111111',
           dark: '#E0E0E0',
         },
         secondary: {
-          light: '#555555',
+          light: '#4A5263',
           dark: '#AAAAAA',
         },
         muted: {
