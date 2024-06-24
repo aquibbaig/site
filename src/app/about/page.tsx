@@ -16,7 +16,7 @@ export default function About() {
       </Head>
       <div className="flex flex-col gap-y-4">
         <h5 className="text-text-muted-light dark:text-text-muted-dark">About</h5>
-        <div>
+        <div className="flex flex-col gap-4">
           <p>
             I am a frontend engineer based in Bangalore, India. I work closely with designers and
             product managers to build products that are accessible, performant, and delightful to
