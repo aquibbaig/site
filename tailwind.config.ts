@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+const colors = require("tailwindcss/colors");
 
 const config: Config = {
   content: [
@@ -12,33 +13,34 @@ const config: Config = {
       background: {
         primary: {
           light: '#FFF',
-          dark: '#101010',
+          dark: '#111111',
         },
         secondary: {
-          light: '#F4F4F5',
-          dark: '#181818',
+          light: '#F3F3F3',
+          dark: '#212223',
         },
       },
       text: {
         primary: {
-          light: '#333333',
+          light: '#111111',
           dark: '#E0E0E0',
         },
         secondary: {
-          light: '#555555',
+          light: '#4A5263',
           dark: '#AAAAAA',
         },
         muted: {
-          light: '#919A9E',
-          dark: '#A4A4A4',
+          light: '#8b8d98',
+          dark: '#6c6e79',
         },
       },
       border: {
         primary: {
-          light: '#EEF1F4',
-          dark: '#212121',
+          light: 'rgb(228, 228, 231)',
+          dark: 'rgb(39 39 42)',
         },
       },
+      ...colors,
     },
     extend: {
       fontFamily: {

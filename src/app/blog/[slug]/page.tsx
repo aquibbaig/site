@@ -86,7 +86,7 @@ export default async function PostPage({
   );
 }
 
-export async function getPost({ slug }: { slug: string }): Promise<{
+async function getPost({ slug }: { slug: string }): Promise<{
   frontmatter: Record<string, string>;
   serialized: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>;
 }> {

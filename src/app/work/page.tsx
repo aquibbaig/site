@@ -17,8 +17,8 @@ export default function Work() {
       <div className="flex flex-col gap-y-4">
         <h5 className="text-text-muted-light dark:text-text-muted-dark">Work</h5>
         <p>
-          I primarily work with React/TypeScript and have experience working in Golang. I also keep
-          interest in the open source community and contribute to projects when I can.
+          I primarily work with React/TypeScript. I also keep interest in the open source community
+          and contribute to projects when I can.
         </p>
         <Projects />
       </div>

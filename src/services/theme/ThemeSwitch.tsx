@@ -27,7 +27,8 @@ export const ThemeSwitch = () => {
         onClick={() => {
           setTheme('dark');
         }}
-        className="w-8 h-8"
+        variant="outline"
+        size="icon"
       >
         <IconComponent Icon={Moon} size={15} />
       </Button>
@@ -40,7 +41,8 @@ export const ThemeSwitch = () => {
         onClick={() => {
           setTheme('light');
         }}
-        className="w-8 h-8"
+        variant="outline"
+        size="icon"
       >
         <IconComponent Icon={Sun} size={15} />
       </Button>

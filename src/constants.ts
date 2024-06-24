@@ -1,4 +1,7 @@
+import BenchRoutesLogo from '@/assets/bench-routes.png';
+import EnviseLogo from '@/assets/envise.png';
 import fs from 'fs';
+import PlugZap from 'lucide-static/icons/plug-zap.svg';
 import path from 'path';
 
 export const POSTS_PATH = path.join(process.cwd(), 'src/content/posts');
@@ -14,31 +17,45 @@ export const POST_PREVIEW_LIMIT = 3;
 
 type ProjectStatus = 'active' | 'in-progress' | 'inactive';
 
-type Project = {
+export type Project = {
+  id: string;
   title: string;
   uri: string | null;
   description: string;
-  status: ProjectStatus;
+  icon?: any;
+  year: string;
+  blog?: string;
+  size: [number, number];
 };
 
 export const projects: Project[] = [
   {
+    id: 'envise',
     title: 'Envise',
     uri: 'https://envise.app',
     description: `Craft clear, organized notes and revise effectively with AI powered retention.`,
-    status: 'active',
+    icon: EnviseLogo,
+    year: '2024',
+    blog: '/envise',
+    size: [48, 48]
   },
   {
+    id: 'spotify-connect',
     title: 'Spotify Connect',
     uri: 'https://www.npmjs.com/package/spotify-connect',
     description: `Get useful analytics from the spotify API in your React application.`,
-    status: 'active',
+    year: '2024',
+    icon: PlugZap,
+    size: [48, 48]
   },
   {
+    id: 'bench-routes',
     title: 'Bench Routes',
     uri: 'https://github.com/bench-routes/bench-routes',
     description: `A highly scalable API monitoring and performance analysis tool.`,
-    status: 'active',
+    year: '2021',
+    icon: BenchRoutesLogo,
+    size: [64, 160]
   },
 ];
 

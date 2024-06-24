@@ -84,13 +84,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   <main
                     className={twMerge(
-                      'mx-auto md:max-w-[64ch] px-3 antialiased flex flex-col gap-y-16',
+                      'mx-auto md:max-w-[60ch] px-3 antialiased flex flex-col gap-y-16',
                       'py-12 md:py-16 h-screen'
                     )}
                   >
                     <PageHeader />
                     {children}
-                    <footer className="mt-auto pb-4 md:pb-2 flex flex-col gap-y-2">
+                    <footer className="mt-6 flex flex-col gap-y-2 border-t border-border-primary-light dark:border-border-primary-dark py-6">
                       <Playing />
                       <Footer />
                     </footer>
