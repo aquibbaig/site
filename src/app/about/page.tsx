@@ -4,7 +4,7 @@ import { externalLinkCSS } from '../_lib/helpers';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
-  description: 'Product Engineer',
+  description: 'Frontend Engineer',
 };
 
 export default function About() {

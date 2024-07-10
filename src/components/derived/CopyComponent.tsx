@@ -2,9 +2,8 @@
 
 import { IconComponent } from '@/components/ui/IconComponent';
 import { Button } from '@/components/ui/button';
-import { Copy } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text);
@@ -31,7 +30,7 @@ export const CopyComponent = ({
 
   return (
     <Button
-      className={twMerge('py-1 px-2 text-sm flex items-center gap-x-1', className)}
+      variant="outline"
       onClick={() => {
         copyToClipboard(copyText);
         setIsCopied(true);
@@ -43,8 +42,8 @@ export const CopyComponent = ({
         }, 3 * 1000);
       }}
     >
-      <IconComponent Icon={Copy} />
-      {isCopied ? `Copied!` : `Copy link`}
+      {isCopied ? <IconComponent Icon={Check} /> : <IconComponent Icon={Copy} />}
+      Copy link
     </Button>
   );
 };

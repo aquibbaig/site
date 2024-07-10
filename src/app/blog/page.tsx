@@ -2,14 +2,12 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { Link } from 'next-view-transitions';
 import Head from 'next/head';
-import readingTime from 'reading-time';
 import { twMerge } from 'tailwind-merge';
 import { getPostMetadata } from '../../helpers';
-import { externalLinkCSS } from '../_lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Blog | Aquib Baig',
-  description: 'Product Engineer',
+  description: 'Frontend Engineer',
 };
 
 export default function Blog() {
@@ -34,31 +32,35 @@ export default function Blog() {
             think.
           </p>
         </div>
-        <ul className="gap-2 flex flex-col">
-          {posts.map((post) => (
-            <li key={post.filePath} className="flex items-center gap-2">
-              <Link
-                href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                className={twMerge(
-                  'px-3 py-1 -mx-3',
-                  'rounded-md',
-                  'flex truncate',
-                  externalLinkCSS,
-                  'cursor-pointer'
-                )}
-              >
-                {post.data.title}
-              </Link>
-              <span className="text-text-muted-light dark:text-text-muted-dark">
-                {dayjs(post.data.date).year() < dayjs().year()
-                  ? dayjs(post.data.date).format('MMMM D, YYYY')
-                  : dayjs(post.data.date).format('MMMM D')}
-              </span>
-              <span className="text-text-muted-light dark:text-text-muted-dark bg-background-secondary-light dark:bg-background-secondary-dark px-2 rounded-md">
-                {readingTime(post.content).text.replaceAll('read', '')}
-              </span>
-            </li>
-          ))}
+        <ul className="flex flex-col gap-8 mt-8">
+          {posts.map((post) => {
+            return (
+              <li key={post.filePath}>
+                <Link
+                  href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                  className={twMerge(
+                    'p-4 -m-4',
+                    'rounded-md',
+                    'flex truncate',
+                    'cursor-pointer',
+                    'flex flex-col hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
+                    'transition-colors duration-200'
+                  )}
+                >
+                  <div className="text-text-primary-light dark:text-text-primary-dark">
+                    {post.data.title}
+                  </div>
+                  <div className="flex flex-row items-center gap-4">
+                    <span className="text-text-muted-light dark:text-text-muted-dark">
+                      {dayjs(post.data.publishedOn).year() < dayjs().year()
+                        ? dayjs(post.data.publishedOn).format('MMMM D, YYYY')
+                        : dayjs(post.data.publishedOn).format('MMMM D')}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

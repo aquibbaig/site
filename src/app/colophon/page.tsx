@@ -5,7 +5,7 @@ import { externalLinkCSS } from '../_lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Colophon | Aquib Baig',
-  description: 'Product Engineer',
+  description: 'Frontend Engineer',
 };
 
 export default function Colophon() {
