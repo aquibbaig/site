@@ -21,7 +21,9 @@ export const Playing = () => {
           size={16}
           className="animate-spin transition-all duration-500"
         />
-        <div className="animate-pulse h-[19px] bg-background-secondary-light dark:bg-background-secondary-dark w-64 rounded"></div>
+        <div className="text-text-muted-light dark:text-text-muted-dark text-sm">
+          Not playing anything right now.
+        </div>
       </div>
     );
   }
