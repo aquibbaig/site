@@ -70,7 +70,7 @@ export default async function PostPage({
           'prose-code:border prose-code:border-border-primary-light dark:prose-code:border-border-primary-dark',
           'prose-code:rounded-md',
           'prose-code:text-text-primary-light dark:prose-code:text-text-primary-dark',
-          'prose-code:font-normal prose-code:leading-relaxed prose-code:whitespace-break-spaces prose-code:before:content-["`"] prose-code:before:invisible prose-code:after:content-["`"] prose-code:after:invisible',
+          'prose-code:font-normal prose-code:leading-relaxed prose-code:whitespace-break-spaces prose-code:before:content-[""] prose-code:before:invisible prose-code:after:content-[""] prose-code:after:invisible',
           'prose-code:overflow-x-auto prose-code:overflow-y-hidden prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
           'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg',
           'prose-blockquote:not-italic prose-blockquote:font-normal'

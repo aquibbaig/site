@@ -9,8 +9,10 @@ import { codeToHtml } from 'shiki';
 
 export const Code: FC<any> = (props) => {
   const [html, setHtml] = useState<any>(null);
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
   const language = props?.children?.props?.className?.split('language-')?.[1] || 'ts';
+
+  const isDark = theme === 'dark' || (theme === 'system' && systemTheme === 'dark');
 
   useEffect(() => {
     async function processCodeBlock() {
@@ -20,7 +22,7 @@ export const Code: FC<any> = (props) => {
             setHtml(
               await codeToHtml(props.children.props.children, {
                 lang: language,
-                theme: theme === 'dark' ? 'vitesse-dark' : 'vitesse-light',
+                theme: isDark ? 'vitesse-dark' : 'vitesse-light',
                 transformers: [
                   transformerNotationDiff(),
                   transformerNotationHighlight(),
@@ -36,7 +38,7 @@ export const Code: FC<any> = (props) => {
     }
 
     processCodeBlock();
-  }, [theme]);
+  }, [theme, isDark]);
 
   if (!html) {
     return (
