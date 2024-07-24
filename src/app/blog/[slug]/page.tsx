@@ -1,10 +1,10 @@
-import { MdxContent } from '@/app/_lib/MdxContent';
 import { DAYJS_DEFAULT_FORMAT, POSTS_PATH } from '@/constants';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import dynamic from 'next/dynamic';
 import path from 'path';
 import remarkGfm from 'remark-gfm';
 import { twMerge } from 'tailwind-merge';
@@ -40,6 +40,10 @@ export default async function PostPage({
 }) {
   const { serialized, frontmatter } = await getPost({
     slug: params.slug,
+  });
+
+  const MdxContent = dynamic(() => import('@/app/_lib/MdxContent').then((mod) => mod.MdxContent), {
+    ssr: false,
   });
 
   return (
