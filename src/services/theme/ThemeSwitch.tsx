@@ -12,6 +12,7 @@ export const ThemeSwitch = () => {
 
   useEffect(() => {
     setIsClient(true);
+    setTheme('system');
   }, []);
 
   if (!isClient) {

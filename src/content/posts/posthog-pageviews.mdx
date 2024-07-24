@@ -1,0 +1,85 @@
+---
+title: 'Recording Blog Post Views with Posthog'
+publishedOn: 2024-06-24T09:15:00-0400
+draft: false
+description: ''
+---
+
+> Posthog is a product analytics tool which measures visitor data and other vital analytics when integrated on your website.
+> Integrating with Posthog helps you understand user behaviour and user interaction by observing session replays and pages viewed
+> which ultimately helps in making efforts towards user retention and catching bug fixes.
+
+In this article, we will explore on how I have used Posthog's pageview autocapture technique to display page views on each of my blog posts.
+
+Let us start by integrating Posthog on our website by following the [installation instructions](https://posthog.com/docs/getting-started/install).
+
+Once integrated successfully, Posthog will autocapture pageviews, website traffic and other demographic data for you.
+
+Luckily for us, all of this data is stored in Posthog's servers and is accessible via the API. Create a project and an API key using
+this [document](https://posthog.com/docs/api).
+
+## Method
+
+When a user visits the website, a `$pageview` event is created and stored on his behalf.
+There are various event properties associated with the event:
+
+- anonymous_id
+- device
+- library
+- event_time
+- browser
+- current_url, etcetra.
+
+We can use the `current_url` property to calculate how many times a specific page was queried.
+Each of my blog posts has a `slug` property used to route users to the page. The value of the slug is what is captured in the `current_url`
+event property of a `$pageview` event recorded by Posthog.
+
+## APIs
+
+We will be using the [Query](https://posthog.com/docs/api/query) API to count the number of times a `$pageview` event was recorded.
+Posthog uses [HogQL](https://posthog.com/docs/hogql) query syntax to query Posthog servers, an example query looks like the following.
+
+```js
+export async function getPageViews({ slug }: { slug: string }) {
+  return fetch(
+    `https://app.posthog.com/api/projects/${process.env.NEXT_PUBLIC_POSTHOG_PROJECT_ID}/query`,
+    {
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_POSTHOG_PROJECT_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: {
+          kind: 'EventsQuery',
+          select: ['count(*)'],
+          properties: [
+            {
+              key: '$current_url',
+              operator: 'icontains',
+              type: 'event',
+              value: slug,
+            },
+          ],
+          after: 'all',
+          event: '$pageview',
+        },
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => {
+      throw err;
+    });
+}
+```
+
+The query returns the number of times `$pageview` event was recorded for this given blog post slug; it can be accessed using `data.results[0]`.
+
+## Considerations
+
+- The query `POST` API is a part of private endpoint which is rate limited by Posthog to `120/hour`. We can go around this by using caching libraries on the
+  frontend like `react-query` and invalidating/refetching the counts every 5 minutes or so.
+- The event logs might be asynchronous and processed in batches by Posthog; therefore the page view counts might not be
+  instantaneously updated.
