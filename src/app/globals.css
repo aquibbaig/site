@@ -24,7 +24,7 @@
     @apply font-medium;
   }
   a {
-    @apply text-text-primary-light dark:text-text-primary-dark hover:dark:text-text-muted-dark hover:text-text-muted-light;
+    @apply transition-colors duration-200 text-text-primary-light dark:text-text-primary-dark decoration-border-primary-dark/25 dark:decoration-border-primary-light/25 hover:decoration-border-primary-dark dark:hover:decoration-border-primary-light;
   }
   .external-link {
     @apply cursor-ne-resize;
