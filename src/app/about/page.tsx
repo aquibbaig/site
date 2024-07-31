@@ -23,7 +23,7 @@ export default function About() {
             use. I am passionate about building high-quality software that is scalable and
             maintainable.
           </p>
-          <p className="text-text-muted-light dark:text-text-muted-dark">
+          <p>
             I keep a keen interest in capturing the best parts of life and sharing them with the
             world, enjoy finding peace in quiet moments -- just being without any rush or busyness.
           </p>

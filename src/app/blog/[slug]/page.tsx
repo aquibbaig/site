@@ -69,7 +69,7 @@ export default async function PostPage({
           'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-medium',
           'leading-relaxed text-[0.9375rem]',
           'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
-          'prose-a:font-medium prose-a:underline-offset-2 prose-a:decoration-1',
+          'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-2 prose-a:duration-200 prose-a:text-text-primary-light prose-a:dark:text-text-primary-dark prose-a:decoration-border-primary-dark/25 prose-a:dark:decoration-border-primary-light/25 hover:prose-a:decoration-border-primary-dark dark:hover:prose-a:decoration-border-primary-light',
           'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border-primary-light dark:prose-pre:border-border-primary-dark',
           'prose-code:border prose-code:border-border-primary-light dark:prose-code:border-border-primary-dark',
           'prose-code:rounded-md',
