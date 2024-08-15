@@ -12,6 +12,10 @@ const links = [
     label: 'About',
     path: '/about',
   },
+  {
+    label: 'Colophon',
+    path: '/colophon',
+  },
 ];
 
 export const Browse = () => {

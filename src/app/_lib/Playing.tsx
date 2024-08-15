@@ -1,64 +1,66 @@
 'use client';
 
-import { IconComponent } from '@/components/ui/IconComponent';
-import { Disc3 } from 'lucide-react';
-import { parseCurrentlyPlayingTrack, useCurrentlyPlaying } from 'spotify-connect';
+import Image from 'next/image';
+import { FC, PropsWithChildren } from 'react';
+import { parseCurrentTrack, useCurrentTrack } from 'spotify-connect';
+
+const Layout: FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <div className="p-4 border border-border-primary-light dark:border-border-primary-dark rounded">
+      {children}
+    </div>
+  );
+};
 
 export const Playing = () => {
   const {
     data: currentlyPlayingData,
-    isLoading: isLoadingCurrentlyPlaying,
-    isError: isErrorCurrentlyPlaying,
-  } = useCurrentlyPlaying();
+    loading: isLoadingCurrentlyPlaying,
+    error: isErrorCurrentlyPlaying,
+  } = useCurrentTrack();
 
-  const { track, is_playing } = parseCurrentlyPlayingTrack(currentlyPlayingData);
+  const { track, is_playing } = parseCurrentTrack(currentlyPlayingData);
 
   if (isLoadingCurrentlyPlaying) {
-    return (
-      <div className="flex flex-row gap-x-1.5 items-center py-1">
-        <IconComponent
-          Icon={Disc3}
-          size={16}
-          className="animate-spin transition-all duration-500 text-text-muted-light dark:text-text-muted-dark"
-        />
-        <div className="flex flex-row gap-x-1.5 items-center py-1 animate-pulse bg-text-muted-light/10 rounded-md w-3/5 h-[19px]"></div>
-      </div>
-    );
-  }
-
-  if (!is_playing) {
-    return (
-      <div className="flex flex-row gap-x-1.5 items-center py-1">
-        <IconComponent
-          Icon={Disc3}
-          size={16}
-          className="animate-spin transition-all duration-500 text-text-muted-light dark:text-text-muted-dark"
-        />
-        <div className="text-text-muted-light dark:text-text-muted-dark text-sm">--</div>
-      </div>
-    );
-  }
-
-  if (isErrorCurrentlyPlaying || !track) {
     return null;
   }
 
+  if (!is_playing) {
+    return null;
+  }
+
+  if (Boolean(isErrorCurrentlyPlaying) || !track) {
+    return null;
+  }
+
+  const albumImage = currentlyPlayingData?.item?.album?.images?.[0];
+
   return (
-    <div className="w-fit">
-      <a href={track.uri} className="external-link w-fit">
-        <div className="flex flex-row gap-x-1.5 items-center rounded">
-          <IconComponent
-            Icon={Disc3}
-            size={16}
-            className="animate-spin transition-all duration-500"
-          />
-          <div className="flex gap-x-1.5 items-center">
-            <span>{track?.name}</span>
-            <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
-            <span className="mt-[1px]">{track.artist[0].name}</span>
+    <div className="flex flex-col gap-4 transition-all duration-400 ease-in-out">
+      <h5 className="text-text-muted-light dark:text-text-muted-dark">Currently Playing</h5>
+      <Layout>
+        <a href={track.uri} className="external-link w-fit">
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row gap-4 items-center rounded">
+              {albumImage && (
+                <Image
+                  src={String(albumImage?.url)}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="rounded"
+                />
+              )}
+              <div className="flex flex-col gap-x-1.5">
+                <span>{track?.name}</span>
+                <span className="text-text-muted-light dark:text-text-muted-dark text-sm">
+                  {track.artist[0].name}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </Layout>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const POST_PREVIEW_LIMIT = 3;
 
 type ProjectStatus = 'active' | 'in-progress' | 'inactive';
 
-export type Project = {
+export type ProjectType = {
   id: string;
   title: string;
   uri: string | null;
@@ -28,7 +28,7 @@ export type Project = {
   size: [number, number];
 };
 
-export const projects: Project[] = [
+export const projects: ProjectType[] = [
   {
     id: 'envise',
     title: 'Envise',
