@@ -16,7 +16,7 @@ export default function Blog() {
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-16">
       <Head>
         <title>Blog | Aquib Baig</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

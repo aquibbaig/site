@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col gap-y-16">
       <p>
         I embrace minimalism in both art and infrastructure, striving to convey more with less. My
         focus lies in user flow, interaction, and experience, as I navigate a journey to discover my
@@ -18,6 +18,6 @@ export default function Home() {
       </p>
       <Browse />
       <Socials />
-    </>
+    </div>
   );
 }
