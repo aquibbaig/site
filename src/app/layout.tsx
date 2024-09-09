@@ -7,7 +7,6 @@ import Head from 'next/head';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { twMerge } from 'tailwind-merge';
 import { ThemeProvider } from '../services/theme/theme.context';
-import { Playing } from './_lib/Playing';
 import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -85,13 +84,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <main
                     className={twMerge(
                       'mx-auto md:max-w-[60ch] px-3 antialiased flex flex-col gap-y-16',
-                      'py-12 md:py-16 h-screen'
+                      'pt-12 md:pt-16 h-screen'
                     )}
                   >
                     <PageHeader />
-                    {children}
-                    <footer className="mt-6 flex flex-col gap-y-2 border-t border-border-primary-light dark:border-border-primary-dark py-6">
-                      <Playing />
+                    <div className="grow">{children}</div>
+                    <footer className="md:sticky md:bottom-0 flex flex-col bg-background-primary-light dark:bg-background-primary-dark gap-y-2 border-t border-border-primary-light dark:border-border-primary-dark py-6">
                       <Footer />
                     </footer>
                   </main>
