@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Head from 'next/head';
+import { useMemo } from 'react';
 import { externalLinkCSS } from '../_lib/helpers';
 import { Playing } from '../_lib/Playing';
 
@@ -9,6 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  const PlayingComponent = useMemo(
+    () => (
+      <div className="flex flex-col gap-4">
+        <Playing />
+      </div>
+    ),
+    []
+  );
+
   return (
     <div>
       <Head>
@@ -43,10 +53,7 @@ export default function About() {
             .
           </p>
         </div>
-
-        <div className="flex flex-col gap-4">
-          <Playing />
-        </div>
+        {PlayingComponent}
       </div>
     </div>
   );
