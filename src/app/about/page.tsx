@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import Head from 'next/head';
-import { useMemo } from 'react';
 import { externalLinkCSS } from '../_lib/helpers';
-import { Playing } from '../_lib/Playing';
+import { RecentTracks } from '../_lib/RecentTracks';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
@@ -10,15 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  const PlayingComponent = useMemo(
-    () => (
-      <div className="flex flex-col gap-4">
-        <Playing />
-      </div>
-    ),
-    []
-  );
-
   return (
     <div>
       <Head>
@@ -42,18 +32,20 @@ export default function About() {
             Working as a Senior Software Engineer at{' '}
             <a href="https://www.toplyne.io/" target="_blank" className={externalLinkCSS}>
               Toplyne
-            </a>{' '}
-            since 12 / 2021.
+            </a>
+            .
           </p>
           <p>
-            In the past, {`I've`} worked as a Software Engineer at{' '}
+            Prev,{' '}
             <a href="https://www.redhat.com/en" target="_blank" className={externalLinkCSS}>
               Redhat
             </a>
             .
           </p>
         </div>
-        {PlayingComponent}
+        <div className="flex flex-col gap-4">
+          <RecentTracks />
+        </div>
       </div>
     </div>
   );
