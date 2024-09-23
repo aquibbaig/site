@@ -1,7 +1,7 @@
 import { IconComponent } from '@/components/ui/IconComponent';
 import { Button } from '@/components/ui/button';
-import { Project, projects } from '@/constants';
-import { MoveUpRight } from 'lucide-react';
+import { ProjectType, projects } from '@/constants';
+import { Globe } from 'lucide-react';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
@@ -15,7 +15,7 @@ export const Projects = () => {
   );
 };
 
-const Project = ({ title, uri, icon, id, year, blog, size }: Project) => {
+const Project = ({ title, uri, icon, id, year, blog, size }: ProjectType) => {
   return (
     <li key={uri} className={twMerge('flex flex-col flex-nowrap gap-2 w-full', 'leading-relaxed')}>
       <div
@@ -36,7 +36,7 @@ const Project = ({ title, uri, icon, id, year, blog, size }: Project) => {
           <span>{year}</span>
           <a href={uri || '#'} target="_blank" className={twMerge('w-full hover:text-inherit')}>
             <Button size="icon" variant="ghost">
-              <IconComponent Icon={MoveUpRight} size={14} />
+              <IconComponent Icon={Globe} size={14} />
             </Button>
           </a>
         </div>
@@ -45,7 +45,7 @@ const Project = ({ title, uri, icon, id, year, blog, size }: Project) => {
   );
 };
 
-function getGradientForProject(projectId: Project['id']) {
+function getGradientForProject(projectId: ProjectType['id']) {
   switch (projectId) {
     case 'envise':
       return 'bg-gradient-to-r from-[#3D63DB] to-[#3D63DB] dark:from-[#3D63DB]/70 dark:to-[#3D63DB]/70';

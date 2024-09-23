@@ -4,14 +4,14 @@ import { PageHeader } from '@/services/page-header/PageHeader';
 import { clsx } from 'clsx';
 import { ViewTransitions } from 'next-view-transitions';
 import Head from 'next/head';
-import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { twMerge } from 'tailwind-merge';
 import { ThemeProvider } from '../services/theme/theme.context';
 import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import localFont from 'next/font/local';
-import { Footer } from './_lib/Footer';
+import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
 
 const soehne = localFont({
@@ -76,24 +76,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 enableSystem
                 disableTransitionOnChange
               >
-                <SpotifyConnectContextProvider
-                  refreshToken={process.env.NEXT_PUBLIC_REFRESH_TOKEN}
-                  clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
-                  clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
+                <main
+                  className={twMerge(
+                    'mx-auto md:max-w-[52ch] px-3 antialiased flex flex-col gap-y-16',
+                    'py-12 md:py-16'
+                  )}
                 >
-                  <main
-                    className={twMerge(
-                      'mx-auto md:max-w-[60ch] px-3 antialiased flex flex-col gap-y-16',
-                      'pt-12 md:pt-16 h-screen'
-                    )}
+                  <PageHeader />
+                  <SpotifyConnectContextProvider
+                    refreshToken={process.env.NEXT_PUBLIC_REFRESH_TOKEN}
+                    clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+                    clientSecret={process.env.NEXT_PUBLIC_CLIENT_SECRET}
                   >
-                    <PageHeader />
-                    <div className="grow">{children}</div>
-                    <footer className="md:sticky md:bottom-0 flex flex-col bg-background-primary-light dark:bg-background-primary-dark gap-y-2 border-t border-border-primary-light dark:border-border-primary-dark py-6">
-                      <Footer />
-                    </footer>
-                  </main>
-                </SpotifyConnectContextProvider>
+                    {children}
+                  </SpotifyConnectContextProvider>
+                </main>
               </ThemeProvider>
             </body>
           </PHProvider>

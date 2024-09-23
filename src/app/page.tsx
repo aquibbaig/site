@@ -9,13 +9,14 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-y-16">
-      <p>
-        I embrace minimalism in both art and infrastructure, striving to convey more with less. My
-        focus lies in user flow, interaction, and experience, as I navigate a journey to discover my
-        own creative path, steering clear of overwhelming trends to find peace and strength in my
-        work.
-      </p>
+    <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-2">
+        <p>
+          {`I'm`} passionate about building new things by myself -- delving into the ambiguities and
+          understanding technical nuances.
+        </p>
+        <p>I admire human creativity and find aesthetic designs and architecture pleasing.</p>
+      </div>
       <Browse />
       <Socials />
     </div>

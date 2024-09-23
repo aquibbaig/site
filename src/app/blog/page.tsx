@@ -23,13 +23,11 @@ export default function Blog() {
       </Head>
       <div className="flex flex-col gap-y-4">
         <h5 className="text-text-muted-light dark:text-text-muted-dark">Blog</h5>
-        <div>
+        <div className="flex flex-col gap-4">
           <p>
             My articles are an intersection of things built on the internet, awesome tools and
             technologies, and things I am proud of. I talk about solving tricky problems, planning
-            how to make cool software, and the steps I take to make it all happen. It is not just
-            writing code – I also share stories about things I have learned and moments that make me
-            think.
+            how to make awesome software, and the steps I take to make it all happen.
           </p>
         </div>
         <ul className="flex flex-col gap-8 mt-8">
