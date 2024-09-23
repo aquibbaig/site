@@ -36,7 +36,7 @@ export default function About() {
             .
           </p>
           <p>
-            Prev,{' '}
+            Previously at{' '}
             <a href="https://www.redhat.com/en" target="_blank" className={externalLinkCSS}>
               Redhat
             </a>

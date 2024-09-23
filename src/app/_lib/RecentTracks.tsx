@@ -19,7 +19,24 @@ export const RecentTracks = () => {
     error: isErrorRecentTracks,
   } = useRecentTracks(5 * 60 * 1000);
 
-  if (isLoadingRecentTracks || isErrorRecentTracks || !recentTracks) {
+  if (isLoadingRecentTracks) {
+    return (
+      <div className="flex flex-col gap-4">
+        {Array(2)
+          .fill(0)
+          .map((item, idx) => {
+            return (
+              <div key={idx} className="animate-pulse flex flex-col gap-1">
+                <div className="bg-background-secondary-light dark:bg-background-secondary-dark h-5 rounded-md w-4/5"></div>
+                <div className="bg-background-secondary-light dark:bg-background-secondary-dark h-5 rounded-md w-3/5"></div>
+              </div>
+            );
+          })}
+      </div>
+    );
+  }
+
+  if (isErrorRecentTracks || !recentTracks) {
     return null;
   }
 
@@ -32,7 +49,7 @@ export const RecentTracks = () => {
 
           return (
             <a
-              key={track.context.uri}
+              key={track.track?.id}
               target="blank"
               rel="noopener noreferrer"
               href={track.track?.external_urls?.spotify}
@@ -44,7 +61,7 @@ export const RecentTracks = () => {
                   height={36}
                   src={track.track?.album?.images[0]?.url}
                   alt={track.track?.name}
-                  className="rounded-sm transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-background-primary-dark/50 dark:group-hover:border-border-primary-light/50"
+                  className="rounded-md transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-background-primary-dark/50 dark:group-hover:border-border-primary-light/50"
                 />
                 <div className="flex flex-col flex-wrap">
                   <span>{track.track?.name}</span>
