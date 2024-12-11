@@ -12,8 +12,8 @@ export default function Home() {
     <div className="flex flex-col gap-16">
       <div className="flex flex-col gap-2">
         <p>
-          Aquib is a software engineer with a strong passion for building things, while having
-          attention to detailing, quality and craftmanship.
+          Aquib is a software engineer with a strong passion for creating things, while having keen
+          attention to detail, quality, and craftsmanship.
         </p>
       </div>
       <div>
