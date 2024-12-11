@@ -22,7 +22,7 @@ export const Code: FC<any> = (props) => {
             setHtml(
               await codeToHtml(props.children.props.children, {
                 lang: language,
-                theme: isDark ? 'vitesse-dark' : 'vitesse-light',
+                theme: isDark ? 'dark-plus' : 'light-plus',
                 transformers: [
                   transformerNotationDiff(),
                   transformerNotationHighlight(),
