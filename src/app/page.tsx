@@ -4,7 +4,7 @@ import { Socials } from './_lib/Socials';
 
 export const metadata: Metadata = {
   title: 'Aquib Baig',
-  description: 'Frontend Engineer',
+  description: 'Software Engineer',
 };
 
 export default function Home() {
@@ -12,13 +12,14 @@ export default function Home() {
     <div className="flex flex-col gap-16">
       <div className="flex flex-col gap-2">
         <p>
-          {`I'm`} passionate about building new things by myself -- delving into the ambiguities and
-          understanding technical nuances.
+          Aquib is a software engineer with a strong passion for building things, while having
+          attention to detailing, quality and craftmanship.
         </p>
-        <p>I admire human creativity and find aesthetic designs and architecture pleasing.</p>
       </div>
-      <Browse />
-      <Socials />
+      <div>
+        <Browse />
+        <Socials />
+      </div>
     </div>
   );
 }

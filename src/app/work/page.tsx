@@ -4,7 +4,7 @@ import { Projects } from '../_lib/Projects';
 
 export const metadata: Metadata = {
   title: 'Work | Aquib Baig',
-  description: 'Frontend Engineer',
+  description: 'Software Engineer',
 };
 
 export default function Work() {

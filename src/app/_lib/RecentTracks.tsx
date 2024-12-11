@@ -1,16 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { FC, PropsWithChildren } from 'react';
 import { useRecentTracks } from 'spotify-connect';
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <div className="p-4 border border-border-primary-light dark:border-border-primary-dark rounded">
-      {children}
-    </div>
-  );
-};
+const MAX_TRACKS = 1;
 
 export const RecentTracks = () => {
   const {
@@ -42,9 +35,9 @@ export const RecentTracks = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h5 className="text-text-muted-light dark:text-text-muted-dark">Recent Tracks</h5>
+      <h5 className="text-text-muted-light dark:text-text-muted-dark">Last played on Spotify</h5>
       <ul className="flex flex-col gap-1">
-        {recentTracks.items?.map((track) => {
+        {recentTracks.items?.slice(0, MAX_TRACKS)?.map((track) => {
           if (!track) return null;
 
           return (
@@ -57,8 +50,8 @@ export const RecentTracks = () => {
             >
               <li className="flex flex-row items-center gap-2">
                 <Image
-                  width={36}
-                  height={36}
+                  width={40}
+                  height={40}
                   src={track.track?.album?.images[0]?.url}
                   alt={track.track?.name}
                   className="rounded-md transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-background-primary-dark/50 dark:group-hover:border-border-primary-light/50"

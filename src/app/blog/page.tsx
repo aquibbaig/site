@@ -7,7 +7,7 @@ import { getPostMetadata } from '../../helpers';
 
 export const metadata: Metadata = {
   title: 'Blog | Aquib Baig',
-  description: 'Frontend Engineer',
+  description: 'Software Engineer',
 };
 
 export default function Blog() {

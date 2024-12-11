@@ -2,7 +2,7 @@
 
 @layer base {
   * {
-    @apply text-[0.9375rem] antialiased leading-relaxed;
+    @apply text-[1rem] antialiased leading-relaxed;
   }
 
   h1 {
