@@ -49,13 +49,13 @@ export default async function PostPage({
   return (
     <div className="flex flex-col">
       <div>
-        <h3>{frontmatter.title}</h3>
+        <h2 className="mb-1">{frontmatter.title}</h2>
         {frontmatter.description && (
           <p className="!leading-relaxed !text-[0.9375rem]">{frontmatter.description}</p>
         )}
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center gap-10">
           {frontmatter.publishedOn && (
-            <div className="mt-5 flex flex-row items-start gap-x-1">
+            <div className="flex flex-row items-start gap-x-1 text-text-muted-light dark:text-text-muted-dark">
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
             </div>
           )}

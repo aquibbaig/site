@@ -29,6 +29,13 @@
   .external-link {
     @apply cursor-ne-resize;
   }
+  pre code span {
+    @apply text-sm;
+  }
+
+  pre {
+    @apply max-h-96;
+  }
 }
 
 @tailwind components;
