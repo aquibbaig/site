@@ -5,7 +5,7 @@ import { RecentTracks } from '../_lib/RecentTracks';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
-  description: 'Frontend Engineer',
+  description: 'Software Engineer',
 };
 
 export default function About() {
@@ -17,26 +17,21 @@ export default function About() {
       </Head>
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-2">
-          <h5 className="text-text-muted-light dark:text-text-muted-dark">About</h5>
-          <div className="flex flex-col gap-4">
-            <p>
-              I keep a keen interest in capturing the best parts of life and sharing them with the
-              world, enjoy finding peace in quiet moments -- just being without any rush or
-              busyness.
-            </p>
-          </div>
+          <p>
+            When {`I'm`} not working, I love listening to music, playing football or Counter strike.
+          </p>
         </div>
         <div className="flex flex-col gap-2">
           <h5 className="text-text-muted-light dark:text-text-muted-dark">Experience</h5>
           <p>
-            Working as a Senior Software Engineer at{' '}
+            Senior Software Engineer at{' '}
             <a href="https://www.toplyne.io/" target="_blank" className={externalLinkCSS}>
               Toplyne
             </a>
             .
           </p>
           <p>
-            Previously at{' '}
+            Previously,{' '}
             <a href="https://www.redhat.com/en" target="_blank" className={externalLinkCSS}>
               Redhat
             </a>

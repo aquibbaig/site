@@ -3,10 +3,10 @@ import { twMerge } from 'tailwind-merge';
 import { externalLinkCSS } from './helpers';
 
 const links = [
-  { label: 'Blog', path: '/blog' },
+  { label: 'Articles', path: '/blog' },
   {
-    label: 'Work',
-    path: '/work',
+    label: 'Projects',
+    path: '/projects',
   },
   {
     label: 'About',
@@ -21,8 +21,7 @@ const links = [
 export const Browse = () => {
   return (
     <div>
-      <h4>Browse</h4>
-      <ul className="flex flex-col gap-y-2">
+      <ul className="flex flex-row gap-2 flex-wrap">
         {links.map(({ label, path }) => (
           <li key={path}>
             <Link href={path} className={twMerge(externalLinkCSS, 'cursor-pointer')}>

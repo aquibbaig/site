@@ -22,7 +22,7 @@ export const Code: FC<any> = (props) => {
             setHtml(
               await codeToHtml(props.children.props.children, {
                 lang: language,
-                theme: isDark ? 'vitesse-dark' : 'vitesse-light',
+                theme: isDark ? 'dark-plus' : 'light-plus',
                 transformers: [
                   transformerNotationDiff(),
                   transformerNotationHighlight(),
@@ -38,7 +38,7 @@ export const Code: FC<any> = (props) => {
     }
 
     processCodeBlock();
-  }, [theme, isDark]);
+  }, [theme, isDark, props.children.props.children, language]);
 
   if (!html) {
     return (
@@ -49,5 +49,9 @@ export const Code: FC<any> = (props) => {
     );
   }
 
-  return <p dangerouslySetInnerHTML={{ __html: html }} className="!p-0" />;
+  return (
+    <div>
+      <p dangerouslySetInnerHTML={{ __html: html }} className="!p-0" />
+    </div>
+  );
 };

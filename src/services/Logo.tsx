@@ -7,7 +7,7 @@ export const Logo = () => {
         Aquib Baig
       </Link>
       <span className="text-sm text-text-muted-light dark:text-text-muted-dark">
-        Frontend Engineer
+        Software Engineer
       </span>
     </div>
   );
