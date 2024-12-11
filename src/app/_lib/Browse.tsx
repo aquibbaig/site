@@ -3,10 +3,10 @@ import { twMerge } from 'tailwind-merge';
 import { externalLinkCSS } from './helpers';
 
 const links = [
-  { label: 'Blog', path: '/blog' },
+  { label: 'Articles', path: '/blog' },
   {
-    label: 'Work',
-    path: '/work',
+    label: 'Projects',
+    path: '/projects',
   },
   {
     label: 'About',
