@@ -4,7 +4,7 @@ import { externalLinkCSS } from './helpers';
 export const Socials = () => {
   return (
     <div>
-      <div className="flex flex-row gap-2 flex-wrap">
+      <div className="flex flex-row gap-4 flex-wrap">
         <a className={externalLinkCSS} href={emailLink} target="_blank">
           Email
         </a>

@@ -1,47 +1,143 @@
-import { IconComponent } from '@/components/ui/IconComponent';
-import { Button } from '@/components/ui/button';
-import { ProjectType, projects } from '@/constants';
-import { Globe } from 'lucide-react';
+'use client';
+
+import BenchRoutesLogo from '@/assets/bench-routes.png';
+import EnviseLogo from '@/assets/envise.png';
+import { Dialog, DialogContent } from '@/components/ui/Dialog';
+import { ProjectType } from '@/constants';
+import PlugZap from 'lucide-static/icons/plug-zap.svg';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
+import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const Projects = () => {
+  const [projectDetails, showProjectDetails] = useState<ProjectType | null>(null);
+
   return (
-    <ul className="flex flex-col gap-y-24 mt-8">
-      {projects.map((project) => {
-        return <Project key={project.id} {...project} />;
-      })}
-    </ul>
+    <div>
+      {Boolean(projectDetails) && (
+        <Dialog
+          open
+          onOpenChange={(open) => {
+            if (!open) {
+              showProjectDetails(null);
+            }
+          }}
+        >
+          <AnimatePresence>
+            <DialogContent className="pb-16 !rounded-2xl">
+              <motion.div layoutId={`project-${projectDetails?.uri}`}>
+                <motion.div
+                  className={twMerge(
+                    getGradientForProject(projectDetails?.id!),
+                    'p-2 rounded-xl size-14 md:size-12 flex flex-col items-center justify-center shrink-0'
+                  )}
+                  layoutId={`image-${projectDetails?.uri}`}
+                >
+                  <Image src={projectDetails?.icon} alt="icon" />
+                </motion.div>
+                <div className="flex justify-between w-full items-center h-full">
+                  <div className="flex flex-col w-[80%]">
+                    <motion.span
+                      layoutId={`title-${projectDetails?.uri}`}
+                      className="text-sm md:text-[15px]"
+                    >
+                      {projectDetails?.title}
+                    </motion.span>
+                    <motion.span
+                      layoutId={`alt-${projectDetails?.uri}`}
+                      className="text-sm md:text-[15px] text-text-secondary-light dark:text-text-secondary-dark"
+                    >
+                      {projectDetails?.description}
+                    </motion.span>
+                  </div>
+                  <div className="flex flex-row gap-4 items-center bg-background-secondary-light dark:bg-background-secondary-dark px-2 py-0.5 size-fit rounded-lg">
+                    <a
+                      href={projectDetails?.uri || '#'}
+                      target="_blank"
+                      className={twMerge(
+                        'w-full font-medium text-xs text-[#007AFE] dark:text-[#007AFE]'
+                      )}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      Get
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </DialogContent>
+          </AnimatePresence>
+        </Dialog>
+      )}
+      <h4>Projects</h4>
+      <ul className="flex flex-col">
+        {projects.map((project) => {
+          return (
+            <Project
+              key={project.id}
+              {...project}
+              showDetails={(project) => showProjectDetails(project)}
+            />
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
-const Project = ({ title, uri, icon, id, year, blog, size }: ProjectType) => {
+const Project = ({
+  showDetails,
+  ...project
+}: ProjectType & { showDetails: (project: ProjectType) => void }) => {
+  const { uri, id, icon, subHeading, title } = project;
+
   return (
-    <li key={uri} className={twMerge('flex flex-col flex-nowrap gap-2 w-full', 'leading-relaxed')}>
-      <div
+    <motion.li
+      key={uri}
+      className={twMerge(
+        'h-20 flex flex-row items-center gap-4 w-full cursor-pointer',
+        'leading-relaxed'
+      )}
+      onClick={() => showDetails(project)}
+      layoutId={`project-${uri}`}
+    >
+      <motion.div
         className={twMerge(
           getGradientForProject(id),
-          'h-48 md:h-64 2xl:h-80 w-full rounded-md grid place-items-center'
+          'p-2 rounded-xl size-14 md:size-12 flex flex-col items-center justify-center shrink-0'
         )}
+        layoutId={`image-${uri}`}
       >
-        <div className="flex flex-row gap-1 items-center">
-          <div className="flex flex-row gap-1 items-center">
-            <Image src={icon} alt="icon" height={size[0] ?? 48} width={size[1] ?? 48} />
-          </div>
+        <Image src={icon} alt="icon" />
+      </motion.div>
+      <div className="flex justify-between w-full border-b border-border-primary-light/70 dark:border-border-primary-dark items-center h-full">
+        <div className="flex flex-col w-[80%]">
+          <motion.span layoutId={`title-${uri}`} className="text-sm md:text-[15px]">
+            {title}
+          </motion.span>
+          <motion.span
+            layoutId={`alt-${uri}`}
+            className="text-sm md:text-[15px] text-text-secondary-light dark:text-text-secondary-dark"
+          >
+            {subHeading}
+          </motion.span>
         </div>
-      </div>
-      <div className="flex justify-between">
-        <span>{title}</span>
-        <div className="flex flex-row gap-4 items-center">
-          <span>{year}</span>
-          <a href={uri || '#'} target="_blank" className={twMerge('w-full hover:text-inherit')}>
-            <Button size="icon" variant="ghost">
-              <IconComponent Icon={Globe} size={14} />
-            </Button>
+        <div className="flex flex-row gap-4 items-center bg-background-secondary-light dark:bg-background-secondary-dark px-2 py-0.5 size-fit rounded-lg">
+          <a
+            href={uri || '#'}
+            target="_blank"
+            className={twMerge('w-full font-medium text-xs text-[#007AFE] dark:text-[#007AFE]')}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            Get
           </a>
         </div>
       </div>
-    </li>
+    </motion.li>
   );
 };
 
@@ -57,3 +153,33 @@ function getGradientForProject(projectId: ProjectType['id']) {
       return 'text-[#000] bg-gradient-to-r from-[#ddd6f3] to-[#faaca8]';
   }
 }
+
+const projects: ProjectType[] = [
+  {
+    id: 'envise',
+    title: 'Envise',
+    uri: 'https://envise.app',
+    subHeading: 'A note taking app to help reflect and memorize.',
+    description: `Envise is note-taking app that helps you reflect on ideas and retain them for the long term.`,
+    icon: EnviseLogo,
+    size: [48, 48],
+  },
+  {
+    id: 'spotify-connect',
+    title: 'Spotify Connect',
+    uri: 'https://www.npmjs.com/package/spotify-connect',
+    subHeading: 'Integrate spotify APIs in your web applications.',
+    description: `An npm package to implement spotify APIs in your web applications.`,
+    icon: PlugZap,
+    size: [48, 48],
+  },
+  {
+    id: 'bench-routes',
+    title: 'Bench Routes',
+    uri: 'https://github.com/bench-routes/bench-routes',
+    subHeading: 'Open source API monitoring tool.',
+    description: `A highly scalable API monitoring and performance analysis tool.`,
+    icon: BenchRoutesLogo,
+    size: [48, 48],
+  },
+];

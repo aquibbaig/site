@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.3",
     "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-query": "^5.32.0",
     "class-variance-authority": "^0.7.0",
@@ -16,6 +17,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.287.0",
     "lucide-static": "^0.396.0",
+    "motion": "^11.14.3",
     "next": "^14.2.3",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
