@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <main
                   className={twMerge(
-                    'mx-auto md:max-w-[500px] px-3 antialiased flex flex-col gap-y-16',
+                    'mx-auto md:max-w-[500px] px-3 antialiased flex flex-col gap-8',
                     'py-12 md:py-16'
                   )}
                 >

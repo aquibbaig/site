@@ -1,13 +1,10 @@
 import { Link } from 'next-view-transitions';
 import { twMerge } from 'tailwind-merge';
 import { externalLinkCSS } from './helpers';
+import { Socials } from './Socials';
 
 const links = [
   { label: 'Articles', path: '/blog' },
-  {
-    label: 'Projects',
-    path: '/projects',
-  },
   {
     label: 'About',
     path: '/about',
@@ -20,8 +17,8 @@ const links = [
 
 export const Browse = () => {
   return (
-    <div>
-      <ul className="flex flex-row gap-2 flex-wrap">
+    <div className="flex flex-row gap-4 flex-wrap">
+      <ul className="flex flex-row gap-4 flex-wrap">
         {links.map(({ label, path }) => (
           <li key={path}>
             <Link href={path} className={twMerge(externalLinkCSS, 'cursor-pointer')}>
@@ -30,6 +27,7 @@ export const Browse = () => {
           </li>
         ))}
       </ul>
+      <Socials />
     </div>
   );
 };
