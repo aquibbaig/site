@@ -1,6 +1,6 @@
 import { emailLink, githubLink, linkedInLink, spotifyLink, twitterLink } from '@/constants';
 import Head from 'next/head';
-import { externalLinkCSS } from '../_lib/helpers';
+import { externalLinkCSS } from '../lib/helpers';
 
 const socialLinks = [
   {

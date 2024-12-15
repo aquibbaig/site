@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Head from 'next/head';
-import { externalLinkCSS } from '../_lib/helpers';
-import { RecentTracks } from '../_lib/RecentTracks';
+import { externalLinkCSS } from '../lib/helpers';
+import { RecentTracks } from '../lib/RecentTracks';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
