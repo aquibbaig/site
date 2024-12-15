@@ -53,7 +53,7 @@ export default function Blog() {
   );
 }
 
-export const BlogPostCard = ({
+const BlogPostCard = ({
   post,
   className,
 }: {
