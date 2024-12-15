@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { HighlightedPost } from './blog/lib/HighlightedPost';
 import { Browse } from './lib/Browse';
 import { Projects } from './lib/Projects';
 
@@ -18,7 +17,6 @@ export default function Home() {
         </p>
       </div>
       <div className="flex flex-col gap-8">
-        <HighlightedPost />
         <Projects />
         <Browse />
       </div>
