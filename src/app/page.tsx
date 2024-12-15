@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Browse } from './_lib/Browse';
-import { Projects } from './_lib/Projects';
+import { Browse } from './lib/Browse';
+import { Projects } from './lib/Projects';
 
 export const metadata: Metadata = {
   title: 'Aquib Baig',

@@ -42,7 +42,7 @@ export default async function PostPage({
     slug: params.slug,
   });
 
-  const MdxContent = dynamic(() => import('@/app/_lib/MdxContent').then((mod) => mod.MdxContent), {
+  const MdxContent = dynamic(() => import('@/app/lib/MdxContent').then((mod) => mod.MdxContent), {
     ssr: false,
   });
 

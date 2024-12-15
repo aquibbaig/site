@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Head from 'next/head';
 import { twMerge } from 'tailwind-merge';
-import { externalLinkCSS } from '../_lib/helpers';
+import { externalLinkCSS } from '../lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Colophon | Aquib Baig',
