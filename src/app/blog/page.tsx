@@ -31,25 +31,8 @@ export default function Blog() {
           {`"A collection of technical walkthroughs and some interesting realizations."`}
         </div>
         <div className="flex flex-col gap-6">
-          <Link
-            href={`/blog/${first.filePath.replace(/\.mdx?$/, '')}`}
-            className={twMerge(
-              'p-3 lg:-mx-3',
-              'rounded-lg',
-              'flex truncate',
-              'cursor-pointer',
-              'flex flex-col hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-              'transition-colors duration-200'
-            )}
-          >
-            <div className="text-text-primary-light dark:text-text-primary-dark">
-              {first.data.title}
-            </div>
-            <div className="flex flex-row items-center gap-4">
-              <span className="text-text-muted-light dark:text-text-muted-dark">
-                {dayjs(first.data.publishedOn).fromNow()}
-              </span>
-            </div>
+          <Link href={`/blog/${first.filePath.replace(/\.mdx?$/, '')}`}>
+            <BlogPostCard post={first} />
           </Link>
           <div className="flex flex-row items-center gap-6">
             <h4 className="text-text-muted-light dark:text-text-muted-dark">Older</h4>
@@ -58,27 +41,8 @@ export default function Blog() {
           {rest.map((post) => {
             return (
               <div key={post.filePath}>
-                <Link
-                  href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                  className={twMerge(
-                    'p-3 lg:-mx-3',
-                    'rounded-lg',
-                    'flex truncate flex-wrap',
-                    'cursor-pointer',
-                    'flex flex-col hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-                    'transition-colors duration-200'
-                  )}
-                >
-                  <div className="text-text-primary-light dark:text-text-primary-dark">
-                    {post.data.title}
-                  </div>
-                  <div className="flex flex-row items-center gap-4">
-                    <span className="text-text-muted-light dark:text-text-muted-dark">
-                      {dayjs(post.data.publishedOn).year() < dayjs().year()
-                        ? dayjs(post.data.publishedOn).format('MMMM D, YYYY')
-                        : dayjs(post.data.publishedOn).format('MMMM D')}
-                    </span>
-                  </div>
+                <Link href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}>
+                  <BlogPostCard post={post} />
                 </Link>
               </div>
             );
@@ -88,3 +52,32 @@ export default function Blog() {
     </div>
   );
 }
+
+export const BlogPostCard = ({
+  post,
+  className,
+}: {
+  post: ReturnType<typeof getPostMetadata>['posts'][number];
+  className?: string;
+}) => {
+  return (
+    <div
+      className={twMerge(
+        'p-3 lg:-mx-3',
+        'rounded-lg',
+        'flex truncate flex-wrap',
+        'cursor-pointer',
+        'flex flex-col hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
+        'transition-colors duration-200',
+        className
+      )}
+    >
+      <div className="text-text-primary-light dark:text-text-primary-dark">{post.data.title}</div>
+      <div className="flex flex-row items-center gap-4">
+        <span className="text-text-muted-light dark:text-text-muted-dark">
+          {dayjs(post.data.publishedOn).fromNow()}
+        </span>
+      </div>
+    </div>
+  );
+};
