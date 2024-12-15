@@ -38,7 +38,7 @@ export const Projects = () => {
         {Boolean(projectDetails) ? (
           <motion.div
             layoutId={`project-${projectDetails?.id}`}
-            className="fixed -mt-24 mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border-primary-light dark:border-border-primary-dark bg-background-primary-light dark:bg-background-primary-dark p-6 shadow-lg sm:rounded-xl"
+            className="fixed mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border-primary-light dark:border-border-primary-dark bg-background-primary-light dark:bg-background-primary-dark p-6 shadow-lg sm:rounded-xl"
             ref={ref}
           >
             <motion.div
