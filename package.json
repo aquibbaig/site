@@ -2,49 +2,15 @@
   "name": "aquib.dev",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.12.3",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint"
   },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
-    "@tanstack/react-query": "^5.32.0",
-    "class-variance-authority": "^0.7.0",
-    "dayjs": "^1.11.10",
-    "gray-matter": "^4.0.3",
-    "lucide-react": "^0.287.0",
-    "lucide-static": "^0.396.0",
-    "motion": "^11.14.3",
-    "next": "^14.2.3",
-    "next-mdx-remote": "^4.4.1",
-    "next-themes": "^0.2.1",
-    "next-view-transitions": "^0.1.1",
-    "pluralize": "^8.0.0",
-    "posthog-js": "^1.103.1",
-    "react": "^18",
-    "react-dom": "^18",
-    "reading-time": "^1.5.0",
-    "remark-gfm": "^3.0.1",
-    "spotify-connect": "^1.7.0",
-    "tailwind-merge": "^1.14.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@shikijs/transformers": "^1.10.3",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20",
-    "@types/pluralize": "^0.0.33",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10",
-    "clsx": "^2.0.0",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.4",
-    "eslint-config-prettier": "^9.0.0",
-    "postcss": "^8",
-    "shiki": "^1.10.3",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5"
+    "turbo": "^2.3.3"
   }
 }
