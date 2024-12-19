@@ -1,7 +1,7 @@
 'use client';
 
 import { IconComponent } from '@/components/ui/IconComponent';
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/ui/components/Button';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';

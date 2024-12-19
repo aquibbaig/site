@@ -1,9 +1,11 @@
 'use client';
 
 import { IconComponent } from '@/components/ui/IconComponent';
-import { Button } from '@/components/ui/button';
+
 import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+
+import { Button } from '@repo/ui/components/Button';
 
 export default function NotFound() {
   const router = useRouter();
