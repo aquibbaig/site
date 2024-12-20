@@ -1,8 +1,5 @@
 'use client';
 
-import { IconComponent } from '@/components/ui/IconComponent';
-
-import { CornerDownLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@repo/ui/components/Button';
@@ -26,13 +23,7 @@ export default function NotFound() {
           className="flex flex-row gap-x-1.5 items-center w-fit"
           onClick={() => router.back()}
         >
-          <div className="scale-x-[-1]">
-            <IconComponent
-              Icon={CornerDownLeft}
-              className="hover:stroke-text-muted-light hover:dark:stroke-text-muted-dark"
-            />
-          </div>
-          <span>Head back</span>
+          Head back
         </Button>
       </div>
     </div>

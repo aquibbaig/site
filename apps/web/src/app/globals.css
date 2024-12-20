@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   * {
@@ -37,6 +39,3 @@
     @apply max-h-96;
   }
 }
-
-@tailwind components;
-@tailwind utilities;

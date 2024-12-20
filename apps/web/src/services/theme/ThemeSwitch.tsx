@@ -1,7 +1,7 @@
 'use client';
 
-import { IconComponent } from '@/components/ui/IconComponent';
 import { Button } from '@repo/ui/components/Button';
+import { IconComponent } from '@repo/ui/components/IconComponent';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ export const ThemeSwitch = () => {
   useEffect(() => {
     setIsClient(true);
     setTheme('system');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isClient) {
