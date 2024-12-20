@@ -20,10 +20,11 @@ export default function NotFound() {
           </p>
         </div>
         <Button
+          variant="outline"
           className="flex flex-row gap-x-1.5 items-center w-fit"
           onClick={() => router.back()}
         >
-          Head back
+          Go back
         </Button>
       </div>
     </div>
