@@ -3,6 +3,14 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "serve": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

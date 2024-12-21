@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import Head from 'next/head';
 import { externalLinkCSS } from '../lib/helpers';
 import { RecentTracks } from '../lib/RecentTracks';

@@ -2,7 +2,7 @@
 
 import BenchRoutesLogo from '@/assets/bench-routes.png';
 import EnviseLogo from '@/assets/envise.png';
-import { ProjectType } from '@/constants';
+import { type ProjectType } from '@/constants';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import PlugZap from 'lucide-static/icons/plug-zap.svg';
 import { AnimatePresence, motion } from 'motion/react';

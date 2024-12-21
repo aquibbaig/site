@@ -3,10 +3,13 @@
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "baseUrl": ".",
+    "outDir": "dist",
+    "declaration": true,
     "paths": {
       "@repo/ui/*": ["./*"]
     }
   },
+  "buildOptions": {},
   "include": ["**/*.ts", "**/*.tsx", "**/*.css"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

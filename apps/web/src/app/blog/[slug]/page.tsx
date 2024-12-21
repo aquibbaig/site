@@ -2,7 +2,7 @@ import { DAYJS_DEFAULT_FORMAT, POSTS_PATH } from '@/constants';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import path from 'path';

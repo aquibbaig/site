@@ -31,8 +31,8 @@ export default function Blog() {
           {`"A collection of technical walkthroughs and some interesting realizations."`}
         </div>
         <div className="flex flex-col gap-6">
-          <Link href={`/blog/${first.filePath.replace(/\.mdx?$/, '')}`}>
-            <BlogPostCard post={first} />
+          <Link href={`/blog/${first?.filePath.replace(/\.mdx?$/, '')}`}>
+            <BlogPostCard post={first!} />
           </Link>
           <div className="flex flex-row items-center gap-6">
             <h4 className="text-text-muted-light dark:text-text-muted-dark">Older</h4>

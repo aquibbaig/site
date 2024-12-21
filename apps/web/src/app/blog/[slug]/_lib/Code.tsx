@@ -4,7 +4,7 @@ import {
   transformerNotationHighlight,
 } from '@shikijs/transformers';
 import { useTheme } from 'next-themes';
-import { FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { codeToHtml } from 'shiki';
 
 export const Code: FC<any> = (props) => {

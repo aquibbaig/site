@@ -2,6 +2,7 @@
   "name": "@repo/ui",
   "type": "module",
   "scripts": {
+    "dev": "tsc --noEmit",
     "build": "tsc"
   },
   "exports": {

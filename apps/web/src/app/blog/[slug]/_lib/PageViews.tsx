@@ -2,7 +2,7 @@
 
 import { usePageViews } from '@/hooks/usePageViews';
 import plurarize from 'pluralize';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 export const PageViews: FC<{ slug: string }> = ({ slug }) => {
   const { data = [], isLoading, isError } = usePageViews({ slug });
