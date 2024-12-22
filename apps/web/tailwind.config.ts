@@ -5,40 +5,39 @@ const globalConfig = require('@repo/tailwind/tailwind.config');
 const config: Config = {
   ...globalConfig,
   theme: {
-    colors: {
-      background: {
-        primary: {
-          light: '#FFF',
-          dark: '#111111',
-        },
-        secondary: {
-          light: '#F3F3F3',
-          dark: '#212223',
-        },
-      },
-      text: {
-        primary: {
-          light: '#111111',
-          dark: '#E0E0E0',
-        },
-        secondary: {
-          light: '#4A5263',
-          dark: '#AAAAAA',
-        },
-        muted: {
-          light: '#8b8d98',
-          dark: '#6c6e79',
-        },
-      },
-      border: {
-        primary: {
-          light: 'rgb(228, 228, 231)',
-          dark: 'rgb(39 39 42)',
-        },
-      },
-      ...colors,
-    },
     extend: {
+      colors: {
+        background: {
+          primary: {
+            light: '#FFF',
+            dark: '#111111',
+          },
+          secondary: {
+            light: '#F3F3F3',
+            dark: '#212223',
+          },
+        },
+        text: {
+          primary: {
+            light: '#111111',
+            dark: '#E0E0E0',
+          },
+          secondary: {
+            light: '#4A5263',
+            dark: '#AAAAAA',
+          },
+          muted: {
+            light: '#8b8d98',
+            dark: '#6c6e79',
+          },
+        },
+        border: {
+          primary: {
+            light: 'rgb(228, 228, 231)',
+            dark: 'rgb(39 39 42)',
+          },
+        },
+      },
       fontFamily: {
         sans: ['var(--font-soehne)'],
       },
