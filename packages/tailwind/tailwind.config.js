@@ -7,7 +7,4 @@ module.exports = {
     '../../apps/web/src/app/**/*.{js,ts,jsx,tsx,mdx}',
     '../../apps/web/src/services/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {
-    extend: {},
-  },
 };
