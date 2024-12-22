@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply text-[1rem] antialiased leading-relaxed;
+  }
+
+  h1 {
+    @apply text-[1.5em];
+    @apply font-semibold;
+    @apply mb-[1em];
+  }
+  h2 {
+    @apply text-[1.5em];
+    @apply font-semibold;
+    @apply mb-[1em];
+  }
+  h3 {
+    @apply text-lg;
+    @apply font-medium;
+    @apply mb-[1em];
+  }
+  h4 {
+    @apply font-medium;
+  }
+  a {
+    @apply transition-colors duration-200 text-text-primary-light dark:text-text-primary-dark decoration-border-primary-dark/25 dark:decoration-border-primary-light/25 hover:decoration-border-primary-dark dark:hover:decoration-border-primary-light;
+  }
+  .external-link {
+    @apply cursor-ne-resize;
+  }
+  pre code span {
+    @apply text-sm;
+  }
+
+  pre {
+    @apply max-h-96;
+  }
+}
