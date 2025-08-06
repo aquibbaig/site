@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 
-export const CraftSvg = (props: SVGProps<SVGElement>) => {
+export const CraftSvg = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       stroke="currentColor"
