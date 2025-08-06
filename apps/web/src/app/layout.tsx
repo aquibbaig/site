@@ -10,10 +10,9 @@ import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import localFont from 'next/font/local';
+import { GeistMono } from 'geist/font/mono';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
-import { GeistMono } from 'geist/font/mono';
 
 export const dynamic = 'force-static';
 
@@ -45,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <main
                   className={twMerge(
-                    'mx-auto md:max-w-[500px] px-3 antialiased flex flex-col gap-8',
+                    'max-w-[576px] mx-auto antialiased flex flex-col gap-8',
                     'py-12 md:py-16'
                   )}
                 >
