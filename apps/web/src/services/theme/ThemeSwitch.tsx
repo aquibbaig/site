@@ -32,7 +32,7 @@ export const ThemeSwitch = () => {
         variant="outline"
         size="icon"
       >
-        <IconComponent Icon={Moon} size={15} />
+        <IconComponent Icon={Sun} size={15} />
       </Button>
     );
   }
@@ -46,7 +46,7 @@ export const ThemeSwitch = () => {
         variant="outline"
         size="icon"
       >
-        <IconComponent Icon={Sun} size={15} />
+        <IconComponent Icon={Moon} size={15} />
       </Button>
     );
   }

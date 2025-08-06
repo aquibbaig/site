@@ -1,3 +1,4 @@
+import { CraftSvg } from '@/assets/craft.svg';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import type { Metadata } from 'next';
@@ -53,7 +54,7 @@ export default function Blog() {
   );
 }
 
-const BlogPostCard = ({
+export const BlogPostCard = ({
   post,
   className,
 }: {
@@ -72,8 +73,14 @@ const BlogPostCard = ({
         className
       )}
     >
-      <div className="text-text-primary-light dark:text-text-primary-dark">{post.data.title}</div>
-      <div className="flex flex-row items-center gap-4">
+      <p className="text-text-primary-light dark:text-text-primary-dark">{post.data.title}</p>
+      <div className="flex flex-row items-center gap-2">
+        {post.data.craft && (
+          <>
+            <CraftSvg className="size-4 text-text-craft -mt-0.5" aria-label="craft" />
+            <span className="text-text-muted-light dark:text-text-muted-dark">•</span>
+          </>
+        )}
         <span className="text-text-muted-light dark:text-text-muted-dark">
           {dayjs(post.data.publishedOn).fromNow()}
         </span>

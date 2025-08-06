@@ -3,6 +3,19 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 
+type Post = {
+  readonly content: string;
+  readonly filePath: string;
+  data: {
+    readonly title: string;
+    readonly publishedOn: string;
+    readonly draft?: boolean;
+    readonly description: string;
+    readonly tags: Array<string>;
+    readonly craft: Array<string>;
+  };
+};
+
 export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
   const posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
@@ -25,5 +38,5 @@ export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
       }
     });
 
-  return { posts: sortedPosts.slice(0, limit), count: sortedPosts.length };
+  return { posts: sortedPosts.slice(0, limit) as Post[], count: sortedPosts.length };
 };

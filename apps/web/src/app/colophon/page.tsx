@@ -23,13 +23,9 @@ export default function Colophon() {
           <a className={twMerge(externalLinkCSS)} target="_blank" href={`https://vercel.com/`}>
             Vercel
           </a>
-          . The typography is set in Söhne by{' '}
-          <a
-            className={twMerge(externalLinkCSS)}
-            target="_blank"
-            href={`https://klim.co.nz/retail-fonts/soehne/`}
-          >
-            Klim Type Foundry
+          . The typography is set in Geist Mono by{' '}
+          <a className={twMerge(externalLinkCSS)} target="_blank" href={`https://vercel.app/`}>
+            Vercel
           </a>
           . The source code that powers it can be found on{' '}
           <a

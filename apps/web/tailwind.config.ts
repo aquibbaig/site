@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 const colors = require('tailwindcss/colors');
 const globalConfig = require('@repo/tailwind/tailwind.config');
 
+/** @type {import('tailwindcss').Config} */
 const config: Config = {
   ...globalConfig,
   theme: {
@@ -30,6 +31,7 @@ const config: Config = {
             light: '#8b8d98',
             dark: '#6c6e79',
           },
+          craft: '#10b981',
         },
         border: {
           primary: {
@@ -37,9 +39,6 @@ const config: Config = {
             dark: 'rgb(39 39 42)',
           },
         },
-      },
-      fontFamily: {
-        sans: ['var(--font-soehne)'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

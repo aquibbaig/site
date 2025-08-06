@@ -10,43 +10,9 @@ import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import localFont from 'next/font/local';
+import { GeistMono } from 'geist/font/mono';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
-
-const soehne = localFont({
-  src: [
-    {
-      path: '../../public/fonts/test-soehne-extraleicht.woff2',
-      weight: '200',
-    },
-    {
-      path: '../../public/fonts/test-soehne-leicht.woff2',
-      weight: '300',
-    },
-    {
-      path: '../../public/fonts/test-soehne-buch.woff2',
-      weight: '400',
-    },
-    {
-      path: '../../public/fonts/test-soehne-kraftig.woff2',
-      weight: '500',
-    },
-    {
-      path: '../../public/fonts/test-soehne-halbfett.woff2',
-      weight: '600',
-    },
-    {
-      path: '../../public/fonts/test-soehne-dreiviertelfett.woff2',
-      weight: '700',
-    },
-    {
-      path: '../../public/fonts/test-soehne-fett.woff2',
-      weight: '800',
-    },
-  ],
-  variable: '--font-soehne',
-});
 
 export const dynamic = 'force-static';
 
@@ -66,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 twMerge(
                   'bg-background-primary-light text-text-primary-light',
                   'dark:text-text-primary-dark dark:bg-background-primary-dark',
-                  `${soehne.variable} font-sans`
+                  GeistMono.className
                 )
               )}
             >
@@ -78,8 +44,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <main
                   className={twMerge(
-                    'mx-auto md:max-w-[500px] px-3 antialiased flex flex-col gap-8',
-                    'py-12 md:py-16'
+                    'max-w-[576px] mx-auto antialiased flex flex-col gap-8',
+                    'py-12 md:py-16 p-2'
                   )}
                 >
                   <PageHeader />
