@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Browse } from './lib/Browse';
 import { Projects } from './lib/Projects';
+import { RecentTracks } from './lib/RecentTracks';
 
 export const metadata: Metadata = {
   title: 'Aquib Baig',
@@ -18,6 +19,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-8">
         <Projects />
+        <RecentTracks />
         <Browse />
       </div>
     </div>

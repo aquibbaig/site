@@ -45,7 +45,7 @@ export const Projects = () => {
             <motion.div
               className={twMerge(
                 getGradientForProject(projectDetails?.id!),
-                'p-2 rounded-xl size-14 md:size-12 flex flex-col items-center justify-center shrink-0'
+                'p-2 rounded-xl size-10 flex flex-col items-center justify-center shrink-0'
               )}
               layoutId={`image-${projectDetails?.id}`}
             >
@@ -57,7 +57,7 @@ export const Projects = () => {
                   layoutId={`title-${projectDetails?.id}`}
                   href={projectDetails?.uri || '#'}
                   target="_blank"
-                  className="text-sm md:text-[15px] w-[80%] underline underline-offset-4"
+                  className="text-sm w-[80%] underline underline-offset-4"
                 >
                   {projectDetails?.title}
                 </motion.a>
@@ -71,7 +71,7 @@ export const Projects = () => {
       </AnimatePresence>
       <h4>Projects</h4>
       <Separator />
-      <div className="flex flex-col -mx-4">
+      <div className="flex flex-col md:-mx-4">
         {projects.map((project) => {
           return (
             <Project
@@ -95,9 +95,9 @@ const Project = ({
   return (
     <motion.div
       className={twMerge(
-        'h-20 flex flex-row items-center gap-4 w-full cursor-pointer',
+        'h-16 flex flex-row items-center gap-4 w-full cursor-pointer',
         'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-        'px-4 rounded-md'
+        'md:px-4 rounded-md'
       )}
       onClick={() => showDetails(project)}
       layoutId={`project-${id}`}
@@ -105,7 +105,7 @@ const Project = ({
       <motion.div
         className={twMerge(
           getGradientForProject(id),
-          'p-2 rounded-xl size-14 md:size-12 flex flex-col items-center justify-center shrink-0'
+          'p-2 rounded-xl size-10 flex flex-col items-center justify-center shrink-0'
         )}
         layoutId={`image-${id}`}
       >

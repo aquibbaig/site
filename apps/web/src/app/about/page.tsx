@@ -1,7 +1,6 @@
 import { type Metadata } from 'next';
 import Head from 'next/head';
 import { externalLinkCSS } from '../lib/helpers';
-import { RecentTracks } from '../lib/RecentTracks';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
@@ -25,21 +24,22 @@ export default function About() {
           <h5 className="text-text-muted-light dark:text-text-muted-dark">Experience</h5>
           <p>
             Senior Software Engineer at{' '}
-            <a href="https://www.toplyne.io/" target="_blank" className={externalLinkCSS}>
-              Toplyne
+            <a href="https://www.coderabbit.ai/" target="_blank" className={externalLinkCSS}>
+              CodeRabbit
             </a>
             .
           </p>
           <p>
             Previously,{' '}
+            <a href="https://www.toplyne.io/" target="_blank" className={externalLinkCSS}>
+              Toplyne
+            </a>
+            {` & `}
             <a href="https://www.redhat.com/en" target="_blank" className={externalLinkCSS}>
               Redhat
             </a>
             .
           </p>
-        </div>
-        <div className="flex flex-col gap-4">
-          <RecentTracks />
         </div>
       </div>
     </div>
