@@ -35,7 +35,7 @@ export const RecentTracks = () => {
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <h5 className="text-text-muted-light dark:text-text-muted-dark">Last played on Spotify</h5>
       <Separator />
       <ul className="flex flex-col gap-1">

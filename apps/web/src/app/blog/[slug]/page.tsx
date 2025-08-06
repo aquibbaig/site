@@ -47,25 +47,35 @@ export default async function PostPage({
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-12">
       <div>
         <h2 className="mb-1">{frontmatter.title}</h2>
-        {frontmatter.description && <p className="!text-[0.9375rem]">{frontmatter.description}</p>}
+        {frontmatter.description && (
+          <p className="text-sm mt-4 text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+            {frontmatter.description}
+          </p>
+        )}
         <div className="flex flex-row items-center gap-10">
           {frontmatter.publishedOn && (
-            <div className="flex flex-row items-start gap-x-1 text-text-muted-light dark:text-text-muted-dark">
+            <div className="flex flex-row mt-4 items-start gap-x-1 text-text-muted-light dark:text-text-muted-dark">
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
             </div>
           )}
           <PageViews slug={params.slug} />
         </div>
-        <hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+        {Boolean(frontmatter.tags) && (
+          <div className="flex flex-row flex-wrap gap-3 mt-4">
+            {(frontmatter.tags as unknown as Array<string>)?.map((tag, index) => {
+              return <div key={index}>#{tag}</div>;
+            })}
+          </div>
+        )}
       </div>
       <article
         className={twMerge(
-          'prose dark:prose-invert',
+          'prose dark:prose-invert leading-relaxed text-sm',
           'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-medium',
-          'text-[0.9375rem]',
+          'prose-p:text-sm prose-p:leading-relaxed prose-li:leading-relaxed prose-li:text-sm',
           'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
           'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-4 prose-a:duration-200 prose-a:text-text-primary-light prose-a:dark:text-text-primary-dark prose-a:decoration-border-primary-dark/25 prose-a:dark:decoration-border-primary-light/25 hover:prose-a:decoration-border-primary-dark dark:hover:prose-a:decoration-border-primary-light',
           'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border-primary-light dark:prose-pre:border-border-primary-dark',
