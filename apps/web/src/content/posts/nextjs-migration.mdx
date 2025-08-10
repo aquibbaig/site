@@ -1,0 +1,91 @@
+---
+title: 'Migrating TypeHero to Next.js 15'
+publishedOn: 2025-08-05T09:15:00-0400
+draft: false
+description: 'What I thought would be a simple version bump turned into weeks of hunting down compatibility issues across dozens of repositories.'
+craft: true
+---
+
+Upgrading frameworks always _sounds_ easy. Bump the version, fix a few warnings, ship it.
+
+That’s what I thought when I started moving [TypeHero](https://typehero.dev) — an open-source TypeScript challenges platform — from Next.js 14 to 15.
+
+I was wrong!
+
+## React 19 Pain
+
+Next.js 15 came with React 19 (RC) as a peer dependency. That meant every single library in our codebase suddenly had to be compatible with React 19 — most of them didn’t.
+
+I learned the migration wouldn’t be about _our_ code at all. It was about the entire React ecosystem.
+
+Packages like `react-select`, `@react-three/fiber`, and `react-markdown` weren’t ready. Some had experimental branches and beta releases, while others had unmerged PRs.
+
+The maintainer of `react-day-picker` summed it up perfectly:
+
+> "Why would Next.js install an RC of React and expect maintainers to support it in its peer dependencies?"
+
+---
+
+## From One Build Failure to Another
+
+The real grind wasn’t just upgrading dependencies — it was the cycle.  
+Run the build, watch it fail, dig into a repo, make it work, repeat.
+
+In [_Creative Selection_](https://www.amazon.com/Creative-Selection-Inside-Apples-Process/dp/1250194466),
+Ken Kocienda writes about the his efforts to port the Konqueror browser to macOS as part of Safari’s early development.
+
+It sounds straightforward, but the actual process was brutal: they had to
+migrate **every single line of Konqueror’s code** so it would run on Mac OS.
+The pattern was always the same — run the build, get an error, rewrite the function so it worked, try again.
+
+That’s exactly what this migration felt like.
+
+Only in this case, it was:
+
+- Run `pnpm build`
+- Hit an error
+- Open the dependency causing it
+- Check if it was React 19 compatible
+- Read migration guides and changelogs
+- Search open issues for React 19 support
+- Patch it, swap it, or work around it
+
+Some installs wouldn’t even work without:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+## TypeScript Changes
+
+React 19 also tweaked how refs work in TypeScript. I had to touch dozens of files just to change ElementRef to ComponentRef:
+
+```tsx
+// Before
+import { ElementRef } from 'react';
+type ButtonRef = ElementRef<'button'>;
+
+// After
+import { ComponentRef } from 'react';
+type ButtonRef = ComponentRef<'button'>;
+```
+
+Find-and-replace helped, but I still had to review each one to avoid breaking things.
+
+## The PR That Got YOLO Merged
+
+After weeks of tracking down compatibility issues, testing edge cases, and pushing countless “just to be safe” commits, the branch was finally green.
+
+That’s when one of the maintainers said:
+
+> im gonna yolo merge this and see what happens
+
+And we did! At some point, that’s one of the better ways to finish a long running migration like this.
+
+## Takeaways
+
+This framework upgrade wasn't “just a version bump”.
+It was testing every dependency that the project relied on.
+
+TypeHero now runs on Next.js 15 with better performance and caching.
+More importantly, we're ready for React's future release whenever they come.
