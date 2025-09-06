@@ -2,6 +2,7 @@
   "name": "@repo/tailwind",
   "version": "0.0.1",
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "tailwindcss": "^4.1.13"
   }
 }
