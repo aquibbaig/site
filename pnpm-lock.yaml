@@ -136,7 +136,11 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3
 
-  packages/tailwind: {}
+  packages/tailwind:
+    dependencies:
+      tailwindcss:
+        specifier: ^4.1.13
+        version: 4.1.13
 
   packages/typescript-config: {}
 

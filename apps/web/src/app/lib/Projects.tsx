@@ -39,7 +39,7 @@ export const Projects = () => {
         {Boolean(projectDetails) ? (
           <motion.div
             layoutId={`project-${projectDetails?.id}`}
-            className="fixed mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-xl"
+            className="fixed cursor-default mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-xl"
             ref={ref}
           >
             <motion.div
@@ -95,9 +95,9 @@ const Project = ({
   return (
     <motion.div
       className={twMerge(
-        'h-16 flex flex-row items-center gap-4 w-full cursor-pointer',
+        'h-16 flex flex-row items-center gap-4 w-full',
         'hover:bg-accent',
-        'md:px-4 rounded-md'
+        'md:px-4 rounded-md cursor-default'
       )}
       onClick={() => showDetails(project)}
       layoutId={`project-${id}`}

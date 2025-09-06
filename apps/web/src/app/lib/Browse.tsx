@@ -21,7 +21,7 @@ export const Browse = () => {
       <ul className="flex flex-row gap-4 flex-wrap">
         {links.map(({ label, path }) => (
           <li key={path}>
-            <Link href={path} className={twMerge(externalLinkCSS, 'cursor-pointer')}>
+            <Link href={path} className={externalLinkCSS}>
               {label}
             </Link>
           </li>

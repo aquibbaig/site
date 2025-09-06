@@ -67,9 +67,8 @@ export const BlogPostCard = ({
         'p-3 lg:-mx-3',
         'rounded-lg',
         'flex truncate flex-wrap',
-        'cursor-pointer',
         'flex flex-col hover:bg-accent',
-        'transition-colors duration-200',
+        'transition-colors duration-200 cursor-default',
         className
       )}
     >
