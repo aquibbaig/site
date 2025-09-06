@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <p className="text-text-secondary-light dark:text-text-secondary-dark">
+        <p className="text-muted-foreground">
           Aquib is a software engineer with a strong passion for creating things, while having keen
           attention to detail, quality, and craftsmanship.
         </p>

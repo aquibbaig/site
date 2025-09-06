@@ -21,7 +21,7 @@ export default function About() {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h5 className="text-text-muted-light dark:text-text-muted-dark">Experience</h5>
+          <h5 className="text-muted-foreground">Experience</h5>
           <p>
             Senior Software Engineer at{' '}
             <a href="https://www.coderabbit.ai/" target="_blank" className={externalLinkCSS}>

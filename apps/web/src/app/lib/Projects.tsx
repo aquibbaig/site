@@ -39,7 +39,7 @@ export const Projects = () => {
         {Boolean(projectDetails) ? (
           <motion.div
             layoutId={`project-${projectDetails?.id}`}
-            className="fixed mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border-primary-light dark:border-border-primary-dark bg-background-primary-light dark:bg-background-primary-dark p-6 shadow-lg sm:rounded-xl"
+            className="fixed mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-xl"
             ref={ref}
           >
             <motion.div
@@ -61,7 +61,7 @@ export const Projects = () => {
                 >
                   {projectDetails?.title}
                 </motion.a>
-                <span className="mt-4 text-sm md:text-[15px] text-text-muted-light dark:text-text-muted-dark">
+                <span className="mt-4 text-sm md:text-[15px] text-muted-foreground">
                   {projectDetails?.description}
                 </span>
               </div>
@@ -96,7 +96,7 @@ const Project = ({
     <motion.div
       className={twMerge(
         'h-16 flex flex-row items-center gap-4 w-full cursor-pointer',
-        'hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
+        'hover:bg-accent',
         'md:px-4 rounded-md'
       )}
       onClick={() => showDetails(project)}
@@ -118,7 +118,7 @@ const Project = ({
           </motion.span>
           <motion.span
             layoutId={`alt-${id}`}
-            className="text-sm text-text-muted-light dark:text-text-muted-dark tracking-tight"
+            className="text-sm text-muted-foreground tracking-tight"
           >
             {subHeading}
           </motion.span>

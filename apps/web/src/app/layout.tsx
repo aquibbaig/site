@@ -30,8 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body
               className={clsx(
                 twMerge(
-                  'bg-background-primary-light text-text-primary-light',
-                  'dark:text-text-primary-dark dark:bg-background-primary-dark',
+                  'bg-background text-foreground',
                   GeistMono.className
                 )
               )}

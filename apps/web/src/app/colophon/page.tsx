@@ -16,7 +16,7 @@ export default function Colophon() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex flex-col gap-y-4">
-        <h5 className="text-text-muted-light dark:text-text-muted-dark">Colophon</h5>
+        <h5 className="text-muted-foreground">Colophon</h5>
         <p>This website is designed and developed by Aquib Baig.</p>
         <p>
           It is built using React/Next.js, TypeScript and deployed using{' '}

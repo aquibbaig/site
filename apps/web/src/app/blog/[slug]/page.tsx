@@ -51,13 +51,13 @@ export default async function PostPage({
       <div>
         <h2 className="mb-1">{frontmatter.title}</h2>
         {frontmatter.description && (
-          <p className="text-sm mt-4 text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+          <p className="text-sm mt-4 text-muted-foreground leading-relaxed">
             {frontmatter.description}
           </p>
         )}
         <div className="flex flex-row items-center gap-10">
           {frontmatter.publishedOn && (
-            <div className="flex flex-row mt-4 items-start gap-x-1 text-text-muted-light dark:text-text-muted-dark">
+            <div className="flex flex-row mt-4 items-start gap-x-1 text-muted-foreground">
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
             </div>
           )}
@@ -74,24 +74,24 @@ export default async function PostPage({
       <article
         className={twMerge(
           'prose dark:prose-invert leading-relaxed text-sm',
-          'prose-headings:text-text-primary-light dark:prose-headings:text-text-primary-dark prose-headings:font-medium',
+          'prose-headings:text-foreground prose-headings:font-medium',
           'prose-p:text-sm prose-p:leading-relaxed prose-li:leading-relaxed prose-li:text-sm',
-          'prose-img:rounded-sm prose-img:border prose-img:border-border-primary-light dark:prose-img:opacity-85 dark:prose-img:border-border-primary-dark',
-          'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-4 prose-a:duration-200 prose-a:text-text-primary-light prose-a:dark:text-text-primary-dark prose-a:decoration-border-primary-dark/25 prose-a:dark:decoration-border-primary-light/25 hover:prose-a:decoration-border-primary-dark dark:hover:prose-a:decoration-border-primary-light',
-          'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border-primary-light dark:prose-pre:border-border-primary-dark',
-          'prose-code:border prose-code:border-border-primary-light dark:prose-code:border-border-primary-dark',
+          'prose-img:rounded-sm prose-img:border prose-img:border-border dark:prose-img:opacity-85',
+          'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-4 prose-a:duration-200 prose-a:text-foreground prose-a:decoration-border/25 hover:prose-a:decoration-border',
+          'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border',
+          'prose-code:border prose-code:border-border',
           'prose-code:rounded-md',
-          'prose-code:text-text-primary-light dark:prose-code:text-text-primary-dark',
+          'prose-code:text-foreground',
           'prose-code:font-normal prose-code:whitespace-break-spaces prose-code:before:content-[""] prose-code:before:invisible prose-code:after:content-[""] prose-code:after:invisible',
           'prose-code:overflow-auto prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
           'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg',
           'prose-blockquote:not-italic prose-blockquote:font-normal',
-          'prose-headings:tracking-tight prose-headings:pb-2 prose-headings:border-b prose-headings:border-border-primary-light dark:prose-headings:border-border-primary-dark'
+          'prose-headings:tracking-tight prose-headings:pb-2 prose-headings:border-b prose-headings:border-border'
         )}
       >
         <MdxContent source={serialized} />
       </article>
-      <hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+      <hr className="my-10 border-border border-[0.2px]" />
       <div>
         <CopyPostLink slug={params.slug} />
       </div>
