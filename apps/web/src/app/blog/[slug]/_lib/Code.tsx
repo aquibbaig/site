@@ -42,9 +42,9 @@ export const Code: FC<any> = (props) => {
 
   if (!html) {
     return (
-      <div className="flex flex-col gap-4 border border-border-primary-light dark:border-border-primary-dark rounded-lg p-4">
-        <div className="animate-pulse h-[19px] bg-background-secondary-light dark:bg-background-secondary-dark w-4/5 rounded"></div>
-        <div className="animate-pulse h-[19px] bg-background-secondary-light dark:bg-background-secondary-dark w-3/5 rounded"></div>
+      <div className="flex flex-col gap-4 border border-border rounded-lg p-4">
+        <div className="animate-pulse h-[19px] bg-card w-4/5 rounded"></div>
+        <div className="animate-pulse h-[19px] bg-card w-3/5 rounded"></div>
       </div>
     );
   }

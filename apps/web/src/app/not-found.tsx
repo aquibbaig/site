@@ -15,7 +15,7 @@ export default function NotFound() {
             <span>404,</span>
             <span>Page Not Found</span>
           </div>
-          <p className="text-text-muted-light dark:text-text-muted-dark">
+          <p className="text-muted-foreground">
             Could not find the requested resource
           </p>
         </div>

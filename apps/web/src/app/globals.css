@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "@repo/tailwind/theme.css";
 
 @layer base {
   * {
@@ -26,10 +24,10 @@
     @apply font-medium;
   }
   a {
-    @apply transition-colors duration-200 text-text-primary-light dark:text-text-primary-dark decoration-border-primary-dark/25 dark:decoration-border-primary-light/25 hover:decoration-border-primary-dark dark:hover:decoration-border-primary-light;
+    @apply transition-colors duration-200 text-foreground decoration-border/25 hover:decoration-border;
   }
   .external-link {
-    @apply cursor-ne-resize;
+    @apply underline underline-offset-4 decoration-1 cursor-pointer cursor-ne-resize;
   }
   pre code span {
     @apply text-sm;

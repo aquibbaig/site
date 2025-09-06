@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../ui/components/**/*.{ts,tsx}";
+
+@theme {
+  --color-foreground: oklch(0.12 0 0); /* #111111 */
+  --color-background: oklch(1 0 0); /* #FFFFFF */
+  --color-muted: oklch(0.6 0.01 260); /* #8b8d98 */
+  --color-muted-foreground: oklch(0.35 0.02 240); /* #4A5263 */
+  --color-card: oklch(0.96 0 0); /* #F3F3F3 */
+  --color-card-foreground: oklch(0.12 0 0); /* #111111 */
+  --color-border: oklch(0.9197 0.004 286.32); /* #e4e4e7 */
+  --color-accent: oklch(0.93 0 0); /* #eeeeee */
+  --color-accent-foreground: oklch(0.12 0 0); /* #111111 */
+  --color-primary: oklch(0.12 0 0); /* #111111 */
+  --color-primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --color-secondary: oklch(0.96 0 0); /* #F3F3F3 */
+  --color-secondary-foreground: oklch(0.12 0 0); /* #111111 */
+  --color-craft: oklch(0.67 0.15 165); /* #10b981 */
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --color-foreground: oklch(0.88 0 0); /* #E0E0E0 */
+    --color-background: oklch(0.12 0 0); /* #111111 */
+    --color-muted: oklch(0.45 0.01 260); /* #6c6e79 */
+    --color-muted-foreground: oklch(0.67 0 0); /* #AAAAAA */
+    --color-card: oklch(0.14 0.01 270); /* #212223 */
+    --color-card-foreground: oklch(0.88 0 0); /* #E0E0E0 */
+    --color-border: oklch(0.17 0.01 270); /* #27272a */
+    --color-accent: oklch(0.19 0.01 270); /* #2d2e2f */
+    --color-accent-foreground: oklch(0.88 0 0); /* #E0E0E0 */
+    --color-primary: oklch(0.88 0 0); /* #E0E0E0 */
+    --color-primary-foreground: oklch(0.12 0 0); /* #111111 */
+    --color-secondary: oklch(0.14 0.01 270); /* #212223 */
+    --color-secondary-foreground: oklch(0.88 0 0); /* #E0E0E0 */
+  }
+}

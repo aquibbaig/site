@@ -28,7 +28,7 @@ export default function Blog() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex flex-col gap-6">
-        <div className="text-text-muted-light dark:text-text-muted-dark">
+        <div className="text-muted-foreground">
           {`"A collection of technical walkthroughs and some interesting realizations."`}
         </div>
         <div className="flex flex-col gap-6">
@@ -36,8 +36,8 @@ export default function Blog() {
             <BlogPostCard post={first!} />
           </Link>
           <div className="flex flex-row items-center gap-6">
-            <h4 className="text-text-muted-light dark:text-text-muted-dark">Older</h4>
-            <div className="border-t w-full border-border-primary-light dark:border-border-primary-dark"></div>
+            <h4 className="text-muted-foreground">Older</h4>
+            <div className="border-t w-full border-border"></div>
           </div>
           {rest.map((post) => {
             return (
@@ -67,21 +67,20 @@ export const BlogPostCard = ({
         'p-3 lg:-mx-3',
         'rounded-lg',
         'flex truncate flex-wrap',
-        'cursor-pointer',
-        'flex flex-col hover:bg-background-secondary-light dark:hover:bg-background-secondary-dark',
-        'transition-colors duration-200',
+        'flex flex-col hover:bg-accent',
+        'transition-colors duration-200 cursor-default',
         className
       )}
     >
-      <p className="text-text-primary-light dark:text-text-primary-dark">{post.data.title}</p>
+      <p className="text-foreground">{post.data.title}</p>
       <div className="flex flex-row items-center gap-2">
         {post.data.craft && (
           <>
-            <CraftSvg className="size-4 text-text-craft -mt-0.5" aria-label="craft" />
-            <span className="text-text-muted-light dark:text-text-muted-dark">•</span>
+            <CraftSvg className="size-4 text-craft -mt-0.5" aria-label="craft" />
+            <span className="text-muted-foreground">•</span>
           </>
         )}
-        <span className="text-text-muted-light dark:text-text-muted-dark">
+        <span className="text-muted-foreground">
           {dayjs(post.data.publishedOn).fromNow()}
         </span>
       </div>

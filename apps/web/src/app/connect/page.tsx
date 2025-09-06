@@ -1,6 +1,5 @@
 import { emailLink, githubLink, linkedInLink, spotifyLink, twitterLink } from '@/constants';
 import Head from 'next/head';
-import { externalLinkCSS } from '../lib/helpers';
 
 const socialLinks = [
   {
@@ -29,14 +28,14 @@ export default function Connect() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="flex flex-col gap-y-4">
-        <h5 className="text-text-muted-light dark:text-text-muted-dark">Connect</h5>
+        <h5 className="text-muted-foreground">Connect</h5>
         <p>
           Hi, you have reached Aquib. If you want to chat, or just want to see what {`I'm`} up to,
           here are some ways to get in touch. Talk soon! 👋🏼
         </p>
         <ul className="flex flex-col gap-2">
           <li>
-            <a href={emailLink} className={externalLinkCSS}>
+            <a href={emailLink} className="external-link">
               Email
             </a>
           </li>
@@ -44,7 +43,7 @@ export default function Connect() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className={externalLinkCSS}
+                className="external-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
