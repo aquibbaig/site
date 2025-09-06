@@ -1,6 +1,4 @@
 import { Link } from 'next-view-transitions';
-import { twMerge } from 'tailwind-merge';
-import { externalLinkCSS } from './helpers';
 import { Socials } from './Socials';
 
 const links = [
@@ -21,7 +19,7 @@ export const Browse = () => {
       <ul className="flex flex-row gap-4 flex-wrap">
         {links.map(({ label, path }) => (
           <li key={path}>
-            <Link href={path} className={externalLinkCSS}>
+            <Link href={path} className="external-link">
               {label}
             </Link>
           </li>

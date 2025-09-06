@@ -10,9 +10,11 @@ import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { GeistMono } from 'geist/font/mono';
+import { Inter } from 'next/font/google';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const dynamic = 'force-static';
 
@@ -31,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               className={clsx(
                 twMerge(
                   'bg-background text-foreground',
-                  GeistMono.className
+                  inter.className
                 )
               )}
             >

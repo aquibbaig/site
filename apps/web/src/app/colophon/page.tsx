@@ -1,7 +1,5 @@
 import { type Metadata } from 'next';
 import Head from 'next/head';
-import { twMerge } from 'tailwind-merge';
-import { externalLinkCSS } from '../lib/helpers';
 
 export const metadata: Metadata = {
   title: 'Colophon | Aquib Baig',
@@ -20,16 +18,16 @@ export default function Colophon() {
         <p>This website is designed and developed by Aquib Baig.</p>
         <p>
           It is built using React/Next.js, TypeScript and deployed using{' '}
-          <a className={twMerge(externalLinkCSS)} target="_blank" href={`https://vercel.com/`}>
+          <a className="external-link" target="_blank" href={`https://vercel.com/`}>
             Vercel
           </a>
-          . The typography is set in Geist Mono by{' '}
-          <a className={twMerge(externalLinkCSS)} target="_blank" href={`https://vercel.app/`}>
+          . The typography is set in Inter by{' '}
+          <a className="external-link" target="_blank" href={`https://vercel.app/`}>
             Vercel
           </a>
           . The source code that powers it can be found on{' '}
           <a
-            className={twMerge(externalLinkCSS)}
+            className="external-link"
             target="_blank"
             href={`https://github.com/aquibbaig/site/`}
           >

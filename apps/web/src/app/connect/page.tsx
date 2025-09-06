@@ -1,6 +1,5 @@
 import { emailLink, githubLink, linkedInLink, spotifyLink, twitterLink } from '@/constants';
 import Head from 'next/head';
-import { externalLinkCSS } from '../lib/helpers';
 
 const socialLinks = [
   {
@@ -36,7 +35,7 @@ export default function Connect() {
         </p>
         <ul className="flex flex-col gap-2">
           <li>
-            <a href={emailLink} className={externalLinkCSS}>
+            <a href={emailLink} className="external-link">
               Email
             </a>
           </li>
@@ -44,7 +43,7 @@ export default function Connect() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className={externalLinkCSS}
+                className="external-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >

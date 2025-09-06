@@ -27,7 +27,7 @@
     @apply transition-colors duration-200 text-foreground decoration-border/25 hover:decoration-border;
   }
   .external-link {
-    @apply cursor-ne-resize;
+    @apply underline underline-offset-4 decoration-1 cursor-pointer cursor-ne-resize;
   }
   pre code span {
     @apply text-sm;
