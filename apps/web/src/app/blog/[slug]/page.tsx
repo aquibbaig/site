@@ -10,6 +10,7 @@ import remarkGfm from 'remark-gfm';
 import { twMerge } from 'tailwind-merge';
 import { CopyPostLink } from './_lib/CopyPostLink';
 import { PageViews } from './_lib/PageViews';
+import { cn } from '@repo/ui/cn';
 
 type Props = {
   params: { slug: string };
@@ -55,11 +56,11 @@ export default async function PostPage({
             {frontmatter.description}
           </p>
         )}
-        <div className="flex flex-row items-center gap-10">
+        <div className="flex flex-row items-center gap-6 pt-4">
           {frontmatter.publishedOn && (
-            <div className="flex flex-row mt-4 items-start gap-x-1 text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
-            </div>
+            </span>
           )}
           <PageViews slug={params.slug} />
         </div>
@@ -72,10 +73,10 @@ export default async function PostPage({
         )}
       </div>
       <article
-        className={twMerge(
+        className={cn(
           'prose dark:prose-invert leading-relaxed text-sm',
           'prose-headings:text-foreground prose-headings:font-medium',
-          'prose-p:text-sm prose-p:leading-relaxed prose-li:leading-relaxed prose-li:text-sm',
+          'prose-p:text-sm prose-p:leading-relaxed prose-li:leading-relaxed prose-li:text-sm text-foreground',
           'prose-img:rounded-sm prose-img:border prose-img:border-border dark:prose-img:opacity-85',
           'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-4 prose-a:duration-200 prose-a:text-foreground prose-a:decoration-border/25 hover:prose-a:decoration-border',
           'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border',
@@ -85,7 +86,7 @@ export default async function PostPage({
           'prose-code:font-normal prose-code:whitespace-break-spaces prose-code:before:content-[""] prose-code:before:invisible prose-code:after:content-[""] prose-code:after:invisible',
           'prose-code:overflow-auto prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
           'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg',
-          'prose-blockquote:not-italic prose-blockquote:font-normal',
+          'prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-foreground',
           'prose-headings:tracking-tight prose-headings:pb-2 prose-headings:border-b prose-headings:border-border'
         )}
       >
