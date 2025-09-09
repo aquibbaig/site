@@ -13,7 +13,7 @@ export const RecentTracks = () => {
     error: isErrorRecentTracks,
   } = useRecentTracks(5 * 60 * 1000);
 
-  if (!isLoadingRecentTracks) {
+  if (isLoadingRecentTracks) {
     return (
       <div className="flex flex-col gap-4 -mx-1">
         {Array(1)
@@ -51,16 +51,19 @@ export const RecentTracks = () => {
               className="group w-fit"
             >
               <li className="flex flex-row items-center gap-2">
-                <Image
-                  width={40}
-                  height={40}
-                  src={track.track?.album?.images[0]?.url!}
-                  alt={track.track?.name}
-                  className="rounded-md transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-border/50"
-                />
+                <div className="relative">
+                  <Image
+                    width={48}
+                    height={48}
+                    src={track.track?.album?.images[0]?.url!}
+                    alt={track.track?.name}
+                    className="rounded-full animate-spin-slow transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-border/50"
+                  />
+                  <div className="absolute inset-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 bg-accent rounded-full border border-gray-500" />
+                </div>
                 <div className="flex flex-col flex-wrap">
                   <span>{track.track?.name}</span>
-                  <span className="text-muted-foreground -mt-0.5">
+                  <span className="text-muted-foreground -mt-0.5 text-sm">
                     {track.track?.artists?.[0]?.name}
                   </span>
                 </div>

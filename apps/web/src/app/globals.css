@@ -36,4 +36,14 @@
   pre {
     @apply max-h-96;
   }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 2.5s linear infinite;
+  }
 }
