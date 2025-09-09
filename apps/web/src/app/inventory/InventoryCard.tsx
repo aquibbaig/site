@@ -28,21 +28,7 @@ export function InventoryCard({ item }: InventoryCardProps) {
         <div className="text-sm font-medium">
           <span>{item.brand}</span>
         </div>
-        <div className="text-sm">
-          {item.productUrl ? (
-            <a
-              href={item.productUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="external-link !no-underline text-sm"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {item.product}
-            </a>
-          ) : (
-            <span className='text-sm'>{item.product}</span>
-          )}
-        </div>
+        <span className='text-sm'>{item.product}</span>
       </div>
 
       <div className="h-64 relative cursor-default dark:opacity-90">
