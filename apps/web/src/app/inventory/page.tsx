@@ -10,16 +10,16 @@ export const metadata: Metadata = {
 export default function Inventory() {
   return (
     <div className="space-y-6">
-      <div className="space-y-3">
+      <div className="space-y-1">
         <blockquote className="text-muted-foreground italic">
-          "What you own ends up owning you"
+          {`"What you own ends up owning you"`}
         </blockquote>
         <div className="text-xs text-muted-foreground">
           — Marshall McLuhan, <em>The Medium is the Massage</em>
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
         {inventoryData.map((item, index) => (
           <InventoryCard key={index} item={item} />
         ))}

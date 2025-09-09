@@ -1,3 +1,10 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
+
 export interface InventoryItem {
   brand: string;
   brandUrl?: string;
@@ -8,94 +15,72 @@ export interface InventoryItem {
   image: string;
 }
 
+export const getRelativeDate = (dateString: string): string => {
+  const parsed = dayjs(dateString, 'DD-MM-YYYY');
+  console.log('Original:', dateString, 'Parsed:', parsed.format('YYYY-MM-DD'), 'FromNow:', parsed.fromNow());
+  return parsed.fromNow();
+};
+
 export const inventoryData: InventoryItem[] = [
   {
     brand: 'Apple',
-    brandUrl: 'https://apple.com',
-    product: 'MacBook Pro 14" M3',
-    productUrl: 'https://apple.com/macbook-pro-14-and-16/',
-    date: '2 months ago',
-    reason: 'Upgrade for development work',
-    image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=300&fit=crop'
+    product: 'MacBook Air 13" M3',
+    productUrl: 'https://www.apple.com/macbook-air/specs/',
+    date: `15-02-2024`,
+    reason: 'Lightweight personal computer',
+    image: '/inventory/mba13-spacegray-select-202402_2.png'
   },
   {
-    brand: 'Aesop',
-    brandUrl: 'https://aesop.com',
-    product: 'Parsley Seed Facial Cleanser',
-    productUrl: 'https://aesop.com/us/p/skin/cleanse/parsley-seed-facial-cleanser/',
-    date: '3 months ago',
-    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=300&fit=crop'
-  },
-  {
-    brand: 'Uniqlo',
-    brandUrl: 'https://uniqlo.com',
-    product: 'Heattech Crew Neck Long Sleeve T-Shirt',
-    productUrl: 'https://uniqlo.com/us/en/products/E423257-000',
-    date: '4 months ago',
-    reason: 'Winter layering',
-    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop'
+    brand: 'Google',
+    product: 'Pixel 9',
+    productUrl: 'https://store.google.com/product/pixel_9',
+    date: `20-02-2025`,
+    image: '/inventory/pixel-9.png'
   },
   {
     brand: 'Sony',
-    brandUrl: 'https://sony.com',
     product: 'WH-1000XM5 Headphones',
-    productUrl: 'https://sony.com/us/electronics/headband-headphones/wh-1000xm5',
-    date: '6 months ago',
-    reason: 'Better noise cancellation for focus',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop'
+    productUrl: 'https://www.sony.com/electronics/headband-headphones/wh-1000xm5',
+    date: '15-10-2022',
+    image: '/inventory/sony-100xm5.png'
   },
   {
-    brand: 'Notion',
-    brandUrl: 'https://notion.so',
-    product: 'Personal Pro Plan',
-    productUrl: 'https://notion.so/pricing',
-    date: '8 months ago',
-    reason: 'Unlimited file uploads',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop'
+    brand: 'Fujifilm',
+    product: 'X100V Camera',
+    productUrl: 'https://fujifilm-x.com/global/products/cameras/x100v/',
+    date: '10-08-2024',
+    reason: 'Street photography and film simulation',
+    image: '/inventory/fujifilm-x100v.png'
   },
   {
-    brand: 'Patagonia',
-    brandUrl: 'https://patagonia.com',
-    product: 'Better Sweater Fleece Jacket',
-    productUrl: 'https://patagonia.com/product/mens-better-sweater-fleece-jacket/25527.html',
-    date: '1 year ago',
-    reason: 'Sustainable outdoor wear',
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=300&fit=crop'
+    brand: 'Marshall',
+    product: 'Kilburn II Portable Speaker',
+    productUrl: 'https://www.marshallheadphones.com/us/en/kilburn-ii.html',
+    date: '08-07-2025',
+    reason: 'Vintage aesthetics with modern sound',
+    image: '/inventory/marshall-killburn-2.png'
   },
   {
-    brand: 'IKEA',
-    brandUrl: 'https://ikea.com',
-    product: 'BEKANT Desk',
-    productUrl: 'https://ikea.com/us/en/p/bekant-desk-white-s59006423/',
-    date: '1 year ago',
-    reason: 'Home office setup',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop'
+    brand: 'TID Watches',
+    product: 'No.1 Watch',
+    productUrl: 'https://tidwatches.com/collections/no-1-collection',
+    date: '27-08-2025',
+    reason: 'Minimalist Scandinavian design',
+    image: '/inventory/tid-no1-watch.png'
   },
   {
-    brand: 'Allbirds',
-    brandUrl: 'https://allbirds.com',
-    product: 'Tree Runners',
-    productUrl: 'https://allbirds.com/products/mens-tree-runners',
-    date: '1.5 years ago',
-    reason: 'Comfortable daily shoes',
-    image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop'
+    brand: 'MUJI',
+    product: 'Less Tiring Backpack',
+    productUrl: 'https://www.muji.com/jp/en/store/cmdty/detail/4550182842448',
+    date: '18-02-2024',
+    reason: 'Daily carry',
+    image: '/inventory/muji-less-tiring_bagpack.png'
   },
   {
-    brand: 'Kindle',
-    brandUrl: 'https://amazon.com/kindle',
-    product: 'Paperwhite 11th Generation',
-    productUrl: 'https://amazon.com/dp/B08KTZ8249',
-    date: '2 years ago',
-    reason: 'More reading, less screen time',
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop'
-  },
-  {
-    brand: 'Herman Miller',
-    brandUrl: 'https://hermanmiller.com',
-    product: 'Aeron Chair',
-    productUrl: 'https://hermanmiller.com/products/seating/office-chairs/aeron-chairs/',
-    date: '3 years ago',
-    reason: 'Long-term back health investment',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop'
+    brand: 'Steelseries',
+    product: 'Dragon Lore Mousepad',
+    date: '04-08-2025',
+    reason: 'Gaming setup aesthetic',
+    image: '/inventory/dragon-lore-mousepad.png'
   }
 ];

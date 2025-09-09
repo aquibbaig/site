@@ -13,16 +13,16 @@ export const RecentTracks = () => {
     error: isErrorRecentTracks,
   } = useRecentTracks(5 * 60 * 1000);
 
-  if (isLoadingRecentTracks) {
+  if (!isLoadingRecentTracks) {
     return (
-      <div className="flex flex-col gap-4">
-        {Array(2)
+      <div className="flex flex-col gap-4 -mx-1">
+        {Array(1)
           .fill(0)
           .map((item, idx) => {
             return (
-              <div key={idx} className="animate-pulse flex flex-col gap-1">
-                <div className="bg-card h-5 rounded-md w-4/5"></div>
-                <div className="bg-card h-5 rounded-md w-3/5"></div>
+              <div key={idx} className="animate-pulse flex flex-col gap-2">
+                <div className="bg-accent h-7 rounded-md w-4/5"></div>
+                <div className="bg-accent h-7 rounded-md w-3/5"></div>
               </div>
             );
           })}

@@ -12,8 +12,6 @@ export const ThemeSwitch = () => {
 
   useEffect(() => {
     setIsClient(true);
-    setTheme('system');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isClient) {
@@ -29,7 +27,7 @@ export const ThemeSwitch = () => {
         onClick={() => {
           setTheme('dark');
         }}
-        variant="outline"
+        variant="ghost"
         size="icon"
       >
         <IconComponent Icon={Sun} size={15} />
@@ -43,7 +41,7 @@ export const ThemeSwitch = () => {
         onClick={() => {
           setTheme('light');
         }}
-        variant="outline"
+        variant="ghost"
         size="icon"
       >
         <IconComponent Icon={Moon} size={15} />
