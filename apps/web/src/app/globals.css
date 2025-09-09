@@ -27,7 +27,7 @@
     @apply transition-colors duration-200 text-foreground decoration-border/25 hover:decoration-border;
   }
   .external-link {
-    @apply underline underline-offset-4 decoration-1 cursor-pointer cursor-ne-resize;
+    @apply underline underline-offset-4 decoration-1 cursor-ne-resize decoration-accent;
   }
   pre code span {
     @apply text-sm;
@@ -35,5 +35,15 @@
 
   pre {
     @apply max-h-96;
+  }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 2.5s linear infinite;
   }
 }
