@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Browse } from './lib/Browse';
 import { Craft } from './lib/Craft';
 import { Projects } from './lib/Projects';
 import { RecentTracks } from './lib/RecentTracks';
@@ -22,7 +21,6 @@ export default function Home() {
         <Projects />
         <Craft />
         <RecentTracks />
-        <Browse />
       </div>
     </div>
   );

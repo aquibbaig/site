@@ -1,6 +1,7 @@
 'use client';
 
 import { PageHeader } from '@/services/page-header/PageHeader';
+import { Footer } from '@/components/Footer';
 import { clsx } from 'clsx';
 import { ViewTransitions } from 'next-view-transitions';
 import Head from 'next/head';
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   >
                     {children}
                   </SpotifyConnectContextProvider>
+                  <Footer />
                 </main>
               </ThemeProvider>
             </body>

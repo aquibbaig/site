@@ -1,4 +1,4 @@
-import { POSTS_PATH, postFilePaths } from '@/constants';
+import { POSTS_PATH, postFilePaths } from '@/lib/server-constants';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';

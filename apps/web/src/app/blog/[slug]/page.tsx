@@ -1,4 +1,6 @@
-import { DAYJS_DEFAULT_FORMAT, POSTS_PATH } from '@/constants';
+import { DAYJS_DEFAULT_FORMAT } from '@/constants';
+import { POSTS_PATH } from '@/lib/server-constants';
+import { cn } from '@repo/ui/cn';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
@@ -7,10 +9,8 @@ import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import path from 'path';
 import remarkGfm from 'remark-gfm';
-import { twMerge } from 'tailwind-merge';
 import { CopyPostLink } from './_lib/CopyPostLink';
 import { PageViews } from './_lib/PageViews';
-import { cn } from '@repo/ui/cn';
 
 type Props = {
   params: { slug: string };
@@ -83,6 +83,7 @@ export default async function PostPage({
           'prose-code:border prose-code:border-border',
           'prose-code:rounded-md',
           'prose-code:text-foreground',
+          'prose-strong:text-foreground',
           'prose-code:font-normal prose-code:whitespace-break-spaces prose-code:before:content-[""] prose-code:before:invisible prose-code:after:content-[""] prose-code:after:invisible',
           'prose-code:overflow-auto prose-code:scrollbar-thin prose-code:scrollbar-thumb-gray-400',
           'prose-h1:text-[1.5em] prose-h2:text-[1.5em] prose-h3:text-lg',
