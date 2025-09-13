@@ -80,7 +80,7 @@ export default async function PostPage({
           'prose-img:rounded-sm prose-img:border prose-img:border-border dark:prose-img:opacity-85',
           'prose-a:font-normal prose:a:transition-colors prose-a:underline-offset-4 prose-a:duration-200 prose-a:text-foreground prose-a:decoration-border/25 hover:prose-a:decoration-border',
           'prose-pre:p-4 prose-pre:rounded-md prose-pre:border prose-pre:border-border',
-          'prose-code:border prose-code:border-border',
+          'prose-code:px-1 prose-code:py-0.5',
           'prose-code:rounded-md',
           'prose-code:text-foreground',
           'prose-strong:text-foreground',

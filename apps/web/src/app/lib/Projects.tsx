@@ -57,7 +57,7 @@ export const Projects = () => {
                   layoutId={`title-${projectDetails?.id}`}
                   href={projectDetails?.uri || '#'}
                   target="_blank"
-                  className="text-sm w-[80%] underline underline-offset-4"
+                  className="text-sm w-[80%] underline underline-offset-4 decoration-muted-foreground/50"
                 >
                   {projectDetails?.title}
                 </motion.a>

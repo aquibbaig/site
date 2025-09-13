@@ -1,6 +1,6 @@
 import { getPostMetadata } from '@/helpers';
 import { Separator } from '@repo/ui/components/Separator';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import type { FC } from 'react';
 import { BlogPostCard } from '../blog/page';
 

@@ -1,5 +1,5 @@
 import { Socials } from '@/app/lib/Socials';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const footerLinks = [
   { href: '/blog', label: 'Articles' },
