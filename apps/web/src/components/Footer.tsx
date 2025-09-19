@@ -5,7 +5,6 @@ const footerLinks = [
   { href: '/blog', label: 'Articles' },
   { href: '/about', label: 'About' },
   { href: '/colophon', label: 'Colophon' },
-  { href: '/inventory', label: 'Inventory' },
 ];
 
 export const Footer = () => {
