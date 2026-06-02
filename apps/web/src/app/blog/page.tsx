@@ -83,6 +83,8 @@ export const BlogPostCard = ({
         <span className="text-muted-foreground">
           {dayjs(post.data.publishedOn).fromNow()}
         </span>
+        <span className="text-muted-foreground">•</span>
+        <span className="text-muted-foreground">{post.readingTime.text}</span>
       </div>
     </div>
   );
