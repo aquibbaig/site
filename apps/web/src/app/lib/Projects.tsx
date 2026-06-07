@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 export const Projects = () => {
   return (
     <div>
-      <h4>Projects</h4>
+      <h5 className="font-medium text-sm">Projects</h5>
       <Separator />
       <div className="flex flex-col md:-mx-4">
         {projects.map((project) => (
@@ -47,9 +47,7 @@ const Project = (project: ProjectType) => {
       <div className="flex justify-between w-full items-center h-full">
         <div className="flex flex-col">
           <span className="text-sm md:text-[15px]">{title}</span>
-          <span className="text-sm text-muted-foreground tracking-tight">
-            {subHeading}
-          </span>
+          <span className="text-sm text-muted-foreground tracking-tight">{subHeading}</span>
         </div>
       </div>
     </a>

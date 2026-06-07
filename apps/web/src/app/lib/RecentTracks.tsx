@@ -36,7 +36,7 @@ export const RecentTracks = () => {
 
   return (
     <div className="flex flex-col">
-      <h5 className="text-muted-foreground">Last played on Spotify</h5>
+      <h5 className="font-medium text-sm">Last Played</h5>
       <Separator />
       <ul className="flex flex-col gap-1">
         {recentTracks.items?.slice(0, MAX_TRACKS)?.map((track) => {
