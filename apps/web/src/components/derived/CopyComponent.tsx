@@ -30,7 +30,7 @@ export const CopyComponent = ({
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       onClick={() => {
         copyToClipboard(copyText);
         setIsCopied(true);

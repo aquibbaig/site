@@ -10,6 +10,7 @@
     "serve": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.16",
     "@radix-ui/react-slot": "^1.1.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@tanstack/react-query": "^5.32.0",
@@ -19,6 +20,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.287.0",
     "lucide-static": "^0.396.0",
+    "mermaid": "^11.15.0",
     "motion": "^11.14.3",
     "next": "^14.2.3",
     "next-mdx-remote": "^4.4.1",
@@ -30,6 +32,7 @@
     "react-dom": "^18",
     "reading-time": "^1.5.0",
     "remark-gfm": "^3.0.1",
+    "sonner": "^2.0.7",
     "spotify-connect": "^1.7.0",
     "tailwind-merge": "^1.14.0"
   },

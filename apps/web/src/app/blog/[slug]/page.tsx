@@ -93,9 +93,19 @@ export default async function PostPage({
       >
         <MdxContent source={serialized} />
       </article>
-      <hr className="my-10 border-border border-[0.2px]" />
-      <div>
-        <CopyPostLink slug={params.slug} />
+      <div className="mt-8 border-t border-border pt-8">
+        <div className="flex flex-row items-center justify-between gap-6 text-muted-foreground">
+          <div className="flex min-w-0 flex-row items-center gap-3 [&>*]:text-sm">
+            <span>Aquib Baig</span>
+            {frontmatter.publishedOn && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>{dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}</span>
+              </>
+            )}
+          </div>
+          <CopyPostLink slug={params.slug} />
+        </div>
       </div>
     </div>
   );

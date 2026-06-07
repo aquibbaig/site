@@ -3,128 +3,56 @@
 import BenchRoutesLogo from '@/assets/bench-routes.png';
 import EnviseLogo from '@/assets/envise.png';
 import { type ProjectType } from '@/constants';
-import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { Separator } from '@repo/ui/components/Separator';
 import PlugZap from 'lucide-static/icons/plug-zap.svg';
-import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const Projects = () => {
-  const [projectDetails, showProjectDetails] = useState<ProjectType | null>(null);
-
-  const ref = useRef(null);
-  useOnClickOutside(ref, () => showProjectDetails(null));
-
   return (
     <div>
-      {Boolean(projectDetails) && (
-        <AnimatePresence>
-          <motion.div
-            className="fixed inset-0 z-50 bg-black/80"
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-          />
-        </AnimatePresence>
-      )}
-      <AnimatePresence>
-        {Boolean(projectDetails) ? (
-          <motion.div
-            layoutId={`project-${projectDetails?.id}`}
-            className="fixed cursor-default mx-4 outline-none z-50 -ml-4 grid w-full max-w-lg gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-xl"
-            ref={ref}
-          >
-            <motion.div
-              className={twMerge(
-                getGradientForProject(projectDetails?.id!),
-                'p-2 rounded-xl size-10 flex flex-col items-center justify-center shrink-0'
-              )}
-              layoutId={`image-${projectDetails?.id}`}
-            >
-              <Image src={projectDetails?.icon} alt="icon" />
-            </motion.div>
-            <div className="flex justify-between w-full items-center h-full">
-              <div className="flex flex-col">
-                <motion.a
-                  layoutId={`title-${projectDetails?.id}`}
-                  href={projectDetails?.uri || '#'}
-                  target="_blank"
-                  className="text-sm w-[80%] underline underline-offset-4 decoration-muted-foreground/50"
-                >
-                  {projectDetails?.title}
-                </motion.a>
-                <span className="mt-4 text-sm md:text-[15px] text-muted-foreground">
-                  {projectDetails?.description}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
       <h4>Projects</h4>
       <Separator />
       <div className="flex flex-col md:-mx-4">
-        {projects.map((project) => {
-          return (
-            <Project
-              key={project.id}
-              {...project}
-              showDetails={(project) => showProjectDetails(project)}
-            />
-          );
-        })}
+        {projects.map((project) => (
+          <Project key={project.id} {...project} />
+        ))}
       </div>
     </div>
   );
 };
 
-const Project = ({
-  showDetails,
-  ...project
-}: ProjectType & { showDetails: (project: ProjectType) => void }) => {
+const Project = (project: ProjectType) => {
   const { uri, id, icon, subHeading, title } = project;
 
   return (
-    <motion.div
+    <a
       className={twMerge(
         'h-16 flex flex-row items-center gap-4 w-full',
         'hover:bg-accent',
-        'md:px-4 rounded-md cursor-default'
+        'md:px-4 rounded-md cursor-pointer'
       )}
-      onClick={() => showDetails(project)}
-      layoutId={`project-${id}`}
+      href={uri || '#'}
+      target={uri ? '_blank' : undefined}
+      rel={uri ? 'noreferrer' : undefined}
     >
-      <motion.div
+      <div
         className={twMerge(
           getGradientForProject(id),
           'p-2 rounded-xl size-10 flex flex-col items-center justify-center shrink-0'
         )}
-        layoutId={`image-${id}`}
       >
         <Image src={icon} alt="icon" />
-      </motion.div>
+      </div>
       <div className="flex justify-between w-full items-center h-full">
         <div className="flex flex-col">
-          <motion.span layoutId={`title-${id}`} className="text-sm md:text-[15px]">
-            {title}
-          </motion.span>
-          <motion.span
-            layoutId={`alt-${id}`}
-            className="text-sm text-muted-foreground tracking-tight"
-          >
+          <span className="text-sm md:text-[15px]">{title}</span>
+          <span className="text-sm text-muted-foreground tracking-tight">
             {subHeading}
-          </motion.span>
+          </span>
         </div>
       </div>
-    </motion.div>
+    </a>
   );
 };
 

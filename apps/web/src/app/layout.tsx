@@ -12,6 +12,8 @@ import './globals.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Inter } from 'next/font/google';
+import { useTheme } from 'next-themes';
+import { Toaster } from 'sonner';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
 
@@ -20,6 +22,17 @@ const inter = Inter({ subsets: ['latin'] });
 export const dynamic = 'force-static';
 
 const queryClient = new QueryClient();
+
+function AppToaster() {
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <Toaster
+      position="top-right"
+      theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+    />
+  );
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -60,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </SpotifyConnectContextProvider>
                   <Footer />
                 </main>
+                <AppToaster />
               </ThemeProvider>
             </body>
           </PHProvider>
