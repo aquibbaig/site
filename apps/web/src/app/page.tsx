@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Craft } from './lib/Craft';
-import { Projects } from './lib/Projects';
 import { RecentTracks } from './lib/RecentTracks';
 
 export const metadata: Metadata = {
@@ -18,7 +17,6 @@ export default function Home() {
         </p>
       </div>
       <div className="flex flex-col gap-8">
-        <Projects />
         <Craft />
         <RecentTracks />
       </div>

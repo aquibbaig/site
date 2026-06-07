@@ -72,15 +72,16 @@ export const BlogPostCard = ({
         className
       )}
     >
-      <p className="text-foreground">{post.data.title}</p>
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-1">
         {post.data.craft && (
           <>
-            <CraftSvg className="size-4 text-craft -mt-0.5" aria-label="craft" />
-            <span className="text-muted-foreground">•</span>
+            <CraftSvg className="size-4 text-craft -mt-0.5 -ml-0.5" aria-label="craft" />
           </>
         )}
-        <span className="text-muted-foreground">
+        <p className="text-foreground">{post.data.title}</p>
+      </div>
+      <div className="flex flex-row items-center gap-1">
+        <span className="text-muted-foreground text-sm">
           {dayjs(post.data.publishedOn).fromNow()}
         </span>
       </div>

@@ -3,6 +3,7 @@ import { Link } from 'next-view-transitions';
 
 const footerLinks = [
   { href: '/blog', label: 'Articles' },
+  { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
   { href: '/colophon', label: 'Colophon' },
 ];

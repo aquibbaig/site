@@ -13,7 +13,7 @@ export const Craft: FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h5>Craft</h5>
+      <h5 className="font-medium text-sm">Writing</h5>
       <Separator />
       <div>
         {craft.map((post) => {
