@@ -6,6 +6,8 @@
     "build": "tsc"
   },
   "exports": {
+    "./cn": "./cn.ts",
+    "./components/*": "./components/*.tsx",
     "./*": "./*"
   },
   "dependencies": {

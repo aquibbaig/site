@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "module": "ESNext",
     "target": "ES2017",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noUncheckedIndexedAccess": true,
