@@ -1,6 +1,11 @@
 export async function getPageViews({ slug }: { slug: string }) {
+  const host = (process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com').replace(
+    /\/$/,
+    ''
+  );
+
   return fetch(
-    `https://app.posthog.com/api/projects/${process.env.NEXT_PUBLIC_POSTHOG_PROJECT_ID}/query`,
+    `${host}/api/projects/${process.env.NEXT_PUBLIC_POSTHOG_PROJECT_ID}/query`,
     {
       method: 'post',
       headers: {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Craft } from './lib/Craft';
+import { HomeVisitors } from './lib/HomeVisitors';
 import { Projects } from './lib/Projects';
 import { RecentTracks } from './lib/RecentTracks';
 
@@ -21,6 +22,7 @@ export default function Home() {
         <Projects preview />
         <Craft />
         <RecentTracks />
+        <HomeVisitors />
       </div>
     </div>
   );
