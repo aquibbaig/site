@@ -4,21 +4,92 @@ import BenchRoutesLogo from '@/assets/bench-routes.png';
 import EnviseLogo from '@/assets/envise.png';
 import { type ProjectType } from '@/constants';
 import { Separator } from '@repo/ui/components/Separator';
+import { ArrowRight } from 'lucide-react';
 import PlugZap from 'lucide-static/icons/plug-zap.svg';
 import Image from 'next/image';
+import { Link } from 'next-view-transitions';
 import { twMerge } from 'tailwind-merge';
 
-export const Projects = () => {
+const HOME_PROJECT_LIMIT = 2;
+
+export const Projects = ({ preview = false }: { preview?: boolean }) => {
+  const visibleProjects = preview ? projects.slice(0, HOME_PROJECT_LIMIT) : projects;
+
   return (
     <div>
-      <h5 className="font-medium text-sm">Projects</h5>
-      <Separator />
-      <div className="flex flex-col md:-mx-4">
-        {projects.map((project) => (
-          <Project key={project.id} {...project} />
-        ))}
+      <div className="flex items-center justify-between gap-4">
+        <h5 className="font-medium text-sm">Projects</h5>
+        {preview ? (
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
+            View all
+            <span className="inline-flex size-7 items-center justify-center rounded-full border border-border transition-colors group-hover:border-foreground/40">
+              <ArrowRight className="size-3.5" aria-hidden="true" />
+            </span>
+          </Link>
+        ) : null}
       </div>
+      <Separator />
+      {preview ? (
+        <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
+          {visibleProjects.map((project) => (
+            <ProjectPreview key={project.id} {...project} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col">
+          {visibleProjects.map((project) => (
+            <Project key={project.id} {...project} />
+          ))}
+        </div>
+      )}
     </div>
+  );
+};
+
+const ProjectPreview = (project: ProjectType) => {
+  const { uri, id, icon, subHeading, title } = project;
+
+  return (
+    <a
+      className="group flex flex-col gap-3 rounded-lg outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring"
+      href={uri || '#'}
+      target={uri ? '_blank' : undefined}
+      rel={uri ? 'noreferrer' : undefined}
+    >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-accent/40 p-4 transition-colors group-hover:border-foreground/30">
+        <div
+          className={twMerge(
+            getGradientForProject(id),
+            'absolute -right-10 -top-10 size-32 rounded-full opacity-25 blur-2xl'
+          )}
+        />
+        <div className="relative flex h-full flex-col justify-between rounded-md border border-border/70 bg-background/85 p-4 shadow-sm">
+          <div className="flex items-center justify-between gap-3">
+            <div
+              className={twMerge(
+                getGradientForProject(id),
+                'flex size-10 shrink-0 items-center justify-center rounded-lg p-2'
+              )}
+            >
+              <Image src={icon} alt="" className="size-full object-contain" />
+            </div>
+            <ArrowRight
+              className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
+              aria-hidden="true"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <span className="block text-sm font-medium md:text-[15px]">{title}</span>
+            <span className="block text-sm leading-5 tracking-tight text-muted-foreground">
+              {subHeading}
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
   );
 };
 
@@ -28,9 +99,9 @@ const Project = (project: ProjectType) => {
   return (
     <a
       className={twMerge(
-        'h-16 flex flex-row items-center gap-4 w-full',
+        '-mx-2 h-16 flex flex-row items-center gap-4 w-full px-2',
         'hover:bg-accent',
-        'md:px-4 rounded-md cursor-pointer'
+        'rounded-md cursor-pointer'
       )}
       href={uri || '#'}
       target={uri ? '_blank' : undefined}
