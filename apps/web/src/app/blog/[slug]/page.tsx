@@ -3,11 +3,13 @@ import { POSTS_PATH } from '@/lib/server-constants';
 import { cn } from '@repo/ui/cn';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import matter from 'gray-matter';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import path from 'path';
+import readingTime, { type ReadTimeResults } from 'reading-time';
 import remarkGfm from 'remark-gfm';
 import { CopyPostLink } from './_lib/CopyPostLink';
 import { PageViews } from './_lib/PageViews';
@@ -39,7 +41,7 @@ export default async function PostPage({
     slug: string;
   };
 }) {
-  const { serialized, frontmatter } = await getPost({
+  const { serialized, frontmatter, stats } = await getPost({
     slug: params.slug,
   });
 
@@ -62,6 +64,7 @@ export default async function PostPage({
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
             </span>
           )}
+          <span className="text-muted-foreground text-sm">{stats.text}</span>
           <PageViews slug={params.slug} />
         </div>
         {Boolean(frontmatter.tags) && (
@@ -113,11 +116,13 @@ export default async function PostPage({
 
 async function getPost({ slug }: { slug: string }): Promise<{
   frontmatter: Record<string, string>;
+  stats: ReadTimeResults;
   serialized: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>;
 }> {
   const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   // Read the file from the filesystem
   const raw = fs.readFileSync(postFilePath, 'utf-8');
+  const { content } = matter(raw);
 
   // Serialize the MDX content and parse the frontmatter
   const serialized = await serialize(raw, {
@@ -133,6 +138,7 @@ async function getPost({ slug }: { slug: string }): Promise<{
   // Return the serialized content and frontmatter
   return {
     frontmatter: frontmatter as Record<string, string>,
+    stats: readingTime(content),
     serialized,
   };
 }
