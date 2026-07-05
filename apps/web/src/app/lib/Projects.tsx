@@ -3,7 +3,7 @@
 import BenchRoutesLogo from '@/assets/bench-routes.png';
 import EnviseLogo from '@/assets/envise.png';
 import { type ProjectType } from '@/constants';
-import { Separator } from '@repo/ui/components/Separator';
+import { cn } from '@repo/ui/cn';
 import { ArrowRight } from 'lucide-react';
 import PlugZap from 'lucide-static/icons/plug-zap.svg';
 import { Link } from 'next-view-transitions';
@@ -17,21 +17,20 @@ export const Projects = ({ preview = false }: { preview?: boolean }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center gap-4">
         <h5 className="font-medium text-sm">Projects</h5>
         {preview ? (
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+            className={cn(
+              'group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground',
+              'border border-border rounded-md px-1.5 py-0.5 text-xs hover:bg-secondary'
+            )}
           >
             View all
-            <span className="inline-flex size-7 items-center justify-center rounded-full border border-border transition-colors group-hover:border-foreground/40">
-              <ArrowRight className="size-3.5" aria-hidden="true" />
-            </span>
           </Link>
         ) : null}
       </div>
-      <Separator />
       {preview ? (
         <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
           {visibleProjects.map((project) => (
@@ -59,7 +58,7 @@ const ProjectPreview = (project: ProjectType) => {
       target={uri ? '_blank' : undefined}
       rel={uri ? 'noreferrer' : undefined}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background transition-colors group-hover:border-foreground/30">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background transition-colors group-hover:border-foreground/30 dark:border-white/10 dark:group-hover:border-white/20">
         <div
           className={twMerge(
             getGradientForProject(id),
