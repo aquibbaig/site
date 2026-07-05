@@ -6,8 +6,8 @@ import { type ProjectType } from '@/constants';
 import { Separator } from '@repo/ui/components/Separator';
 import { ArrowRight } from 'lucide-react';
 import PlugZap from 'lucide-static/icons/plug-zap.svg';
-import Image from 'next/image';
 import { Link } from 'next-view-transitions';
+import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 const HOME_PROJECT_LIMIT = 2;
@@ -50,7 +50,7 @@ export const Projects = ({ preview = false }: { preview?: boolean }) => {
 };
 
 const ProjectPreview = (project: ProjectType) => {
-  const { uri, id, icon, subHeading, title } = project;
+  const { uri, id, icon, size, subHeading, title } = project;
 
   return (
     <a
@@ -59,22 +59,28 @@ const ProjectPreview = (project: ProjectType) => {
       target={uri ? '_blank' : undefined}
       rel={uri ? 'noreferrer' : undefined}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-accent/40 p-4 transition-colors group-hover:border-foreground/30">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background transition-colors group-hover:border-foreground/30">
         <div
           className={twMerge(
             getGradientForProject(id),
             'absolute -right-10 -top-10 size-32 rounded-full opacity-25 blur-2xl'
           )}
         />
-        <div className="relative flex h-full flex-col justify-between rounded-md border border-border/70 bg-background/85 p-4 shadow-sm">
+        <div className="relative flex h-full flex-col justify-between p-4">
           <div className="flex items-center justify-between gap-3">
             <div
               className={twMerge(
-                getGradientForProject(id),
+                getLogoBackgroundForProject(id),
                 'flex size-10 shrink-0 items-center justify-center rounded-lg p-2'
               )}
             >
-              <Image src={icon} alt="" className="size-full object-contain" />
+              <Image
+                src={icon}
+                alt=""
+                width={size[0]}
+                height={size[1]}
+                className="size-full object-contain"
+              />
             </div>
             <ArrowRight
               className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
@@ -82,7 +88,10 @@ const ProjectPreview = (project: ProjectType) => {
             />
           </div>
           <div className="space-y-1.5">
-            <span className="block text-sm font-medium md:text-[15px]">{title}</span>
+            <div className="flex items-center gap-2">
+              <span className="block text-sm font-medium md:text-[15px]">{title}</span>
+              {isNewProject(id) ? <NewProjectTag /> : null}
+            </div>
             <span className="block text-sm leading-5 tracking-tight text-muted-foreground">
               {subHeading}
             </span>
@@ -94,7 +103,7 @@ const ProjectPreview = (project: ProjectType) => {
 };
 
 const Project = (project: ProjectType) => {
-  const { uri, id, icon, subHeading, title } = project;
+  const { uri, id, icon, size, subHeading, title } = project;
 
   return (
     <a
@@ -109,15 +118,18 @@ const Project = (project: ProjectType) => {
     >
       <div
         className={twMerge(
-          getGradientForProject(id),
+          getLogoBackgroundForProject(id),
           'p-2 rounded-xl size-10 flex flex-col items-center justify-center shrink-0'
         )}
       >
-        <Image src={icon} alt="icon" />
+        <Image src={icon} alt={`${title} icon`} width={size[0]} height={size[1]} />
       </div>
       <div className="flex justify-between w-full items-center h-full">
         <div className="flex flex-col">
-          <span className="text-sm md:text-[15px]">{title}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-sm md:text-[15px]">{title}</span>
+            {isNewProject(id) ? <NewProjectTag /> : null}
+          </div>
           <span className="text-sm text-muted-foreground tracking-tight">{subHeading}</span>
         </div>
       </div>
@@ -127,6 +139,8 @@ const Project = (project: ProjectType) => {
 
 function getGradientForProject(projectId: ProjectType['id']) {
   switch (projectId) {
+    case 'datapanel':
+      return 'bg-gradient-to-r from-[#818CF8] via-[#A78BFA] to-[#5EEAD4] dark:from-[#818CF8]/70 dark:via-[#A78BFA]/70 dark:to-[#5EEAD4]/70';
     case 'envise':
       return 'bg-gradient-to-r from-[#3D63DB] to-[#3D63DB] dark:from-[#3D63DB]/70 dark:to-[#3D63DB]/70';
     case 'spotify-connect':
@@ -138,7 +152,37 @@ function getGradientForProject(projectId: ProjectType['id']) {
   }
 }
 
+function getLogoBackgroundForProject(projectId: ProjectType['id']) {
+  switch (projectId) {
+    case 'datapanel':
+      return 'bg-[#E8F2FF] dark:bg-[#E8F2FF]/70';
+    default:
+      return getGradientForProject(projectId);
+  }
+}
+
+function isNewProject(projectId: ProjectType['id']) {
+  return projectId === 'datapanel';
+}
+
+function NewProjectTag() {
+  return (
+    <span className="rounded-full border border-border bg-accent px-1.5 py-0.5 text-[10px] font-medium uppercase leading-none text-muted-foreground">
+      New
+    </span>
+  );
+}
+
 const projects: ProjectType[] = [
+  {
+    id: 'datapanel',
+    title: 'DataPanel',
+    uri: 'https://github.com/aquibbaig/datapanel',
+    subHeading: 'Lightweight, Open source database manager',
+    description: `DataPanel is a lightweight, open source desktop database workspace for browsing schemas, running SQL, and keeping structured database context ready for AI-assisted workflows.`,
+    icon: '/projects/datapanel.png',
+    size: [48, 48],
+  },
   {
     id: 'envise',
     title: 'Envise',
