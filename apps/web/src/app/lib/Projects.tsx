@@ -58,7 +58,7 @@ const ProjectPreview = (project: ProjectType) => {
       target={uri ? '_blank' : undefined}
       rel={uri ? 'noreferrer' : undefined}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background transition-colors group-hover:border-foreground/30 dark:border-white/10 dark:group-hover:border-white/20">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-foreground/10 bg-background transition-colors group-hover:border-foreground/30">
         <div
           className={twMerge(
             getGradientForProject(id),
