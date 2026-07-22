@@ -1,0 +1,59 @@
+---
+title: "My current development setup"
+publishedOn: 2026-07-22T12:00:00+0530
+draft: false
+description: 'The tools I currently use to build and review software.'
+craft: true
+---
+
+A normal work session for me starts in Herdr. I open the workspace for the repository, start Codex in one pane, and keep the server or tests running next to it.
+
+If the task touches a database, DataPanel is open too. Neovim comes in when I want to change something myself or read through the diff. Once the code looks good, git-smart-commit gives me a commit message to work from.
+
+## Herdr for terminal setup
+
+I used Codex Desktop heavily because it got two things right.
+
+The first was workspaces. Each task had its own checkout, conversation, and agent. I could start several pieces of work without turning my main repository into a mess.
+
+The second was how the agent behaved. It was less likely to charge ahead when an important decision was missing. It would ask. That sounds slower, but one useful question is cheaper than reviewing a large diff built on a bad assumption.
+
+[Herdr](https://herdr.dev) now gives me the workspace part inside the terminal. I keep one project per workspace, with agents, servers, tests, and logs in separate panes. It also shows me which agent is working, finished, or waiting for input. I can leave the terminal, come back later, and everything is still there.
+
+Once I could get that workflow in a terminal, Codex Desktop stopped being the obvious place to run agents. Herdr puts the agent beside the shell and the processes it needs to work with. I spend less time moving between an agent app and the environment where the code actually runs.
+
+## Codex as my primary coding agent
+
+I still use Codex for most of the coding. It reads the repository, follows the patterns already there, makes the change, and runs the checks afterward.
+
+I have noticed that Codex CLI is much more verbose than the Desktop app. It tells me what it is about to do, stops to explain itself, and asks questions it could answer by reading the repository.
+
+Codex Desktop feels closer to autopilot. I give it a task and it figures out the next steps, only stopping when a decision actually needs me. That is what I want from the CLI too.
+
+A useful question is “Which of these two product behaviours do you want?” Asking whether it should inspect the files that probably contain the answer is not useful. If the repository can answer the question, read it. If the choice is safe and easy to undo, make it. Ask me when a decision changes the product or carries real risk. For everything else, figure it out and show me the diff.
+
+I want the CLI to be careful without making me supervise every command it already knows it needs to run.
+
+## DataPanel for databases and SQL
+
+I use [DataPanel](https://github.com/aquibbaig/datapanel) as my database client. It is where I browse tables, inspect schemas, run queries, and look at results.
+
+The agent is useful when I do not know the schema well or do not want to write the SQL from scratch. I can describe what I am trying to find in plain English, and DataPanel gives the relevant schema to the agent.
+
+The agent can then explain how the tables relate or generate a query using the real table and column names. I review the SQL and run it in the same app.
+
+I can inspect the database, understand an unfamiliar schema, generate the SQL, and run it without copying table definitions into a separate chat.
+
+## Neovim for editing and reviewing diffs
+
+I still call [Neovim](https://neovim.io) my IDE, although the word does not mean much in this setup.
+
+Sometimes I know the exact line I want to change, and opening an agent would take longer than fixing it myself. Neovim is perfect for that. Most of the time, though, I use it to read what the agent changed.
+
+The diff is the part I care about before anything gets pushed. I want to know what changed, what disappeared, whether the agent added code I did not ask for, and whether the tests prove anything useful. A bad diff goes back with comments. Small mistakes are faster to fix myself.
+
+That is what I mean when I say IDEs feel dead to me. The editor is still there, but it is no longer where most of my work happens. It is where I check the work.
+
+## git-smart-commit for commit messages
+
+After the review, I use [bar0meter/git-smart-commit](https://github.com/bar0meter/git-smart-commit) to generate a commit message from the change. I read the suggestion, edit it when needed, and commit.
