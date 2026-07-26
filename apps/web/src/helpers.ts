@@ -2,17 +2,19 @@ import { POSTS_PATH, postFilePaths } from '@/lib/server-constants';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
+import readingTime, { type ReadTimeResults } from 'reading-time';
 
 type Post = {
   readonly content: string;
   readonly filePath: string;
+  readonly readingTime: ReadTimeResults;
   data: {
     readonly title: string;
     readonly publishedOn: string;
     readonly draft?: boolean;
     readonly description: string;
-    readonly tags: Array<string>;
-    readonly craft: Array<string>;
+    readonly tags?: Array<string>;
+    readonly craft?: boolean;
   };
 };
 
@@ -25,6 +27,7 @@ export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
       content,
       data,
       filePath,
+      readingTime: readingTime(content),
     };
   });
 
