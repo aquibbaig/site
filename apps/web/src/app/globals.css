@@ -1,27 +1,9 @@
 @import "@repo/tailwind/theme.css";
+@import "./typeset.css";
 
 @layer base {
   * {
-    @apply text-[1rem] antialiased;
-  }
-
-  h1 {
-    @apply text-[1.5em];
-    @apply font-semibold;
-    @apply mb-[1em];
-  }
-  h2 {
-    @apply text-[1.5em];
-    @apply font-semibold;
-    @apply mb-[1em];
-  }
-  h3 {
-    @apply text-lg;
-    @apply font-medium;
-    @apply mb-[1em];
-  }
-  h4 {
-    @apply font-medium;
+    @apply antialiased;
   }
   a {
     @apply transition-colors duration-200 text-foreground decoration-border/25 hover:decoration-border;
@@ -29,14 +11,6 @@
   .external-link {
     @apply underline underline-offset-4 decoration-1 cursor-ne-resize decoration-muted-foreground/50 hover:decoration-foreground transition-colors;
   }
-  pre code span {
-    @apply text-sm;
-  }
-
-  pre {
-    @apply max-h-96;
-  }
-
   @keyframes spin-slow {
     to {
       transform: rotate(360deg);
@@ -45,5 +19,71 @@
 
   .animate-spin-slow {
     animation: spin-slow 2.5s linear infinite;
+  }
+}
+
+@layer components {
+  .writing-highlight-blue {
+    background-color: #eff6ff;
+  }
+  .writing-highlight-green {
+    background-color: #ecfdf5;
+  }
+  .writing-highlight-amber {
+    background-color: #fffbeb;
+  }
+  .writing-highlight-violet {
+    background-color: #f5f3ff;
+  }
+  .writing-highlight-rose {
+    background-color: #fff1f2;
+  }
+
+  .group:hover .writing-highlight-blue {
+    background-color: #dbeafe;
+  }
+  .group:hover .writing-highlight-green {
+    background-color: #d1fae5;
+  }
+  .group:hover .writing-highlight-amber {
+    background-color: #fef3c7;
+  }
+  .group:hover .writing-highlight-violet {
+    background-color: #ede9fe;
+  }
+  .group:hover .writing-highlight-rose {
+    background-color: #ffe4e6;
+  }
+
+  .dark .writing-highlight-blue {
+    background-color: rgb(23 37 84 / 0.5);
+  }
+  .dark .writing-highlight-green {
+    background-color: rgb(2 44 34 / 0.5);
+  }
+  .dark .writing-highlight-amber {
+    background-color: rgb(69 26 3 / 0.5);
+  }
+  .dark .writing-highlight-violet {
+    background-color: rgb(46 16 101 / 0.5);
+  }
+  .dark .writing-highlight-rose {
+    background-color: rgb(76 5 25 / 0.5);
+  }
+
+  .dark .group:hover .writing-highlight-blue {
+    background-color: rgb(30 58 138 / 0.6);
+  }
+  .dark .group:hover .writing-highlight-green {
+    background-color: rgb(6 78 59 / 0.6);
+  }
+  .dark .group:hover .writing-highlight-amber {
+    background-color: rgb(120 53 15 / 0.6);
+  }
+  .dark .group:hover .writing-highlight-violet {
+    background-color: rgb(76 29 149 / 0.6);
+  }
+  .dark .group:hover .writing-highlight-rose {
+    background-color: rgb(136 19 55 / 0.6);
   }
 }

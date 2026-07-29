@@ -24,6 +24,7 @@ export const ThemeSwitch = () => {
   if (isLight) {
     return (
       <Button
+        aria-label="Switch to dark mode"
         onClick={() => {
           setTheme('dark');
         }}
@@ -38,6 +39,7 @@ export const ThemeSwitch = () => {
   if (isDark) {
     return (
       <Button
+        aria-label="Switch to light mode"
         onClick={() => {
           setTheme('light');
         }}

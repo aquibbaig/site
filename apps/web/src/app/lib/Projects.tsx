@@ -16,9 +16,11 @@ export const Projects = ({ preview = false }: { preview?: boolean }) => {
   const visibleProjects = preview ? projects.slice(0, HOME_PROJECT_LIMIT) : projects;
 
   return (
-    <div>
-      <div className="flex items-center gap-4">
-        <h5 className="font-medium text-sm">Projects</h5>
+    <section aria-labelledby="projects-heading">
+      <div className="mb-5 flex items-center gap-4">
+        <h2 id="projects-heading" className="text-sm font-medium">
+          Projects
+        </h2>
         {preview ? (
           <Link
             href="/projects"
@@ -29,7 +31,9 @@ export const Projects = ({ preview = false }: { preview?: boolean }) => {
           >
             View all
           </Link>
-        ) : null}
+        ) : (
+          <div className="h-px flex-1 bg-border" />
+        )}
       </div>
       {preview ? (
         <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
@@ -38,13 +42,13 @@ export const Projects = ({ preview = false }: { preview?: boolean }) => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           {visibleProjects.map((project) => (
             <Project key={project.id} {...project} />
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
@@ -96,6 +100,7 @@ const ProjectPreview = (project: ProjectType) => {
             </span>
           </div>
         </div>
+        <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-black/15 transition-colors group-hover:ring-black/25 dark:ring-white/10 dark:group-hover:ring-white/20" />
       </div>
     </a>
   );
@@ -107,7 +112,7 @@ const Project = (project: ProjectType) => {
   return (
     <a
       className={twMerge(
-        '-mx-2 h-16 flex flex-row items-center gap-4 w-full px-2',
+        '-mx-2 min-h-14 flex flex-row items-center gap-4 w-full px-2 py-1',
         'hover:bg-accent',
         'rounded-md cursor-pointer'
       )}
@@ -126,10 +131,10 @@ const Project = (project: ProjectType) => {
       <div className="flex justify-between w-full items-center h-full">
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <span className="text-sm md:text-[15px]">{title}</span>
+            <span className="font-medium leading-snug">{title}</span>
             {isNewProject(id) ? <NewProjectTag /> : null}
           </div>
-          <span className="text-sm text-muted-foreground tracking-tight">{subHeading}</span>
+          <span className="text-sm leading-5 text-muted-foreground">{subHeading}</span>
         </div>
       </div>
     </a>

@@ -41,7 +41,6 @@
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "@shikijs/transformers": "^1.10.3",
-    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/pluralize": "^0.0.33",
     "@types/react": "^18",

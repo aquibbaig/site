@@ -37,7 +37,7 @@ function AppToaster() {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <Head>
           <title>Aquib Baig</title>
         </Head>
