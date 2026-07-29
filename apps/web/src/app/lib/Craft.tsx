@@ -30,11 +30,7 @@ export const Craft: FC = () => {
       <div>
         {craft.map((post) => {
           return (
-            <div key={post.filePath}>
-              <Link href={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}>
-                <BlogPostCard post={post} />
-              </Link>
-            </div>
+            <BlogPostCard key={post.filePath} post={post} />
           );
         })}
       </div>

@@ -107,7 +107,7 @@ export const Code: FC<any> = (props) => {
               <Maximize2 size={16} />
             </button>
           </Dialog.Trigger>
-          <p dangerouslySetInnerHTML={{ __html: html }} className="!p-0" />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
 
         <Dialog.Portal>
@@ -126,7 +126,7 @@ export const Code: FC<any> = (props) => {
               </Dialog.Close>
             </div>
             <div className="min-h-0 flex-1 overflow-hidden rounded-md border-t border-border bg-background p-6 [&_p]:flex [&_p]:h-full [&_p]:items-center [&_p]:justify-center [&_p]:m-0 [&_svg]:h-[90%] [&_svg]:max-h-[90%] [&_svg]:max-w-[90%] [&_svg]:w-auto">
-              <p dangerouslySetInnerHTML={{ __html: html }} className="!p-0" />
+              <div dangerouslySetInnerHTML={{ __html: html }} />
             </div>
           </Dialog.Content>
         </Dialog.Portal>
@@ -135,8 +135,6 @@ export const Code: FC<any> = (props) => {
   }
 
   return (
-    <div>
-      <p dangerouslySetInnerHTML={{ __html: html }} className="!p-0" />
-    </div>
+    <div dangerouslySetInnerHTML={{ __html: html }} />
   );
 };

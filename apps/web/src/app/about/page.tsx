@@ -1,6 +1,4 @@
 import { type Metadata } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'About | Aquib Baig',
@@ -9,48 +7,44 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div>
-      <Head>
-        <title>About | Aquib Baig</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <div className="flex flex-col gap-y-8">
-        <div className="flex flex-col items-start gap-6">
-          <Image
-            src="/logo.jpg"
-            alt="Aquib Baig"
-            width={80}
-            height={80}
-            className="rounded-full"
-          />
-          <div className="flex flex-col gap-2">
-            <p>
-              When {`I'm`} not working, I love listening to music, playing football or Counter strike.
-            </p>
-          </div>
+    <div className="flex flex-col gap-10">
+      <section className="flex flex-col gap-4" aria-labelledby="about-heading">
+        <div className="flex items-center gap-4">
+          <h1 id="about-heading" className="text-sm font-medium">
+            About
+          </h1>
+          <div className="h-px flex-1 bg-border" />
         </div>
-        <div className="flex flex-col gap-2">
-          <h5 className="text-muted-foreground">Experience</h5>
+        <div className="flex flex-col gap-4 leading-relaxed text-muted-foreground">
           <p>
-            Senior Software Engineer at{' '}
-            <a href="https://www.coderabbit.ai/" target="_blank" className="external-link">
-              CodeRabbit
-            </a>
-            .
+            I’m a software engineer who enjoys turning complex ideas into thoughtful, dependable
+            products. I care about the details that make software feel clear and considered—from
+            its architecture and performance to the way it looks and responds in someone’s hands.
           </p>
           <p>
-            Previously,{' '}
-            <a href="https://www.toplyne.io/" target="_blank" className="external-link">
-              Toplyne
-            </a>
-            {` & `}
-            <a href="https://www.redhat.com/en" target="_blank" className="external-link">
-              Redhat
-            </a>
-            .
+            Away from the screen, I’m drawn to monochrome photography, architecture, music, and
+            travelling. I enjoy observing how light, structure, sound, and place shape the way we
+            experience the world; those interests often find their way back into how I approach
+            design and engineering.
           </p>
         </div>
-      </div>
+      </section>
+
+      <section className="flex flex-col gap-3" aria-labelledby="experience-heading">
+        <div className="flex items-center gap-4">
+          <h2 id="experience-heading" className="text-sm font-medium">
+            Experience
+          </h2>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+        <p>
+          Senior Software Engineer at{' '}
+          <a href="https://www.coderabbit.ai/" target="_blank" className="external-link">
+            CodeRabbit
+          </a>
+          .
+        </p>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,163 @@
+/* shadcn/typeset container, flattened for this project's CSS pipeline. */
+@layer components {
+  .typeset {
+    --typeset-muted: var(--color-muted-foreground);
+    --typeset-rule: var(--color-border);
+    color: var(--color-foreground);
+    font-size: 1.125rem;
+    line-height: 1.625;
+    overflow-wrap: break-word;
+  }
+
+  .typeset p {
+    margin-block: 0 1.5rem;
+  }
+
+  .typeset h1,
+  .typeset h2,
+  .typeset h3,
+  .typeset h4,
+  .typeset h5,
+  .typeset h6 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    margin-block-end: 1rem;
+  }
+
+  .typeset h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-block-start: 2.5rem;
+  }
+
+  .typeset h2 {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    margin-block-start: 2rem;
+  }
+
+  .typeset h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-block-start: 1.75rem;
+  }
+
+  .typeset h4,
+  .typeset h5,
+  .typeset h6 {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-block-start: 1.5rem;
+  }
+
+  .typeset a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+    text-underline-offset: 0.15em;
+  }
+
+  .typeset a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .typeset strong,
+  .typeset b {
+    font-weight: 600;
+  }
+
+  .typeset ul,
+  .typeset ol {
+    margin-block: 0 1.5rem;
+    padding-inline-start: 1.5em;
+  }
+
+  .typeset ul { list-style-type: disc; }
+  .typeset ol { list-style-type: decimal; }
+
+  .typeset li {
+    margin-block-start: 0.5rem;
+    padding-inline-start: 0.25rem;
+  }
+
+  .typeset li::marker {
+    color: var(--typeset-muted);
+  }
+
+  .typeset :not(pre) > code {
+    background: var(--color-secondary);
+    border-radius: 0.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875em;
+    padding: 0.125em 0.3em;
+  }
+
+  .typeset pre {
+    background: var(--color-card) !important;
+    border: 1px solid var(--typeset-rule);
+    border-radius: 0.5rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-block: 0 1.5rem;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  .typeset pre code {
+    background: transparent;
+    font: inherit;
+    padding: 0;
+  }
+
+  .typeset blockquote {
+    border-inline-start: 2px solid var(--typeset-rule);
+    color: var(--typeset-muted);
+    margin: 0 0 1.5rem;
+    padding-inline-start: 1rem;
+  }
+
+  .typeset blockquote p {
+    margin-bottom: 0;
+  }
+
+  .typeset hr {
+    border: 0;
+    border-block-start: 1px solid var(--typeset-rule);
+    margin-block: 3rem 2rem;
+  }
+
+  .typeset hr + h1,
+  .typeset hr + h2,
+  .typeset hr + h3 {
+    margin-block-start: 0;
+  }
+
+  .typeset img,
+  .typeset video {
+    border-radius: 0.5rem;
+    height: auto;
+    margin-block: 0 1.5rem;
+    max-width: 100%;
+  }
+
+  .typeset table {
+    border-collapse: collapse;
+    font-size: 1rem;
+    margin-block: 0 1.5rem;
+    width: 100%;
+  }
+
+  .typeset th,
+  .typeset td {
+    border-block-start: 1px solid var(--typeset-rule);
+    padding: 0.75rem 1rem;
+    text-align: start;
+  }
+
+  .typeset > :first-child {
+    margin-block-start: 0;
+  }
+}

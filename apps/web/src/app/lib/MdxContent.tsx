@@ -8,7 +8,7 @@ type MdxContentProps = {
 };
 
 const MdxComponents = {
-  pre: (props: any) => Code(props),
+  pre: Code,
 };
 
 export function MdxContent({ source }: MdxContentProps) {
