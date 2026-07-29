@@ -1,16 +1,14 @@
+import { POST_PREVIEW_LIMIT } from '@/constants';
 import { getPostMetadata } from '@/helpers';
 import { cn } from '@repo/ui/cn';
-import { Separator } from '@repo/ui/components/Separator';
 import { Link } from 'next-view-transitions';
 import type { FC } from 'react';
 import { BlogPostCard } from '../blog/page';
 
 export const Craft: FC = () => {
-  const { posts } = getPostMetadata({});
+  const { posts } = getPostMetadata({ limit: POST_PREVIEW_LIMIT });
 
-  const craft = posts.filter((post) => post.data.craft);
-
-  if (!craft.length) return null;
+  if (!posts.length) return null;
 
   return (
     <div className="flex flex-col">
@@ -26,9 +24,8 @@ export const Craft: FC = () => {
           View all
         </Link>
       </div>
-      <Separator />
       <div>
-        {craft.map((post) => {
+        {posts.map((post) => {
           return (
             <BlogPostCard key={post.filePath} post={post} />
           );

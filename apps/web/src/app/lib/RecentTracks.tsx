@@ -1,6 +1,5 @@
 'use client';
 
-import { Separator } from '@repo/ui/components/Separator';
 import Image from 'next/image';
 import { useRecentTracks } from 'spotify-connect';
 
@@ -37,7 +36,6 @@ export const RecentTracks = () => {
   return (
     <div className="flex flex-col">
       <h5 className="font-medium text-sm">Last Played</h5>
-      <Separator />
       <ul className="flex flex-col gap-1">
         {recentTracks.items?.slice(0, MAX_TRACKS)?.map((track) => {
           if (!track) return null;
