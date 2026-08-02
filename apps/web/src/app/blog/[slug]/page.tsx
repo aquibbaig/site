@@ -51,7 +51,7 @@ export default async function PostPage({
     <div className="flex flex-col gap-12">
       <div>
         <Link
-          href="/blog"
+          href="/"
           className="mb-8 inline-block text-sm text-muted-foreground hover:text-foreground hover:underline"
         >
           ← Back
