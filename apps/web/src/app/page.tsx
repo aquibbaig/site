@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { CraftSvg } from '@/assets/craft.svg';
-import { githubLink } from '@/constants';
+import { emailLink, githubLink, linkedInLink } from '@/constants';
 import { getPostMetadata } from '@/helpers';
 import { Link } from 'next-view-transitions';
 import { getWritingHighlight } from './lib/writingHighlights';
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const { posts } = getPostMetadata({ limit: 5 });
+  const { posts } = getPostMetadata({});
 
   return (
     <div className="flex flex-col gap-10">
@@ -55,10 +55,15 @@ export default function Home() {
 
       <nav aria-label="Site links">
         <ul className="flex flex-wrap gap-x-4 gap-y-2">
-          {siteLinks.map(({ href, label, external }) => (
+          {siteLinks.map(({ href, label, external, newTab }) => (
             <li key={href}>
               {external ? (
-                <a className="external-link" href={href} target="_blank" rel="noreferrer">
+                <a
+                  className="external-link"
+                  href={href}
+                  target={newTab ? '_blank' : undefined}
+                  rel={newTab ? 'noreferrer' : undefined}
+                >
                   {label}
                 </a>
               ) : (
@@ -75,8 +80,10 @@ export default function Home() {
 }
 
 const siteLinks = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
-  { href: '/colophon', label: 'Colophon' },
-  { href: githubLink, label: 'GitHub', external: true },
+  { href: '/projects', label: 'Projects', external: false, newTab: false },
+  { href: '/about', label: 'About', external: false, newTab: false },
+  { href: '/colophon', label: 'Colophon', external: false, newTab: false },
+  { href: githubLink, label: 'GitHub', external: true, newTab: true },
+  { href: emailLink, label: 'Email', external: true, newTab: false },
+  { href: linkedInLink, label: 'LinkedIn', external: true, newTab: true },
 ];

@@ -16,7 +16,7 @@ type Post = {
   };
 };
 
-export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
+export const getPostMetadata = ({ limit }: { limit?: number }) => {
   const posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
     const { content, data } = matter(source);
@@ -38,5 +38,7 @@ export const getPostMetadata = ({ limit = 10 }: { limit?: number }) => {
       }
     });
 
-  return { posts: sortedPosts.slice(0, limit) as Post[], count: sortedPosts.length };
+  const visiblePosts = limit === undefined ? sortedPosts : sortedPosts.slice(0, limit);
+
+  return { posts: visiblePosts as Post[], count: sortedPosts.length };
 };
