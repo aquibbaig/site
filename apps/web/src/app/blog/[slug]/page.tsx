@@ -5,24 +5,25 @@ import fs from 'fs';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import dynamic from 'next/dynamic';
 import { Link } from 'next-view-transitions';
 import path from 'path';
 import remarkGfm from 'remark-gfm';
+import { LazyMdxContent } from '../../lib/LazyMdxContent';
 import { CopyPostLink } from './_lib/CopyPostLink';
 import { PageViews } from './_lib/PageViews';
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+type PostPageProps = {
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: PostPageProps,
   parent: ResolvingMetadata
 ): Promise<ResolvedMetadata> {
+  const { slug } = await params;
+
   const { frontmatter } = await getPost({
-    slug: params.slug,
+    slug,
   });
 
   return {
@@ -32,19 +33,11 @@ export async function generateMetadata(
   };
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: {
-    slug: string;
-  };
-}) {
-  const { serialized, frontmatter } = await getPost({
-    slug: params.slug,
-  });
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
 
-  const MdxContent = dynamic(() => import('@/app/lib/MdxContent').then((mod) => mod.MdxContent), {
-    ssr: false,
+  const { serialized, frontmatter } = await getPost({
+    slug,
   });
 
   return (
@@ -70,7 +63,7 @@ export default async function PostPage({
               {dayjs(frontmatter.publishedOn).format(DAYJS_DEFAULT_FORMAT)}
             </span>
           )}
-          <PageViews slug={params.slug} />
+          <PageViews slug={slug} />
         </div>
         {Boolean(frontmatter.tags) && (
           <div className="flex flex-row flex-wrap gap-3 mt-4">
@@ -81,7 +74,7 @@ export default async function PostPage({
         )}
       </div>
       <article className="typeset">
-        <MdxContent source={serialized} />
+        <LazyMdxContent source={serialized} />
       </article>
       <div className="mt-8 border-t border-border pt-8">
         <div className="flex flex-row items-center justify-between gap-6 text-muted-foreground">
@@ -94,7 +87,7 @@ export default async function PostPage({
               </>
             )}
           </div>
-          <CopyPostLink slug={params.slug} />
+          <CopyPostLink slug={slug} />
         </div>
       </div>
     </div>

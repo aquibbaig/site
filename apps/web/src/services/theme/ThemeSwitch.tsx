@@ -1,18 +1,14 @@
 'use client';
 
+import { useIsClient } from '@/hooks/useIsClient';
 import { Button } from '@repo/ui/components/Button';
 import { IconComponent } from '@repo/ui/components/IconComponent';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 
 export const ThemeSwitch = () => {
   const { theme, systemTheme, setTheme } = useTheme();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isClient = useIsClient();
 
   if (!isClient) {
     return null;
