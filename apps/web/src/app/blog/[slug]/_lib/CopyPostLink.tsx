@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useIsClient } from '@/hooks/useIsClient';
 import { toast } from 'sonner';
 
 export const getSlugLink = (slug: string) => `${window.location.origin}/blog/${slug}`;
 
 export const CopyPostLink = ({ slug }: { slug: string }) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => setIsClient(true), []);
+  const isClient = useIsClient();
 
   if (!isClient) {
     return null;

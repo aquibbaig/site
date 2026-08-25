@@ -30,6 +30,7 @@ export const CopyComponent = ({
 
   return (
     <Button
+      className={className}
       variant="ghost"
       onClick={() => {
         copyToClipboard(copyText);

@@ -1,3 +1,5 @@
+import type { StaticImageData } from 'next/image';
+
 export const DAYJS_DEFAULT_FORMAT = 'MMMM D ddd, YYYY';
 
 export const POST_PREVIEW_LIMIT = 3;
@@ -7,7 +9,7 @@ export type ProjectType = {
   title: string;
   uri: string | null;
   description: string;
-  icon?: any;
+  icon: string | StaticImageData;
   size: [number, number];
   subHeading: string;
 };

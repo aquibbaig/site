@@ -11,7 +11,7 @@ export const useIsomorphicLayoutEffect =
 function useEventListener<K extends keyof MediaQueryListEventMap>(
   eventName: K,
   handler: (event: MediaQueryListEventMap[K]) => void,
-  element: RefObject<MediaQueryList>,
+  element: RefObject<MediaQueryList | null>,
   options?: boolean | AddEventListenerOptions
 ): void;
 
@@ -30,7 +30,7 @@ function useEventListener<
 >(
   eventName: K,
   handler: ((event: HTMLElementEventMap[K]) => void) | ((event: SVGElementEventMap[K]) => void),
-  element: RefObject<T>,
+  element: RefObject<T | null>,
   options?: boolean | AddEventListenerOptions
 ): void;
 
@@ -38,7 +38,7 @@ function useEventListener<
 function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
-  element: RefObject<Document>,
+  element: RefObject<Document | null>,
   options?: boolean | AddEventListenerOptions
 ): void;
 
@@ -57,7 +57,7 @@ function useEventListener<
       | MediaQueryListEventMap[KM]
       | Event
   ) => void,
-  element?: RefObject<T>,
+  element?: RefObject<T | null>,
   options?: boolean | AddEventListenerOptions
 ) {
   // Create a ref that stores handler

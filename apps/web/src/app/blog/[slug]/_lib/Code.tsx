@@ -6,15 +6,29 @@ import {
 } from '@shikijs/transformers';
 import { Maximize2, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { type FC, useEffect, useRef, useState } from 'react';
+import {
+  type ComponentProps,
+  isValidElement,
+  type ReactNode,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react';
 import { codeToHtml } from 'shiki';
 
-export const Code: FC<any> = (props) => {
-  const [html, setHtml] = useState<any>(null);
+type CodeChildProps = {
+  children?: ReactNode;
+  className?: string;
+};
+
+export function Code(props: ComponentProps<'pre'>) {
+  const [html, setHtml] = useState<string | null>(null);
   const { theme, systemTheme } = useTheme();
-  const language = props?.children?.props?.className?.split('language-')?.[1] || 'ts';
-  const code = String(props.children.props.children);
-  const diagramId = useRef(`mermaid-${Math.random().toString(36).slice(2)}`);
+  const codeElement = isValidElement<CodeChildProps>(props.children) ? props.children : null;
+  const language = codeElement?.props.className?.split('language-')[1] || 'ts';
+  const code = String(codeElement?.props.children ?? '');
+  const diagramId = `mermaid-${useId().replaceAll(':', '')}`;
   const renderCount = useRef(0);
 
   const isDark = theme === 'dark' || (theme === 'system' && systemTheme === 'dark');
@@ -33,9 +47,7 @@ export const Code: FC<any> = (props) => {
         try {
           if (language === 'mermaid') {
             const { default: mermaid } = await import('mermaid');
-            const renderId = `${diagramId.current}-${++renderCount.current}-${
-              isDark ? 'dark' : 'light'
-            }`;
+            const renderId = `${diagramId}-${++renderCount.current}-${isDark ? 'dark' : 'light'}`;
 
             mermaid.initialize({
               startOnLoad: false,
@@ -65,9 +77,9 @@ export const Code: FC<any> = (props) => {
           if (!cancelled) {
             setHtml(highlightedCode);
           }
-        } catch (error) {
+        } catch {
           if (!cancelled) {
-            setHtml((currentHtml: any) => currentHtml || '');
+            setHtml((currentHtml) => currentHtml || '');
           }
         }
       })();
@@ -77,7 +89,7 @@ export const Code: FC<any> = (props) => {
       cancelled = true;
       window.clearTimeout(timer);
     };
-  }, [theme, isDark, code, language]);
+  }, [theme, isDark, code, diagramId, language]);
 
   if (!html) {
     return (
@@ -137,4 +149,4 @@ export const Code: FC<any> = (props) => {
   return (
     <div dangerouslySetInnerHTML={{ __html: html }} />
   );
-};
+}

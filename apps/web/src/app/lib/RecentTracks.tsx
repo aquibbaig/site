@@ -40,12 +40,17 @@ export const RecentTracks = () => {
         {recentTracks.items?.slice(0, MAX_TRACKS)?.map((track) => {
           if (!track) return null;
 
+          const recentTrack = track.track;
+          const imageUrl = recentTrack?.album?.images[0]?.url;
+
+          if (!recentTrack || !imageUrl) return null;
+
           return (
             <a
-              key={track.track?.id}
+              key={recentTrack.id}
               target="blank"
               rel="noopener noreferrer"
-              href={track.track?.external_urls?.spotify}
+              href={recentTrack.external_urls.spotify}
               className="group w-fit"
             >
               <li className="flex flex-row items-center gap-2">
@@ -53,16 +58,16 @@ export const RecentTracks = () => {
                   <Image
                     width={48}
                     height={48}
-                    src={track.track?.album?.images[0]?.url!}
-                    alt={track.track?.name}
+                    src={imageUrl}
+                    alt={recentTrack.name}
                     className="rounded-full animate-spin-slow transition-all duration-400 border-2 border-transparent group-hover:border-2 group-hover:border-border/50"
                   />
                   <div className="absolute inset-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 bg-accent rounded-full border border-gray-500" />
                 </div>
                 <div className="flex flex-col flex-wrap">
-                  <span>{track.track?.name}</span>
+                  <span>{recentTrack.name}</span>
                   <span className="text-muted-foreground -mt-0.5 text-sm">
-                    {track.track?.artists?.[0]?.name}
+                    {recentTrack.artists[0]?.name}
                   </span>
                 </div>
               </li>
