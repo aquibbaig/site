@@ -2,12 +2,14 @@
 
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Code } from '../blog/[slug]/_lib/Code';
+import { PhotoMasonry } from './PhotoMasonry';
 
 type MdxContentProps = {
   source: MDXRemoteSerializeResult;
 };
 
 const MdxComponents = {
+  PhotoMasonry,
   pre: Code,
 };
 
