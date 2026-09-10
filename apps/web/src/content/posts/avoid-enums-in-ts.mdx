@@ -45,7 +45,7 @@ the compiled object becomes...
 }
 ```
 
-<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+<hr />
 ### String Enums are not inferred
 
 We all know that Typescript does a really good job in inferring and narrowing types to atomic values, but it struggles heavily when it comes to Enums. When you declare an enum, you must not reference it by its value but with it's exact name everywhere even though both the cases reflect the same value.
@@ -121,7 +121,7 @@ and then...
 type EnvServerId = KeyOf<typeof DeploymentEnv>;
 ```
 
-<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+<hr />
 
 It also fixes the issue of implicit auto-assignment of values and the inability to infer string enums.
 
@@ -153,7 +153,7 @@ getColor2('RED') // ✅
 
 ```
 
-<hr className="my-10 border-border-primary-light dark:border-border-primary-dark border-[0.2px]" />
+<hr />
 
 ### Benefits of this Approach
 
