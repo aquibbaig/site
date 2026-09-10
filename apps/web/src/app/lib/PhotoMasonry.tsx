@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 type PhotoMasonryProps = {
   children: ReactNode;
-  layout?: 'wide' | 'split' | 'feature';
+  layout?: 'wide' | 'split' | 'feature' | 'gallery';
 };
 
 export function PhotoMasonry({

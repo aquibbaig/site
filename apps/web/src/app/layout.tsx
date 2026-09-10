@@ -59,7 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <main
                   className={twMerge(
                     'max-w-[576px] mx-auto antialiased flex flex-col gap-8',
-                    'py-12 md:py-16 p-2'
+                    'py-12 md:py-16 p-2',
+                    'has-[>.blog-post]:max-w-[752px] has-[>.blog-post]:px-8'
                   )}
                 >
                   <PageHeader />
