@@ -8,6 +8,11 @@
 }
 
 @layer base {
+  body {
+    line-height: normal;
+    letter-spacing: normal;
+  }
+
   * {
     @apply antialiased;
   }
