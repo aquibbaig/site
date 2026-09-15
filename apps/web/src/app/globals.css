@@ -2,15 +2,16 @@
 @import "./typeset.css";
 
 @theme inline {
-  --font-sans: var(--font-louize), Georgia, serif;
-  --font-serif: var(--font-louize), Georgia, serif;
-  --font-mono: var(--font-louize), Georgia, serif;
+  --font-sans: var(--font-neue-montreal), Arial, sans-serif;
+  --font-serif: var(--font-editorial-new), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 @layer base {
   body {
-    line-height: normal;
-    letter-spacing: normal;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
   }
 
   * {
@@ -34,6 +35,13 @@
 }
 
 @layer components {
+  .site-name {
+    font-family: var(--font-editorial-new), Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    letter-spacing: -0.005em;
+  }
+
   .writing-highlight-blue {
     background-color: #eff6ff;
   }

@@ -16,13 +16,28 @@ import { Toaster } from 'sonner';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
 
-const louize = localFont({
-  src: '../../public/fonts/louize.woff2',
+const neueMontreal = localFont({
+  src: '../../public/fonts/neue-montreal.woff',
   weight: '400',
   style: 'normal',
-  variable: '--font-louize',
+  variable: '--font-neue-montreal',
   display: 'swap',
-  fallback: ['Georgia', 'serif'],
+});
+
+const editorialNew = localFont({
+  src: [
+    { path: '../../public/fonts/editorial-new.woff', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/editorial-new-italic.woff', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-editorial-new',
+  display: 'swap',
+});
+
+const geistMono = localFont({
+  src: '../../public/fonts/geist-mono.woff2',
+  weight: '100 900',
+  variable: '--font-geist-mono',
+  display: 'swap',
 });
 
 export const dynamic = 'force-static';
@@ -44,7 +59,7 @@ function AppToaster() {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="en" className={louize.variable} suppressHydrationWarning>
+      <html lang="en" className={clsx(neueMontreal.variable, editorialNew.variable, geistMono.variable)} suppressHydrationWarning>
         <Head>
           <title>Aquib Baig</title>
         </Head>
@@ -54,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               className={clsx(
                 twMerge(
                   'bg-background text-foreground',
-                  louize.className
+                  neueMontreal.className
                 )
               )}
             >
