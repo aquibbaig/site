@@ -21,9 +21,9 @@ export default function Colophon() {
           <a className="external-link" target="_blank" href={`https://vercel.com/`}>
             Vercel
           </a>
-          . The typography is set in Inter by{' '}
-          <a className="external-link" target="_blank" href={`https://vercel.app/`}>
-            Vercel
+          . The typography is set in Louize by{' '}
+          <a className="external-link" target="_blank" href="https://www.205.tf/">
+            205TF
           </a>
           . The source code that powers it can be found on{' '}
           <a
