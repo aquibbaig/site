@@ -3,7 +3,6 @@ import { POSTS_PATH } from '@/lib/server-constants';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import type { ResolvedMetadata, ResolvingMetadata } from 'next';
-import { Instrument_Serif } from 'next/font/google';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { Link } from 'next-view-transitions';
@@ -12,13 +11,6 @@ import remarkGfm from 'remark-gfm';
 import { LazyMdxContent } from '../../lib/LazyMdxContent';
 import { CopyPostLink } from './_lib/CopyPostLink';
 import { PageViews } from './_lib/PageViews';
-
-const editorial = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-blog-heading',
-  display: 'swap',
-});
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -49,7 +41,7 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <div className={`blog-post ${editorial.variable} flex flex-col gap-16`}>
+    <div className="blog-post flex flex-col gap-16">
       <div>
         <Link
           href="/"

@@ -1,6 +1,12 @@
 @import "@repo/tailwind/theme.css";
 @import "./typeset.css";
 
+@theme inline {
+  --font-sans: var(--font-louize), Georgia, serif;
+  --font-serif: var(--font-louize), Georgia, serif;
+  --font-mono: var(--font-louize), Georgia, serif;
+}
+
 @layer base {
   * {
     @apply antialiased;

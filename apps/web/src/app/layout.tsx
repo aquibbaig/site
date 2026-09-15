@@ -10,13 +10,20 @@ import './globals.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import { useTheme } from 'next-themes';
 import { Toaster } from 'sonner';
 import { SpotifyConnectContextProvider } from 'spotify-connect';
 import { PHProvider } from './providers';
 
-const inter = Inter({ subsets: ['latin'] });
+const louize = localFont({
+  src: '../../public/fonts/louize.woff2',
+  weight: '400',
+  style: 'normal',
+  variable: '--font-louize',
+  display: 'swap',
+  fallback: ['Georgia', 'serif'],
+});
 
 export const dynamic = 'force-static';
 
@@ -28,6 +35,7 @@ function AppToaster() {
   return (
     <Toaster
       position="top-right"
+      style={{ fontFamily: 'inherit' }}
       theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
     />
   );
@@ -36,7 +44,7 @@ function AppToaster() {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" className={louize.variable} suppressHydrationWarning>
         <Head>
           <title>Aquib Baig</title>
         </Head>
@@ -46,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               className={clsx(
                 twMerge(
                   'bg-background text-foreground',
-                  inter.className
+                  louize.className
                 )
               )}
             >
