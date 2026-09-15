@@ -25,7 +25,8 @@ export default function Colophon() {
           <a className="external-link" target="_blank" href="https://www.205.tf/">
             205TF
           </a>
-          . The source code that powers it can be found on{' '}
+          , with blog titles and headings in Instrument Serif and the site name in
+          Inter. The source code that powers it can be found on{' '}
           <a
             className="external-link"
             target="_blank"
