@@ -6,31 +6,32 @@
   }
 
   .blog-title {
-    font-family: var(--font-blog-heading), Georgia, serif;
+    font-family: var(--font-editorial-new), Georgia, serif;
     font-size: 2.1875rem;
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 2.5rem;
   }
 
+  .blog-description,
+  .blog-date {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+    letter-spacing: -0.0025em;
+  }
+
   .typeset {
     --typeset-muted: var(--color-muted-foreground);
     --typeset-rule: var(--color-border);
     color: color-mix(in srgb, var(--color-foreground) 78%, var(--color-background));
-    font-size: 1rem;
-    letter-spacing: normal;
-    line-height: normal;
+    font-size: 1.125rem;
+    letter-spacing: -0.0025em;
+    line-height: 1.625rem;
     overflow-wrap: break-word;
   }
 
   .typeset p {
-    margin-block: 0 1em;
-  }
-
-  @media (max-width: 599px) {
-    .typeset {
-      font-size: 1.25rem;
-    }
+    margin-block: 0.5rem 1.5rem;
   }
 
   .typeset h1,
@@ -40,7 +41,7 @@
   .typeset h5,
   .typeset h6 {
     color: var(--color-foreground);
-    font-family: var(--font-blog-heading), Georgia, serif;
+    font-family: var(--font-editorial-new), Georgia, serif;
     font-weight: 400;
     margin-block-end: 0.5rem;
   }
@@ -61,7 +62,8 @@
 
   .typeset h3 {
     font-size: 1.5rem;
-    line-height: 2rem;
+    line-height: 1.875rem;
+    letter-spacing: -0.00625em;
     margin-block-start: 3rem;
   }
 
@@ -69,13 +71,14 @@
   .typeset h5,
   .typeset h6 {
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.375rem;
+    letter-spacing: 0;
     margin-block-start: 1.5rem;
   }
 
   .typeset a {
     color: inherit;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration-line: underline;
     text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
     text-underline-offset: 0.15em;
@@ -92,21 +95,22 @@
 
   .typeset strong,
   .typeset b {
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .typeset ul,
   .typeset ol {
-    margin-block: 0 1.5rem;
-    padding-inline-start: 1.5em;
+    margin-block: 0;
+    margin-inline-start: 2rem;
+    padding-inline-start: 0;
   }
 
   .typeset ul { list-style-type: disc; }
   .typeset ol { list-style-type: decimal; }
 
   .typeset li {
-    margin-block-start: 0.5rem;
-    padding-inline-start: 0.25rem;
+    margin-block: 0 0.5rem;
+    padding-inline-start: 0;
   }
 
   .typeset li::marker {
@@ -116,17 +120,20 @@
   .typeset :not(pre) > code {
     background: var(--color-secondary);
     border-radius: 0.25rem;
-    font-family: inherit;
-    font-size: 0.875em;
-    padding: 0.125em 0.3em;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 0.9025em;
+    line-height: 1.25;
+    letter-spacing: -0.0095em;
+    padding: 0.1em 0.25em;
   }
 
   .typeset pre {
     background: var(--color-card) !important;
     border: 1px solid var(--typeset-rule);
     border-radius: 0.5rem;
-    font-family: inherit;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
     font-size: 0.875rem;
+    letter-spacing: -0.0095em;
     line-height: 1.6;
     margin-block: 0 1.5rem;
     max-width: 100%;
@@ -228,12 +235,13 @@
   }
 
   .typeset .photo-masonry[data-layout='gallery'] > p {
+    aspect-ratio: 688 / 456;
     border-radius: 0;
   }
 
   .typeset .photo-masonry[data-layout='gallery'] img {
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (max-width: 639px) {
