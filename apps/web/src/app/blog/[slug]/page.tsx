@@ -61,7 +61,7 @@ export default async function PostPage({ params }: PostPageProps) {
           {frontmatter.title}
         </h1>
         {frontmatter.description && (
-          <p className="text-sm mt-4 text-muted-foreground leading-relaxed">
+          <p className="mt-4 text-xl leading-relaxed tracking-normal text-foreground/85">
             {frontmatter.description}
           </p>
         )}
