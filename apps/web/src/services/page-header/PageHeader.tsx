@@ -2,7 +2,10 @@
 
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
+import { Inter } from 'next/font/google';
 import { ThemeSwitch } from '../theme/ThemeSwitch';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const PageHeader = () => {
   return (
@@ -12,7 +15,7 @@ export const PageHeader = () => {
         className="flex items-center gap-3 text-xl font-semibold tracking-tight"
       >
         <Image src="/logo.jpg" alt="" width={28} height={28} className="rounded-full" />
-        <span>Aquib Baig</span>
+        <span className={inter.className}>Aquib Baig</span>
       </Link>
       <ThemeSwitch />
     </div>
