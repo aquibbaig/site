@@ -93,6 +93,37 @@
     text-decoration-color: currentColor;
   }
 
+  .blog-heading {
+    scroll-margin-block-start: 2rem;
+  }
+
+  .blog-heading .heading-link {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+  }
+
+  .heading-hash {
+    color: var(--color-muted-foreground);
+    opacity: 0;
+  }
+
+  .heading-link:hover .heading-hash,
+  .heading-link:focus-visible .heading-hash {
+    opacity: 1;
+  }
+
+  .heading-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  @media (hover: none) {
+    .heading-hash {
+      opacity: 1;
+    }
+  }
+
   .typeset strong,
   .typeset b {
     font-weight: 500;

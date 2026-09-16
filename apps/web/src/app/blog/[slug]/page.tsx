@@ -7,6 +7,8 @@ import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { Link } from 'next-view-transitions';
 import path from 'path';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { LazyMdxContent } from '../../lib/LazyMdxContent';
 import { CopyPostLink } from './_lib/CopyPostLink';
@@ -49,8 +51,11 @@ export default async function PostPage({ params }: PostPageProps) {
         >
           ← Back
         </Link>
-        <h1 className="blog-title">
-          {frontmatter.title}
+        <h1 id="post-title" className="blog-title blog-heading">
+          <a className="heading-link" href="#post-title">
+            {frontmatter.title}
+            <span className="heading-hash" aria-hidden="true">{'\u00a0#'}</span>
+          </a>
         </h1>
         {frontmatter.description && (
           <p className="blog-description mt-4 text-foreground/85">
@@ -107,6 +112,20 @@ async function getPost({ slug }: { slug: string }): Promise<{
     parseFrontmatter: true,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        [rehypeSlug, { prefix: 'heading-' }],
+        [rehypeAutolinkHeadings, {
+          behavior: 'wrap',
+          headingProperties: { className: ['blog-heading'] },
+          properties: { className: ['heading-link'] },
+          content: {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: ['heading-hash'], ariaHidden: 'true' },
+            children: [{ type: 'text', value: '\u00a0#' }],
+          },
+        }],
+      ],
     },
   });
 
